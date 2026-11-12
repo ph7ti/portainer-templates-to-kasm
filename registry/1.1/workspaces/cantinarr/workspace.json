@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: Cantinarr",
+  "description": "Media requests and server management in one app. Household members browse and request movies, shows, books, and music, follow downloads, and get notified when content is ready. Administrators manage Radarr, Sonarr, Chaptarr, Lidarr, and download clients, review approvals, and investigate stuck downloads. AI is optional, and authorized MCP clients can use the same server. GitHub: [windoze95/cantinarr](https://github.com/windoze95/cantinarr) Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "cantinarr.png",
+  "categories": [
+    "Media",
+    "Tools"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://cantinarr:8585"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Cantinarr'. Backend Docker esperado: contêiner 'cantinarr' (imagem ghcr.io/windoze95/cantinarr:latest), na rede kasm_default_network, escutando na porta interna 8585. URL alvo: http://cantinarr:8585. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

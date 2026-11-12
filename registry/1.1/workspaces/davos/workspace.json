@@ -1,0 +1,26 @@
+{
+  "friendly_name": "Teste: Davos",
+  "description": "[Davos](https://github.com/linuxserver/davos) is an FTP automation tool that periodically scans given host locations for new files. It can be configured for various purposes, including listening for specific files to appear in the host location, ready for it to download and then move, if required. It also supports completion notifications as well as downstream API calls, to further the workflow. Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "davos.png",
+  "categories": [
+    "FTP"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://davos:8080"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Davos'. Backend Docker esperado: contêiner 'davos' (imagem linuxserver/davos:latest), na rede kasm_default_network, escutando na porta interna 8080. URL alvo: http://davos:8080. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

@@ -1,0 +1,28 @@
+{
+  "friendly_name": "Teste: AI Marketplace Monitor",
+  "description": "Watch Facebook Marketplace for the items you want, rate each new listing with AI, and get notified of good deals. Source: https://github.com/BoPeng/ai-marketplace-monitor Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "ai-marketplace-monitor.png",
+  "categories": [
+    "Productivity",
+    "Tools",
+    "AI"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://ai-marketplace-monitor:8467"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'AI Marketplace Monitor'. Backend Docker esperado: contêiner 'ai-marketplace-monitor' (imagem ghcr.io/bopeng/ai-marketplace-monitor:latest), na rede kasm_default_network, escutando na porta interna 8467. URL alvo: http://ai-marketplace-monitor:8467. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

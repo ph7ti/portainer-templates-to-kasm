@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: Netbox",
+  "description": "[Netbox](https://github.com/netbox-community/netbox) is an IP address management (IPAM) and data center infrastructure management (DCIM) tool. Initially conceived by the network engineering team at DigitalOcean, NetBox was developed specifically to address the needs of network and infrastructure engineers. It is intended to function as a domain-specific source of truth for network operations. Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "netbox.png",
+  "categories": [
+    "Administration",
+    "Business"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://netbox:8000"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Netbox'. Backend Docker esperado: contêiner 'netbox' (imagem linuxserver/netbox:latest), na rede kasm_default_network, escutando na porta interna 8000. URL alvo: http://netbox:8000. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

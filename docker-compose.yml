@@ -1,0 +1,25 @@
+services:
+  orchestrator:
+    build:
+      context: .
+      dockerfile: orchestrator/Dockerfile
+    image: kasm-backend-orchestrator:local
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      MANIFEST_PATH: /app/registry/backend_manifest.json
+      STATE_PATH: /var/lib/kasm-orchestrator/state.json
+      DOCKER_NETWORK: ${DOCKER_NETWORK:-kasm_default_network}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./registry/backend_manifest.json:/app/registry/backend_manifest.json:ro
+      - orchestrator-state:/var/lib/kasm-orchestrator
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+volumes:
+  orchestrator-state:

@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: FileBrowser S6",
+  "description": "[arm][s6-version] Web File Browser which can be used as a middleware or standalone app. Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "filebrowser-s6.png",
+  "categories": [
+    "Other",
+    "Tools"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://filebrowser-s6:80"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'FileBrowser S6'. Backend Docker esperado: contêiner 'filebrowser-s6' (imagem filebrowser/filebrowser:s6), na rede kasm_default_network, escutando na porta interna 80. URL alvo: http://filebrowser-s6:80. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

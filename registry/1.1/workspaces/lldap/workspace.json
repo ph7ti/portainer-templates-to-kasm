@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: LLDAP",
+  "description": "This project is a lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication. Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "lldap.png",
+  "categories": [
+    "Tools",
+    "Productivity"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://lldap:3890"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'LLDAP'. Backend Docker esperado: contêiner 'lldap' (imagem nitnelave/lldap:stable-debian), na rede kasm_default_network, escutando na porta interna 3890. URL alvo: http://lldap:3890. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

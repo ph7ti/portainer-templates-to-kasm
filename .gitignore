@@ -3,3 +3,18 @@ sources/external/*.json
 
 # Python
 __pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.pytest-tmp/
+.state/
+.cache/
+
+# Kasm orchestrator / local tooling
+.env
+.secrets.json
+.tmp/
+vendor/
+repos/
+tools/plink.exe
+tools/pscp.exe

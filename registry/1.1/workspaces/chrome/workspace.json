@@ -1,0 +1,26 @@
+{
+  "friendly_name": "Teste: Chrome",
+  "description": "[Chrome](https://www.google.com/chrome/) is the official web browser from Google, built to be fast, secure, and customizable. Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "chrome.png",
+  "categories": [
+    "Web Browser"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://chrome:3000"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Chrome'. Backend Docker esperado: contêiner 'chrome' (imagem linuxserver/chrome:latest), na rede kasm_default_network, escutando na porta interna 3000. URL alvo: http://chrome:3000. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

@@ -1,0 +1,26 @@
+{
+  "friendly_name": "Teste: Dosbox-staging",
+  "description": "[DOSBox Staging](https://www.dosbox-staging.org/) is a modern continuation of DOSBox a free and open-source emulator that enables the execution of MS-DOS software, especially video games. Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "dosbox-staging.png",
+  "categories": [
+    "Games"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://dosbox-staging:3000"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Dosbox-staging'. Backend Docker esperado: contêiner 'dosbox-staging' (imagem linuxserver/dosbox-staging:latest), na rede kasm_default_network, escutando na porta interna 3000. URL alvo: http://dosbox-staging:3000. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: Dashy",
+  "description": "The ultimate personal dashboard, keep all your self-hosted services and websites organized. Includes live status monitoring, widgets, icons, themes, 30+ languages, instant search, multi-page support, UI editor, authentication and more. GitHub: [lissy93/dashy](https://github.com/lissy93/dashy) Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "dashy.png",
+  "categories": [
+    "Dashboard",
+    "Tools"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://dashy:8080"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Dashy (container)'. Backend Docker esperado: contêiner 'dashy' (imagem lissy93/dashy:latest), na rede kasm_default_network, escutando na porta interna 8080. URL alvo: http://dashy:8080. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

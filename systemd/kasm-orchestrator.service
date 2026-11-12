@@ -1,0 +1,19 @@
+[Unit]
+Description=Kasm backend orchestrator (Portainer test apps)
+Documentation=https://github.com/ph7ti/portainer-templates-to-kasm
+After=docker.service network-online.target
+Requires=docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/kasm-orchestrator
+EnvironmentFile=/opt/kasm-orchestrator/.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/kasm-orchestrator/venv/bin/python -m orchestrator.orchestrator
+Restart=always
+RestartSec=5
+User=root
+
+[Install]
+WantedBy=multi-user.target

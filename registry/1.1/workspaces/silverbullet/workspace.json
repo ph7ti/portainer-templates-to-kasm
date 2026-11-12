@@ -1,0 +1,28 @@
+{
+  "friendly_name": "Teste: SilverBullet",
+  "description": "Notes app for Markdown pages you can program, with two-way links, tasks, queries over everything you've written and Lua scripting for your own commands and widgets. Source: https://github.com/silverbulletmd/silverbullet Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "silverbullet.png",
+  "categories": [
+    "Documents",
+    "Productivity",
+    "Wiki"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://silverbullet:3000"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'SilverBullet'. Backend Docker esperado: contêiner 'silverbullet' (imagem ghcr.io/silverbulletmd/silverbullet:latest-slim), na rede kasm_default_network, escutando na porta interna 3000. URL alvo: http://silverbullet:3000. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

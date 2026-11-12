@@ -1,0 +1,28 @@
+{
+  "friendly_name": "Teste: Hivekeep",
+  "description": "Self-hosted platform of autonomous, persistent personal AI agents that collaborate, remember, and build their own tools. Reachable via Telegram, WhatsApp, Slack, Discord, Signal and Matrix. Single container with Bun and SQLite, no external infrastructure. Source: https://github.com/MarlBurroW/hivekeep Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "hivekeep.png",
+  "categories": [
+    "AI",
+    "Productivity",
+    "Self Hosted"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://hivekeep:3000"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Hivekeep'. Backend Docker esperado: contêiner 'hivekeep' (imagem ghcr.io/marlburrow/hivekeep:latest), na rede kasm_default_network, escutando na porta interna 3000. URL alvo: http://hivekeep:3000. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

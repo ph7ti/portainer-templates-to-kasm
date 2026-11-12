@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: Opengist",
+  "description": "Pastebin built on Git, like GitHub Gist: every snippet is a repo you can clone, push to and fork, with syntax highlighting, Markdown, embeds, search, and public, unlisted or private gists. Source: https://github.com/thomiceli/opengist Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "opengist.svg",
+  "categories": [
+    "Development",
+    "Tools"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://opengist:6157"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Opengist'. Backend Docker esperado: contêiner 'opengist' (imagem ghcr.io/thomiceli/opengist:1), na rede kasm_default_network, escutando na porta interna 6157. URL alvo: http://opengist:6157. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: PlantUML Server",
+  "description": "Web editor and rendering server for PlantUML, turning plain-text descriptions into sequence, class, component and other diagrams as PNG, SVG or ASCII, with a link for each one you can embed in docs and wikis. Source: https://github.com/plantuml/plantuml-server Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "plantuml-server.png",
+  "categories": [
+    "Development",
+    "Tools"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://plantuml-server:8080"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'PlantUML Server'. Backend Docker esperado: contêiner 'plantuml-server' (imagem plantuml/plantuml-server:jetty), na rede kasm_default_network, escutando na porta interna 8080. URL alvo: http://plantuml-server:8080. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

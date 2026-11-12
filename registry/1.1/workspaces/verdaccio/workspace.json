@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: Verdaccio",
+  "description": "Private npm registry and caching proxy: publish your own packages to it, and install everything else through it so npmjs downloads get cached locally. Works with npm, yarn and pnpm. Source: https://github.com/verdaccio/verdaccio Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "verdaccio.svg",
+  "categories": [
+    "Development",
+    "Storage"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://verdaccio:4873"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Verdaccio'. Backend Docker esperado: contêiner 'verdaccio' (imagem verdaccio/verdaccio:6), na rede kasm_default_network, escutando na porta interna 4873. URL alvo: http://verdaccio:4873. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

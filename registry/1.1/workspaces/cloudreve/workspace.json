@@ -1,0 +1,28 @@
+{
+  "friendly_name": "Teste: Cloudreve",
+  "description": "Cloud drive for your own files, with share links, WebDAV, previews for documents, photos and video, and offline downloads. Source: https://github.com/cloudreve/cloudreve Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "cloudreve.png",
+  "categories": [
+    "Cloud",
+    "File Sharing",
+    "Storage"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://cloudreve:5212"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Cloudreve'. Backend Docker esperado: contêiner 'cloudreve' (imagem cloudreve/cloudreve:v4), na rede kasm_default_network, escutando na porta interna 5212. URL alvo: http://cloudreve:5212. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

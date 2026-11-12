@@ -1,0 +1,26 @@
+{
+  "friendly_name": "Teste: Cockpit {shmolf}",
+  "description": "Cockpit is a headless CMS with an API-first approach that puts content first. Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "cockpit-shmolf.svg",
+  "categories": [
+    "CMS"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://cockpit-shmolf:80"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Cockpit {shmolf}'. Backend Docker esperado: contêiner 'cockpit-shmolf' (imagem agentejo/cockpit:latest), na rede kasm_default_network, escutando na porta interna 80. URL alvo: http://cockpit-shmolf:80. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

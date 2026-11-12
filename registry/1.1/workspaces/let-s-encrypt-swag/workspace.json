@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: Let's Encrypt / SWAG",
+  "description": "This container sets up an Nginx webserver and reverse proxy with php support and a built-in letsencrypt client that automates free SSL server certificate generation and renewal processes. It also contains fail2ban for intrusion prevention. Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "let-s-encrypt-swag.png",
+  "categories": [
+    "Tools",
+    "Web"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://let-s-encrypt-swag:443"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Let's Encrypt / SWAG'. Backend Docker esperado: contêiner 'let-s-encrypt-swag' (imagem linuxserver/swag:latest), na rede kasm_default_network, escutando na porta interna 443. URL alvo: http://let-s-encrypt-swag:443. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

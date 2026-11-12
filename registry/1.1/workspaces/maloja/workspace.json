@@ -1,0 +1,26 @@
+{
+  "friendly_name": "Teste: Maloja",
+  "description": "Simple self-hosted music scrobble database to create personal listening statistics. No recommendations, no social network, no nonsense. Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "maloja.png",
+  "categories": [
+    "Music"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://maloja:42010"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Maloja'. Backend Docker esperado: contêiner 'maloja' (imagem krateng/maloja:latest), na rede kasm_default_network, escutando na porta interna 42010. URL alvo: http://maloja:42010. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

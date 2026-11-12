@@ -1,0 +1,26 @@
+{
+  "friendly_name": "Teste: SolidPing",
+  "description": "Uptime and synthetic monitoring with status pages, incidents and alerts. Checks HTTP, DNS, TCP, ICMP, TLS expiry, databases, message brokers, heartbeats and headless browser scenarios. Source: https://github.com/fclairamb/solidping Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "solidping.png",
+  "categories": [
+    "Monitoring"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://solidping:4000"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'SolidPing'. Backend Docker esperado: contêiner 'solidping' (imagem ghcr.io/fclairamb/solidping:latest), na rede kasm_default_network, escutando na porta interna 4000. URL alvo: http://solidping:4000. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

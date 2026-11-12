@@ -1,0 +1,26 @@
+{
+  "friendly_name": "Teste: Maintainerr",
+  "description": "Library tidier for Plex, Jellyfin and Emby. You write rules like \"nobody's watched it in six months\", it gathers what matches into a leaving-soon collection, then has Sonarr and Radarr delete it once the grace period's up. Source: https://github.com/Maintainerr/Maintainerr Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "maintainerr.svg",
+  "categories": [
+    "Media"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://maintainerr:6246"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Maintainerr'. Backend Docker esperado: contêiner 'maintainerr' (imagem ghcr.io/maintainerr/maintainerr:3), na rede kasm_default_network, escutando na porta interna 6246. URL alvo: http://maintainerr:6246. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

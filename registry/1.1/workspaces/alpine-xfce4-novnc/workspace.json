@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: Alpine Xfce4 noVNC",
+  "description": "Alpine xfce4 novnc Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "alpine-xfce4-novnc.png",
+  "categories": [
+    "Other",
+    "Tools"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://alpine-xfce4-novnc:6080"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Alpine Xfce4 noVNC'. Backend Docker esperado: contêiner 'alpine-xfce4-novnc' (imagem novaspirit/alpine_xfce4_novnc:latest), na rede kasm_default_network, escutando na porta interna 6080. URL alvo: http://alpine-xfce4-novnc:6080. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

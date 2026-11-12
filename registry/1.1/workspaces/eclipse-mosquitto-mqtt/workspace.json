@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: Eclipse Mosquitto MQTT",
+  "description": "Eclipse Mosquitto is an open source message broker that implements the MQTT protocol versions 5.0, 3.1.1 and 3.1. Mosquitto is lightweight and is suitable for use on all devices from low power single board computers to full servers. Have a look on https://mosquitto.org/man/mosquitto_passwd-1.html Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "eclipse-mosquitto-mqtt.png",
+  "categories": [
+    "Other",
+    "Tools"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://eclipse-mosquitto-mqtt:9001"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Eclipse Mosquitto MQTT'. Backend Docker esperado: contêiner 'eclipse-mosquitto-mqtt' (imagem eclipse-mosquitto:latest), na rede kasm_default_network, escutando na porta interna 9001. URL alvo: http://eclipse-mosquitto-mqtt:9001. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

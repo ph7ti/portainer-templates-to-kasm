@@ -1,0 +1,130 @@
+{
+  "nextcloud": {
+    "slug": "nextcloud",
+    "source_id": 507,
+    "source_title": "Nextcloud (container)",
+    "friendly_name": "Teste: Nextcloud",
+    "image": "linuxserver/nextcloud:latest",
+    "container_name": "nextcloud",
+    "port": 443,
+    "launch_url": "--kiosk http://nextcloud:443",
+    "target_url": "http://nextcloud:443",
+    "env": [
+      {
+        "name": "PUID",
+        "required": false,
+        "default": "1000",
+        "label": "PUID"
+      },
+      {
+        "name": "PGID",
+        "required": false,
+        "default": "1000",
+        "label": "PGID"
+      },
+      {
+        "name": "TZ",
+        "required": false,
+        "default": "Etc/UTC",
+        "label": "TZ"
+      }
+    ],
+    "env_defaults": {
+      "PUID": "1000",
+      "PGID": "1000",
+      "TZ": "Etc/UTC"
+    },
+    "required_env": [],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/srv/lsio/nextcloud/config",
+        "readonly": false
+      },
+      {
+        "container": "/data",
+        "bind": "/srv/lsio/nextcloud/data",
+        "readonly": false
+      }
+    ],
+    "restart_policy": "unless-stopped",
+    "privileged": false,
+    "network_mode": "",
+    "command": "",
+    "hostname": "",
+    "labels": [],
+    "image_src": "nextcloud.png"
+  },
+  "gitea": {
+    "slug": "gitea",
+    "source_id": 264,
+    "source_title": "Gitea",
+    "friendly_name": "Teste: Gitea",
+    "image": "gitea/gitea:latest",
+    "container_name": "gitea",
+    "port": 3000,
+    "launch_url": "--kiosk http://gitea:3000",
+    "target_url": "http://gitea:3000",
+    "env": [
+      {
+        "name": "PUID",
+        "required": false,
+        "default": "1000",
+        "label": "PUID"
+      },
+      {
+        "name": "PGID",
+        "required": false,
+        "default": "100",
+        "label": "PGID"
+      }
+    ],
+    "env_defaults": {
+      "PUID": "1000",
+      "PGID": "100"
+    },
+    "required_env": [],
+    "volumes": [
+      {
+        "container": "/data",
+        "bind": "/portainer/Files/AppData/Config/Gitea",
+        "readonly": false
+      }
+    ],
+    "restart_policy": "unless-stopped",
+    "privileged": false,
+    "network_mode": "",
+    "command": "",
+    "hostname": "",
+    "labels": [],
+    "image_src": "gitea.png"
+  },
+  "uptime-kuma": {
+    "slug": "uptime-kuma",
+    "source_id": 818,
+    "source_title": "Uptime Kuma (container)",
+    "friendly_name": "Teste: Uptime Kuma",
+    "image": "louislam/uptime-kuma:latest",
+    "container_name": "uptime-kuma",
+    "port": 3001,
+    "launch_url": "--kiosk http://uptime-kuma:3001",
+    "target_url": "http://uptime-kuma:3001",
+    "env": [],
+    "env_defaults": {},
+    "required_env": [],
+    "volumes": [
+      {
+        "container": "/app/data",
+        "bind": "/portainer/Files/AppData/Config/uptime-kuma",
+        "readonly": false
+      }
+    ],
+    "restart_policy": "unless-stopped",
+    "privileged": false,
+    "network_mode": "",
+    "command": "",
+    "hostname": "",
+    "labels": [],
+    "image_src": "uptime-kuma.png"
+  }
+}

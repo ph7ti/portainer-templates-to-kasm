@@ -1,0 +1,186 @@
+{
+  "version": "3",
+  "templates": [
+    {
+      "id": 1,
+      "type": 1,
+      "title": "Nextcloud (container)",
+      "description": "Nextcloud gives you access to all your files wherever you are.",
+      "categories": ["Cloud", "Documents"],
+      "platform": "linux",
+      "logo": "https://example.invalid/nextcloud.png",
+      "image": "linuxserver/nextcloud:latest",
+      "env": [
+        {"name": "PUID", "label": "PUID", "default": "1000"},
+        {"name": "PGID", "label": "PGID", "default": "1000"},
+        {"name": "TZ", "label": "TZ", "default": "Etc/UTC"}
+      ],
+      "ports": ["443:443/tcp"],
+      "volumes": [
+        {"container": "/config", "bind": "/srv/lsio/nextcloud/config"},
+        {"container": "/data", "bind": "/srv/lsio/nextcloud/data"}
+      ],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "id": 2,
+      "type": 1,
+      "title": "Gitea",
+      "description": "Git with a cup of tea.",
+      "categories": ["Web", "Tools"],
+      "platform": "linux",
+      "logo": "https://example.invalid/gitea.png",
+      "image": "gitea/gitea:latest",
+      "env": [
+        {"name": "PUID", "label": "PUID", "default": "1000"},
+        {"name": "GITEA_ADMIN_PASSWORD", "label": "Admin password"}
+      ],
+      "ports": ["3000:3000/tcp", "222:22/tcp"],
+      "volumes": [
+        {"container": "/data", "bind": "/portainer/Files/AppData/Config/Gitea"},
+        {"container": "/etc/timezone:ro", "bind": "/etc/timezone"}
+      ],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "id": 3,
+      "type": 1,
+      "title": "Uptime Kuma (container)",
+      "description": "Self-hosted monitoring tool.",
+      "categories": ["Monitoring", "Tools"],
+      "platform": "linux",
+      "logo": "https://example.invalid/uptime.png",
+      "image": "louislam/uptime-kuma:latest",
+      "ports": ["3001:3001/tcp"],
+      "volumes": [{"container": "/app/data", "bind": "/portainer/Files/AppData/Config/uptime-kuma"}],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "id": 4,
+      "type": 1,
+      "title": "Adguard",
+      "description": "Network-wide ad blocker.",
+      "categories": ["Network", "Security"],
+      "platform": "linux",
+      "logo": "https://example.invalid/adguard.png",
+      "image": "adguard/adguardhome:latest",
+      "ports": ["53:53/tcp", "53:53/udp", "80:80/tcp", "443:443/tcp", "3000:3000/tcp"],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "id": 5,
+      "type": 1,
+      "title": "Minio (container)",
+      "description": "S3 compatible object storage.",
+      "categories": ["Storage", "Tools"],
+      "platform": "linux",
+      "logo": "https://example.invalid/minio.png",
+      "image": "quay.io/minio/minio:latest",
+      "ports": ["9000/tcp", "9001/tcp"],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "id": 6,
+      "type": 1,
+      "title": "Minecraft Server",
+      "description": "Java Minecraft server.",
+      "categories": ["Games"],
+      "platform": "linux",
+      "logo": "https://example.invalid/minecraft.png",
+      "image": "itzg/minecraft-server:latest",
+      "ports": ["25565:25565/tcp"],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "id": 7,
+      "type": 1,
+      "title": "App sem portas",
+      "description": "Agent without ports.",
+      "categories": ["Tools"],
+      "platform": "linux",
+      "image": "example/agent:latest",
+      "restart_policy": "always"
+    },
+    {
+      "id": 8,
+      "type": 1,
+      "title": "App somente UDP",
+      "description": "UDP only service.",
+      "categories": ["Network"],
+      "platform": "linux",
+      "image": "example/udp:latest",
+      "ports": ["69/udp"]
+    },
+    {
+      "id": 9,
+      "type": 3,
+      "title": "WordPress (stack)",
+      "description": "WordPress and MySQL.",
+      "categories": ["CMS"],
+      "platform": "linux",
+      "repository": {"url": "https://github.com/portainer/templates", "stackfile": "stacks/wordpress/docker-compose.yml"}
+    },
+    {
+      "id": 10,
+      "type": 1,
+      "title": "Windows App",
+      "description": "Windows only.",
+      "categories": ["Tools"],
+      "platform": "windows",
+      "image": "example/windows:latest",
+      "ports": ["8080:8080/tcp"]
+    },
+    {
+      "id": 11,
+      "type": 1,
+      "title": "Privileged App",
+      "description": "Requires privileged.",
+      "categories": ["Tools"],
+      "platform": "linux",
+      "image": "example/privileged:latest",
+      "ports": ["8080:8080/tcp"],
+      "privileged": true
+    },
+    {
+      "id": 12,
+      "type": 1,
+      "title": "Host Network App",
+      "description": "Uses host networking.",
+      "categories": ["Tools"],
+      "platform": "linux",
+      "image": "example/host:latest",
+      "ports": ["8080:8080/tcp"],
+      "network": "host"
+    },
+    {
+      "id": 13,
+      "type": 1,
+      "title": "Many Categories",
+      "description": "Has more than three categories.",
+      "categories": ["One", "Two", "Three", "Four", "Five"],
+      "platform": "linux",
+      "image": "example/categories:latest",
+      "ports": ["8000:8000/tcp"]
+    },
+    {
+      "id": 14,
+      "type": 1,
+      "title": "Gitea (container)",
+      "description": "Duplicate slug to exercise collision handling.",
+      "categories": ["Web"],
+      "platform": "linux",
+      "image": "gitea/gitea:latest",
+      "ports": ["3000:3000/tcp"]
+    },
+    {
+      "id": 15,
+      "type": 1,
+      "title": "No Logo App",
+      "description": "Missing logo should fall back to the default icon.",
+      "categories": ["Other"],
+      "platform": "linux",
+      "image": "example/nologo:latest",
+      "ports": ["8080:8080/tcp"]
+    }
+  ]
+}

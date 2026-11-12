@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: Nginx Proxy Manager v3 [DEVEL] NOT READY FOR USE",
+  "description": "[DEVEL] Not ready for production. Nginx Proxy Manager v3 Develop enables you to easily forward to your websites running at home or otherwise, including free SSL, without having to know too much about Nginx or Letsencrypt. Please see the install document at https://github.com/pi-hosted/pi-hosted/tree/master/docs installing the template Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "nginx-proxy-manager-v3-devel-not-ready-for-use.png",
+  "categories": [
+    "Proxy",
+    "Tools"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://nginx-proxy-manager-v3-devel-not-ready-for-use:443"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'Nginx Proxy Manager v3 [DEVEL] NOT READY FOR USE'. Backend Docker esperado: contêiner 'nginx-proxy-manager-v3-devel-not-ready-for-use' (imagem jc21/nginx-proxy-manager:v3), na rede kasm_default_network, escutando na porta interna 443. URL alvo: http://nginx-proxy-manager-v3-devel-not-ready-for-use:443. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

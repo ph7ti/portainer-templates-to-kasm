@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: CloudBeaver",
+  "description": "Cloud database manager providing a web interface for working with various databases. Source: https://github.com/dbeaver/cloudbeaver Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "cloudbeaver.png",
+  "categories": [
+    "Database",
+    "Tools"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://cloudbeaver:8978"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'CloudBeaver'. Backend Docker esperado: contêiner 'cloudbeaver' (imagem dbeaver/cloudbeaver:latest), na rede kasm_default_network, escutando na porta interna 8978. URL alvo: http://cloudbeaver:8978. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}

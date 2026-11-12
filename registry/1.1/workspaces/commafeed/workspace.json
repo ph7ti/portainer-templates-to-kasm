@@ -1,0 +1,27 @@
+{
+  "friendly_name": "Teste: CommaFeed",
+  "description": "RSS reader in the style of Google Reader, with four layouts, keyboard shortcuts for nearly everything, rules that mark entries as read, OPML import and the Fever and Google Reader APIs for mobile apps. Source: https://github.com/Athou/commafeed Esta é uma demonstração efêmera: o navegador roda isolado no Kasm e o serviço de backend é criado e removido automaticamente quando a sessão inicia e termina.",
+  "image_src": "commafeed.svg",
+  "categories": [
+    "Productivity",
+    "Social"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "docker_registry": "https://index.docker.io/v1/",
+  "compatibility": [
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chrome:1.19.0",
+      "uncompressed_size_mb": 2500
+    }
+  ],
+  "run_config": {
+    "environment": {
+      "LAUNCH_URL": "--kiosk http://commafeed:8082"
+    },
+    "shm_size": "512m"
+  },
+  "notes": "Teste efêmero do template Portainer 'CommaFeed'. Backend Docker esperado: contêiner 'commafeed' (imagem athou/commafeed:latest-h2), na rede kasm_default_network, escutando na porta interna 8082. URL alvo: http://commafeed:8082. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+}
