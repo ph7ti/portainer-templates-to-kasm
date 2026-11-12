@@ -19,9 +19,9 @@
   ],
   "run_config": {
     "environment": {
-      "LAUNCH_URL": "--kiosk http://ldap-auth:9000"
+      "LAUNCH_URL": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fldap-auth%3A9000"
     },
     "shm_size": "512m"
   },
-  "notes": "Teste efêmero do template Portainer 'Ldap-auth'. Backend Docker esperado: contêiner 'ldap-auth' (imagem linuxserver/ldap-auth:latest), na rede kasm_default_network, escutando na porta interna 9000. URL alvo: http://ldap-auth:9000. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+  "notes": "Teste efêmero do template Portainer 'Ldap-auth'. Backend Docker esperado: contêiner 'ldap-auth' (imagem linuxserver/ldap-auth:latest), na rede kasm_default_network, escutando na porta interna 9000. URL alvo: http://ldap-auth:9000. O navegador abre a página de espera http://kasm-wait:8080/wait?target=http%3A%2F%2Fldap-auth%3A9000, que verifica o backend a cada 2 s e redireciona quando ele responde. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina."
 }

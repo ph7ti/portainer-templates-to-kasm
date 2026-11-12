@@ -18,9 +18,9 @@
   ],
   "run_config": {
     "environment": {
-      "LAUNCH_URL": "--kiosk --ignore-certificate-errors https://code-server:8443"
+      "LAUNCH_URL": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fcode-server%3A8443"
     },
     "shm_size": "512m"
   },
-  "notes": "Teste efêmero do template Portainer 'Code-server (container)'. Backend Docker esperado: contêiner 'code-server' (imagem linuxserver/code-server:latest), na rede kasm_default_network, escutando na porta interna 8443. URL alvo: https://code-server:8443. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+  "notes": "Teste efêmero do template Portainer 'Code-server (container)'. Backend Docker esperado: contêiner 'code-server' (imagem linuxserver/code-server:latest), na rede kasm_default_network, escutando na porta interna 8443. URL alvo: https://code-server:8443. O navegador abre a página de espera http://kasm-wait:8080/wait?target=https%3A%2F%2Fcode-server%3A8443, que verifica o backend a cada 2 s e redireciona quando ele responde. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina."
 }

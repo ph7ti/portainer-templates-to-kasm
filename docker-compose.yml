@@ -1,4 +1,14 @@
 services:
+  waiter:
+    build:
+      context: .
+      dockerfile: waiter/Dockerfile
+    image: kasm-wait:local
+    container_name: kasm-wait
+    restart: unless-stopped
+    networks:
+      - kasm_default_network
+
   orchestrator:
     build:
       context: .
@@ -23,3 +33,7 @@ services:
 
 volumes:
   orchestrator-state:
+
+networks:
+  kasm_default_network:
+    external: true

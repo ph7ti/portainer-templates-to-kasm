@@ -19,9 +19,9 @@
   ],
   "run_config": {
     "environment": {
-      "LAUNCH_URL": "--kiosk --ignore-certificate-errors https://pi-hole-doh-dot:443"
+      "LAUNCH_URL": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fpi-hole-doh-dot%3A443"
     },
     "shm_size": "512m"
   },
-  "notes": "Teste efêmero do template Portainer 'Pi-Hole DoH/DoT'. Backend Docker esperado: contêiner 'pi-hole-doh-dot' (imagem oijkn/pihole-doh-dot:latest), na rede kasm_default_network, escutando na porta interna 443. URL alvo: https://pi-hole-doh-dot:443. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+  "notes": "Teste efêmero do template Portainer 'Pi-Hole DoH/DoT'. Backend Docker esperado: contêiner 'pi-hole-doh-dot' (imagem oijkn/pihole-doh-dot:latest), na rede kasm_default_network, escutando na porta interna 443. URL alvo: https://pi-hole-doh-dot:443. O navegador abre a página de espera http://kasm-wait:8080/wait?target=https%3A%2F%2Fpi-hole-doh-dot%3A443, que verifica o backend a cada 2 s e redireciona quando ele responde. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina."
 }

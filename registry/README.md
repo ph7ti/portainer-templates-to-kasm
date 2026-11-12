@@ -1,40 +1,44 @@
 # Kasm Workspaces Registry (schema 1.1)
 
-Este diretório é o registry estático consumido pelo Kasm Workspaces.
+Snapshot gerado do registry. O registry **público** consumido pelo Kasm fica no
+repositório dedicado:
+
+- https://github.com/ph7ti/kasm-registry
+- https://ph7ti.github.io/kasm-registry/
 
 ## Estrutura
 
 ```
 registry/
-├── versions.txt           # "1.1" — schema que o Kasm entende
-├── list.json              # cópia de 1.1/list.json (compatibilidade)
-├── index.html             # redireciona humanos para 1.1/
-├── backend_manifest.json  # consumido pelo orquestrador (não pelo Kasm)
+├── versions.txt
+├── list.json
+├── index.html
+├── backend_manifest.json   # consumido pelo orquestrador
 └── 1.1/
-    ├── list.json          # catálogo (workspaces + sha)
-    ├── versions.json      # versões de Kasm presentes (1.19.x)
-    ├── icons/             # ícones referenciados por image_src
+    ├── list.json
+    ├── versions.json
+    ├── icons/
     └── workspaces/<slug>/
         ├── workspace.json
         └── <slug>.<ext>
 ```
 
-O `list.json` segue o formato gerado pelo template oficial
-`kasmtech/workspaces_registry_template`: cada entrada é o `workspace.json`
-acrescido de `sha`.
+Cada `LAUNCH_URL` abre a página de espera `kasm-wait`:
 
-## URLs
+```
+--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnextcloud%3A80
+```
 
-- GitHub Pages: `https://ph7ti.github.io/portainer-templates-to-kasm/`
-- Raw (fallback HTTPS):
-  `https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/registry/`
+A página consulta o backend a cada 2 s e redireciona quando ele responde.
 
-Adicione a URL **sem `/1.1`** em Admin → Workspaces → Registry → Add new.
+## Uso
 
-Nesta build do Kasm o registry importa os metadados, mas não cria as 420
-imagens lançáveis. Use o botão **Add** de cada item ou
-`python tools/publish_images_to_kasm.py` (idempotente, usa
-`.secrets.json`/env vars) para criar as entradas `Teste: …` no catálogo.
+1. Adicione `https://ph7ti.github.io/kasm-registry/` em
+   **Admin → Workspaces → Registry → Add new** (sem `/1.1`).
+2. Instale as imagens lançáveis com o botão **Add** de cada item ou:
+   `python tools/publish_images_to_kasm.py --update`.
+3. Suba o contêiner `kasm-wait` na rede dos workspaces.
+4. Suba o orquestrador no host Docker.
 
 ## Regenerar
 
@@ -42,5 +46,4 @@ imagens lançáveis. Use o botão **Add** de cada item ou
 python converter/convert_templates.py --output registry --refresh --prune
 ```
 
-O conversor é idempotente e mantém `backend_manifest.json` em sincronia com o
-catálogo.
+O conversor é idempotente e mantém `backend_manifest.json` em sincronia.

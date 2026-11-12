@@ -20,9 +20,9 @@
   ],
   "run_config": {
     "environment": {
-      "LAUNCH_URL": "--kiosk http://jellyfin:8096"
+      "LAUNCH_URL": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fjellyfin%3A8096"
     },
     "shm_size": "512m"
   },
-  "notes": "Teste efêmero do template Portainer 'Jellyfin (container)'. Backend Docker esperado: contêiner 'jellyfin' (imagem linuxserver/jellyfin:latest), na rede kasm_default_network, escutando na porta interna 8096. URL alvo: http://jellyfin:8096. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+  "notes": "Teste efêmero do template Portainer 'Jellyfin (container)'. Backend Docker esperado: contêiner 'jellyfin' (imagem linuxserver/jellyfin:latest), na rede kasm_default_network, escutando na porta interna 8096. URL alvo: http://jellyfin:8096. O navegador abre a página de espera http://kasm-wait:8080/wait?target=http%3A%2F%2Fjellyfin%3A8096, que verifica o backend a cada 2 s e redireciona quando ele responde. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina."
 }

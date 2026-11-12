@@ -20,9 +20,9 @@
   ],
   "run_config": {
     "environment": {
-      "LAUNCH_URL": "--kiosk http://fuuz-device-gateway:5500"
+      "LAUNCH_URL": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffuuz-device-gateway%3A5500"
     },
     "shm_size": "512m"
   },
-  "notes": "Teste efêmero do template Portainer 'Fuuz Device Gateway'. Backend Docker esperado: contêiner 'fuuz-device-gateway' (imagem public.ecr.aws/n9a9v7z5/mfgx-native-app-device-gateway-server:latest), na rede kasm_default_network, escutando na porta interna 5500. URL alvo: http://fuuz-device-gateway:5500. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+  "notes": "Teste efêmero do template Portainer 'Fuuz Device Gateway'. Backend Docker esperado: contêiner 'fuuz-device-gateway' (imagem public.ecr.aws/n9a9v7z5/mfgx-native-app-device-gateway-server:latest), na rede kasm_default_network, escutando na porta interna 5500. URL alvo: http://fuuz-device-gateway:5500. O navegador abre a página de espera http://kasm-wait:8080/wait?target=http%3A%2F%2Ffuuz-device-gateway%3A5500, que verifica o backend a cada 2 s e redireciona quando ele responde. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina."
 }

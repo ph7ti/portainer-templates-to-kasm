@@ -18,9 +18,9 @@
   ],
   "run_config": {
     "environment": {
-      "LAUNCH_URL": "--kiosk http://beets:8337"
+      "LAUNCH_URL": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbeets%3A8337"
     },
     "shm_size": "512m"
   },
-  "notes": "Teste efêmero do template Portainer 'Beets'. Backend Docker esperado: contêiner 'beets' (imagem linuxserver/beets:latest), na rede kasm_default_network, escutando na porta interna 8337. URL alvo: http://beets:8337. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+  "notes": "Teste efêmero do template Portainer 'Beets'. Backend Docker esperado: contêiner 'beets' (imagem linuxserver/beets:latest), na rede kasm_default_network, escutando na porta interna 8337. URL alvo: http://beets:8337. O navegador abre a página de espera http://kasm-wait:8080/wait?target=http%3A%2F%2Fbeets%3A8337, que verifica o backend a cada 2 s e redireciona quando ele responde. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina."
 }

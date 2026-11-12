@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T17:58:31.266648+00:00",
+  "generated_at": "2026-11-12T18:36:34.993298+00:00",
   "source": "https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/templates.json",
   "kasm": {
     "version": "1.19.0",
@@ -7,7 +7,7 @@
     "schema_version": "1.1",
     "browser_image": "kasmweb/chrome:1.19.0",
     "network": "kasm_default_network",
-    "registry_url": "https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/registry/"
+    "registry_url": "https://ph7ti.github.io/kasm-registry/"
   },
   "counts": {
     "templates": 884,
@@ -25,8 +25,9 @@
       "image": "adguard/adguardhome:latest",
       "container_name": "adguard",
       "port": 3000,
-      "launch_url": "--kiosk http://adguard:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fadguard%3A3000",
       "target_url": "http://adguard:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fadguard%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -81,8 +82,9 @@
       "image": "adguard/adguardhome:latest",
       "container_name": "adguardhome",
       "port": 3000,
-      "launch_url": "--kiosk http://adguardhome:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fadguardhome%3A3000",
       "target_url": "http://adguardhome:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fadguardhome%3A3000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -114,8 +116,9 @@
       "image": "linuxserver/adguardhome-sync:latest",
       "container_name": "adguardhome-sync",
       "port": 8080,
-      "launch_url": "--kiosk http://adguardhome-sync:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fadguardhome-sync%3A8080",
       "target_url": "http://adguardhome-sync:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fadguardhome-sync%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -172,8 +175,9 @@
       "image": "ghcr.io/bopeng/ai-marketplace-monitor:latest",
       "container_name": "ai-marketplace-monitor",
       "port": 8467,
-      "launch_url": "--kiosk http://ai-marketplace-monitor:8467",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fai-marketplace-monitor%3A8467",
       "target_url": "http://ai-marketplace-monitor:8467",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fai-marketplace-monitor%3A8467",
       "env": [
         {
           "name": "FACEBOOK_USERNAME",
@@ -242,8 +246,9 @@
       "image": "linuxserver/airsonic:latest",
       "container_name": "airsonic",
       "port": 4040,
-      "launch_url": "--kiosk http://airsonic:4040",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fairsonic%3A4040",
       "target_url": "http://airsonic:4040",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fairsonic%3A4040",
       "env": [
         {
           "name": "PUID",
@@ -320,8 +325,9 @@
       "image": "linuxserver/airsonic-advanced:latest",
       "container_name": "airsonic-advanced",
       "port": 4040,
-      "launch_url": "--kiosk http://airsonic-advanced:4040",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fairsonic-advanced%3A4040",
       "target_url": "http://airsonic-advanced:4040",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fairsonic-advanced%3A4040",
       "env": [
         {
           "name": "PUID",
@@ -405,8 +411,9 @@
       "image": "novaspirit/alpine_xfce4_novnc:latest",
       "container_name": "alpine-xfce4-novnc",
       "port": 6080,
-      "launch_url": "--kiosk http://alpine-xfce4-novnc:6080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Falpine-xfce4-novnc%3A6080",
       "target_url": "http://alpine-xfce4-novnc:6080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Falpine-xfce4-novnc%3A6080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -433,8 +440,9 @@
       "image": "linuxserver/altus:latest",
       "container_name": "altus",
       "port": 3000,
-      "launch_url": "--kiosk http://altus:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Faltus%3A3000",
       "target_url": "http://altus:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Faltus%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -484,8 +492,9 @@
       "image": "apache/answer:latest",
       "container_name": "apache-answer",
       "port": 80,
-      "launch_url": "--kiosk http://apache-answer:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fapache-answer%3A80",
       "target_url": "http://apache-answer:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fapache-answer%3A80",
       "env": [
         {
           "name": "TZ",
@@ -515,8 +524,9 @@
       "image": "httpd:latest",
       "container_name": "apache-httpd",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://apache-httpd:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fapache-httpd%3A443",
       "target_url": "https://apache-httpd:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fapache-httpd%3A443",
       "env": [
         {
           "name": "PUID",
@@ -559,8 +569,9 @@
       "image": "linuxserver/apprise-api:latest",
       "container_name": "apprise-api",
       "port": 8000,
-      "launch_url": "--kiosk http://apprise-api:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fapprise-api%3A8000",
       "target_url": "http://apprise-api:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fapprise-api%3A8000",
       "env": [
         {
           "name": "PUID",
@@ -622,8 +633,9 @@
       "image": "justarchi/archisteamfarm:latest",
       "container_name": "archisteamfarm",
       "port": 1242,
-      "launch_url": "--kiosk http://archisteamfarm:1242",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Farchisteamfarm%3A1242",
       "target_url": "http://archisteamfarm:1242",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Farchisteamfarm%3A1242",
       "env": [
         {
           "name": "PUID",
@@ -676,8 +688,9 @@
       "image": "archivebox/archivebox:latest",
       "container_name": "archivebox",
       "port": 8000,
-      "launch_url": "--kiosk http://archivebox:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Farchivebox%3A8000",
       "target_url": "http://archivebox:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Farchivebox%3A8000",
       "env": [
         {
           "name": "ALLOWED_HOSTS",
@@ -741,8 +754,9 @@
       "image": "linuxserver/ardour:latest",
       "container_name": "ardour",
       "port": 3000,
-      "launch_url": "--kiosk http://ardour:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fardour%3A3000",
       "target_url": "http://ardour:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fardour%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -792,8 +806,9 @@
       "image": "hurlenko/aria2-ariang:latest",
       "container_name": "ariang",
       "port": 8080,
-      "launch_url": "--kiosk http://ariang:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fariang%3A8080",
       "target_url": "http://ariang:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fariang%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -848,8 +863,9 @@
       "image": "vibralabs/atrium:latest",
       "container_name": "atrium",
       "port": 8080,
-      "launch_url": "--kiosk http://atrium:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fatrium%3A8080",
       "target_url": "http://atrium:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fatrium%3A8080",
       "env": [
         {
           "name": "BETTER_AUTH_SECRET",
@@ -935,8 +951,9 @@
       "image": "linuxserver/audacity:latest",
       "container_name": "audacity",
       "port": 3000,
-      "launch_url": "--kiosk http://audacity:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Faudacity%3A3000",
       "target_url": "http://audacity:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Faudacity%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -986,8 +1003,9 @@
       "image": "linuxserver/audiosilo:latest",
       "container_name": "audiosilo",
       "port": 8080,
-      "launch_url": "--kiosk http://audiosilo:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Faudiosilo%3A8080",
       "target_url": "http://audiosilo:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Faudiosilo%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -1042,8 +1060,9 @@
       "image": "authelia/authelia:latest",
       "container_name": "authelia",
       "port": 9091,
-      "launch_url": "--kiosk http://authelia:9091",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fauthelia%3A9091",
       "target_url": "http://authelia:9091",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fauthelia%3A9091",
       "env": [
         {
           "name": "TZ",
@@ -1078,8 +1097,9 @@
       "image": "linuxserver/azahar:latest",
       "container_name": "azahar",
       "port": 3000,
-      "launch_url": "--kiosk http://azahar:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fazahar%3A3000",
       "target_url": "http://azahar:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fazahar%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -1129,8 +1149,9 @@
       "image": "linuxserver/babybuddy:latest",
       "container_name": "babybuddy",
       "port": 8000,
-      "launch_url": "--kiosk http://babybuddy:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbabybuddy%3A8000",
       "target_url": "http://babybuddy:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fbabybuddy%3A8000",
       "env": [
         {
           "name": "PUID",
@@ -1187,8 +1208,9 @@
       "image": "linuxserver/bambustudio:latest",
       "container_name": "bambustudio",
       "port": 3000,
-      "launch_url": "--kiosk http://bambustudio:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbambustudio%3A3000",
       "target_url": "http://bambustudio:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fbambustudio%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -1245,8 +1267,9 @@
       "image": "baserow/baserow:1.22.3",
       "container_name": "baserow",
       "port": 80,
-      "launch_url": "--kiosk http://baserow:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbaserow%3A80",
       "target_url": "http://baserow:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fbaserow%3A80",
       "env": [
         {
           "name": "BASEROW_PUBLIC_URL",
@@ -1298,8 +1321,9 @@
       "image": "linuxserver/bazarr:latest",
       "container_name": "bazarr",
       "port": 6767,
-      "launch_url": "--kiosk http://bazarr:6767",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbazarr%3A6767",
       "target_url": "http://bazarr:6767",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fbazarr%3A6767",
       "env": [
         {
           "name": "PUID",
@@ -1359,8 +1383,9 @@
       "image": "linuxserver/beets:latest",
       "container_name": "beets",
       "port": 8337,
-      "launch_url": "--kiosk http://beets:8337",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbeets%3A8337",
       "target_url": "http://beets:8337",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fbeets%3A8337",
       "env": [
         {
           "name": "PUID",
@@ -1420,8 +1445,9 @@
       "image": "ghcr.io/alam00000/bentopdf-simple:latest",
       "container_name": "bentopdf",
       "port": 8080,
-      "launch_url": "--kiosk http://bentopdf:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbentopdf%3A8080",
       "target_url": "http://bentopdf:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fbentopdf%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -1442,8 +1468,9 @@
       "image": "linuxserver/bitcoin-knots:latest",
       "container_name": "bitcoin-knots",
       "port": 3000,
-      "launch_url": "--kiosk http://bitcoin-knots:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbitcoin-knots%3A3000",
       "target_url": "http://bitcoin-knots:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fbitcoin-knots%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -1493,8 +1520,9 @@
       "image": "bitwardenrs/server:latest",
       "container_name": "bitwarden-rs",
       "port": 80,
-      "launch_url": "--kiosk http://bitwarden-rs:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbitwarden-rs%3A80",
       "target_url": "http://bitwarden-rs:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fbitwarden-rs%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -1521,8 +1549,9 @@
       "image": "linuxserver/blade-of-agony:latest",
       "container_name": "blade-of-agony",
       "port": 3000,
-      "launch_url": "--kiosk http://blade-of-agony:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fblade-of-agony%3A3000",
       "target_url": "http://blade-of-agony:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fblade-of-agony%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -1572,8 +1601,9 @@
       "image": "linuxserver/blender:latest",
       "container_name": "blender",
       "port": 3000,
-      "launch_url": "--kiosk http://blender:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fblender%3A3000",
       "target_url": "http://blender:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fblender%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -1623,8 +1653,9 @@
       "image": "linuxserver/boinc:latest",
       "container_name": "boinc",
       "port": 8080,
-      "launch_url": "--kiosk http://boinc:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fboinc%3A8080",
       "target_url": "http://boinc:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fboinc%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -1681,8 +1712,9 @@
       "image": "linuxserver/booksonic:latest",
       "container_name": "booksonic",
       "port": 4040,
-      "launch_url": "--kiosk http://booksonic:4040",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbooksonic%3A4040",
       "target_url": "http://booksonic:4040",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fbooksonic%3A4040",
       "env": [
         {
           "name": "PUID",
@@ -1742,8 +1774,9 @@
       "image": "linuxserver/bookstack:latest",
       "container_name": "bookstack",
       "port": 80,
-      "launch_url": "--kiosk http://bookstack:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbookstack%3A80",
       "target_url": "http://bookstack:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fbookstack%3A80",
       "env": [
         {
           "name": "PUID",
@@ -1849,8 +1882,9 @@
       "image": "linuxserver/brave:latest",
       "container_name": "brave",
       "port": 3000,
-      "launch_url": "--kiosk http://brave:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fbrave%3A3000",
       "target_url": "http://brave:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fbrave%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -1900,8 +1934,9 @@
       "image": "caddy:latest",
       "container_name": "caddy",
       "port": 80,
-      "launch_url": "--kiosk http://caddy:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcaddy%3A80",
       "target_url": "http://caddy:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcaddy%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -1922,8 +1957,9 @@
       "image": "ghcr.io/morgankryze/cairn:latest",
       "container_name": "cairn",
       "port": 8080,
-      "launch_url": "--kiosk http://cairn:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcairn%3A8080",
       "target_url": "http://cairn:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcairn%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -1944,8 +1980,9 @@
       "image": "linuxserver/calibre:latest",
       "container_name": "calibre",
       "port": 8080,
-      "launch_url": "--kiosk http://calibre:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcalibre%3A8080",
       "target_url": "http://calibre:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcalibre%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -2009,8 +2046,9 @@
       "image": "linuxserver/calibre-web:latest",
       "container_name": "calibre-web",
       "port": 8083,
-      "launch_url": "--kiosk http://calibre-web:8083",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcalibre-web%3A8083",
       "target_url": "http://calibre-web:8083",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcalibre-web%3A8083",
       "env": [
         {
           "name": "PUID",
@@ -2079,8 +2117,9 @@
       "image": "linuxserver/calligra:latest",
       "container_name": "calligra",
       "port": 3000,
-      "launch_url": "--kiosk http://calligra:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcalligra%3A3000",
       "target_url": "http://calligra:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcalligra%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -2130,8 +2169,9 @@
       "image": "ghcr.io/windoze95/cantinarr:latest",
       "container_name": "cantinarr",
       "port": 8585,
-      "launch_url": "--kiosk http://cantinarr:8585",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcantinarr%3A8585",
       "target_url": "http://cantinarr:8585",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcantinarr%3A8585",
       "env": [
         {
           "name": "CANTINARR_PUSH_GATEWAY_URL",
@@ -2174,8 +2214,9 @@
       "image": "linuxserver/cardigann:latest",
       "container_name": "cardigann",
       "port": 5060,
-      "launch_url": "--kiosk http://cardigann:5060",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcardigann%3A5060",
       "target_url": "http://cardigann:5060",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcardigann%3A5060",
       "env": [
         {
           "name": "PGID",
@@ -2235,8 +2276,9 @@
       "image": "drumsergio/cashpilot:latest",
       "container_name": "cashpilot",
       "port": 8080,
-      "launch_url": "--kiosk http://cashpilot:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcashpilot%3A8080",
       "target_url": "http://cashpilot:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcashpilot%3A8080",
       "env": [
         {
           "name": "TZ",
@@ -2280,8 +2322,9 @@
       "image": "linuxserver/changedetection.io:latest",
       "container_name": "changedetection-io",
       "port": 5000,
-      "launch_url": "--kiosk http://changedetection-io:5000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fchangedetection-io%3A5000",
       "target_url": "http://changedetection-io:5000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fchangedetection-io%3A5000",
       "env": [
         {
           "name": "PUID",
@@ -2345,8 +2388,9 @@
       "image": "nmtan/chevereto:latest",
       "container_name": "chevereto",
       "port": 80,
-      "launch_url": "--kiosk http://chevereto:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fchevereto%3A80",
       "target_url": "http://chevereto:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fchevereto%3A80",
       "env": [
         {
           "name": "PUID",
@@ -2418,8 +2462,9 @@
       "image": "gregyankovoy/chowdown:latest",
       "container_name": "chowdown",
       "port": 4000,
-      "launch_url": "--kiosk http://chowdown:4000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fchowdown%3A4000",
       "target_url": "http://chowdown:4000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fchowdown%3A4000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -2446,8 +2491,9 @@
       "image": "linuxserver/chrome:latest",
       "container_name": "chrome",
       "port": 3000,
-      "launch_url": "--kiosk http://chrome:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fchrome%3A3000",
       "target_url": "http://chrome:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fchrome%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -2504,8 +2550,9 @@
       "image": "linuxserver/chromium:latest",
       "container_name": "chromium",
       "port": 3000,
-      "launch_url": "--kiosk http://chromium:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fchromium%3A3000",
       "target_url": "http://chromium:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fchromium%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -2562,8 +2609,9 @@
       "image": "mkodockx/docker-clamav:alpine",
       "container_name": "clamav",
       "port": 3310,
-      "launch_url": "--kiosk http://clamav:3310",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fclamav%3A3310",
       "target_url": "http://clamav:3310",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fclamav%3A3310",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -2595,8 +2643,9 @@
       "image": "coderaiser/cloudcmd:latest",
       "container_name": "cloud-commander",
       "port": 8000,
-      "launch_url": "--kiosk http://cloud-commander:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcloud-commander%3A8000",
       "target_url": "http://cloud-commander:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcloud-commander%3A8000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -2662,8 +2711,9 @@
       "image": "dbeaver/cloudbeaver:latest",
       "container_name": "cloudbeaver",
       "port": 8978,
-      "launch_url": "--kiosk http://cloudbeaver:8978",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcloudbeaver%3A8978",
       "target_url": "http://cloudbeaver:8978",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcloudbeaver%3A8978",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -2684,8 +2734,9 @@
       "image": "cloudreve/cloudreve:v4",
       "container_name": "cloudreve",
       "port": 5212,
-      "launch_url": "--kiosk http://cloudreve:5212",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcloudreve%3A5212",
       "target_url": "http://cloudreve:5212",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcloudreve%3A5212",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -2706,8 +2757,9 @@
       "image": "agentejo/cockpit:latest",
       "container_name": "cockpit-shmolf",
       "port": 80,
-      "launch_url": "--kiosk http://cockpit-shmolf:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcockpit-shmolf%3A80",
       "target_url": "http://cockpit-shmolf:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcockpit-shmolf%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -2728,8 +2780,9 @@
       "image": "cockroachdb/cockroach:latest",
       "container_name": "cockroachdb",
       "port": 8080,
-      "launch_url": "--kiosk http://cockroachdb:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcockroachdb%3A8080",
       "target_url": "http://cockroachdb:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcockroachdb%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -2750,8 +2803,9 @@
       "image": "linuxserver/code-server:latest",
       "container_name": "code-server",
       "port": 8443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://code-server:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fcode-server%3A8443",
       "target_url": "https://code-server:8443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fcode-server%3A8443",
       "env": [
         {
           "name": "PUID",
@@ -2850,8 +2904,9 @@
       "image": "linuxserver/code-server:latest",
       "container_name": "code-server-shmolf",
       "port": 8443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://code-server-shmolf:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fcode-server-shmolf%3A8443",
       "target_url": "https://code-server-shmolf:8443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fcode-server-shmolf%3A8443",
       "env": [
         {
           "name": "PUID",
@@ -2943,8 +2998,9 @@
       "image": "linuxserver/codiad:latest",
       "container_name": "codiad",
       "port": 80,
-      "launch_url": "--kiosk http://codiad:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcodiad%3A80",
       "target_url": "http://codiad:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcodiad%3A80",
       "env": [
         {
           "name": "PUID",
@@ -2987,8 +3043,9 @@
       "image": "athou/commafeed:latest-h2",
       "container_name": "commafeed",
       "port": 8082,
-      "launch_url": "--kiosk http://commafeed:8082",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcommafeed%3A8082",
       "target_url": "http://commafeed:8082",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcommafeed%3A8082",
       "env": [
         {
           "name": "QUARKUS_HTTP_AUTH_SESSION_ENCRYPTION_KEY",
@@ -3017,8 +3074,9 @@
       "image": "ortussolutions/commandbox:latest",
       "container_name": "commandbox",
       "port": 8443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://commandbox:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fcommandbox%3A8443",
       "target_url": "https://commandbox:8443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fcommandbox%3A8443",
       "env": [
         {
           "name": "CFENGINE",
@@ -3047,8 +3105,9 @@
       "image": "ortussolutions/contentbox:latest",
       "container_name": "contentbox",
       "port": 8443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://contentbox:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fcontentbox%3A8443",
       "target_url": "https://contentbox:8443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fcontentbox%3A8443",
       "env": [
         {
           "name": "express",
@@ -3089,8 +3148,9 @@
       "image": "ghcr.io/c4illin/convertx:latest",
       "container_name": "convertx",
       "port": 3000,
-      "launch_url": "--kiosk http://convertx:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fconvertx%3A3000",
       "target_url": "http://convertx:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fconvertx%3A3000",
       "env": [
         {
           "name": "HTTP_ALLOWED",
@@ -3134,8 +3194,9 @@
       "image": "linuxserver/cops:latest",
       "container_name": "cops",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://cops:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fcops%3A443",
       "target_url": "https://cops:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fcops%3A443",
       "env": [
         {
           "name": "PUID",
@@ -3190,8 +3251,9 @@
       "image": "linuxserver/couchpotato:latest",
       "container_name": "couchpotato",
       "port": 5050,
-      "launch_url": "--kiosk http://couchpotato:5050",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcouchpotato%3A5050",
       "target_url": "http://couchpotato:5050",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcouchpotato%3A5050",
       "env": [
         {
           "name": "PUID",
@@ -3244,8 +3306,9 @@
       "image": "linuxserver/craft-apps:latest",
       "container_name": "craft-apps",
       "port": 3000,
-      "launch_url": "--kiosk http://craft-apps:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcraft-apps%3A3000",
       "target_url": "http://craft-apps:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcraft-apps%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -3295,8 +3358,9 @@
       "image": "crate:latest",
       "container_name": "cratedb",
       "port": 4200,
-      "launch_url": "--kiosk http://cratedb:4200",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcratedb%3A4200",
       "target_url": "http://cratedb:4200",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcratedb%3A4200",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -3317,8 +3381,9 @@
       "image": "xtrendence/cryptofolio:latest",
       "container_name": "cryptofolio",
       "port": 80,
-      "launch_url": "--kiosk http://cryptofolio:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcryptofolio%3A80",
       "target_url": "http://cryptofolio:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcryptofolio%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -3339,8 +3404,9 @@
       "image": "linuxserver/cura:latest",
       "container_name": "cura",
       "port": 3000,
-      "launch_url": "--kiosk http://cura:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcura%3A3000",
       "target_url": "http://cura:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcura%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -3390,8 +3456,9 @@
       "image": "ghcr.io/gchq/cyberchef:11",
       "container_name": "cyberchef",
       "port": 8080,
-      "launch_url": "--kiosk http://cyberchef:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fcyberchef%3A8080",
       "target_url": "http://cyberchef:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fcyberchef%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -3412,8 +3479,9 @@
       "image": "ghcr.io/dagucloud/dagu:latest",
       "container_name": "dagu",
       "port": 8080,
-      "launch_url": "--kiosk http://dagu:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdagu%3A8080",
       "target_url": "http://dagu:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdagu%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -3434,8 +3502,9 @@
       "image": "linuxserver/darktable:latest",
       "container_name": "darktable",
       "port": 3000,
-      "launch_url": "--kiosk http://darktable:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdarktable%3A3000",
       "target_url": "http://darktable:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdarktable%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -3485,8 +3554,9 @@
       "image": "rmountjoy/dashmachine:latest",
       "container_name": "dashmachine",
       "port": 5000,
-      "launch_url": "--kiosk http://dashmachine:5000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdashmachine%3A5000",
       "target_url": "http://dashmachine:5000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdashmachine%3A5000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -3513,8 +3583,9 @@
       "image": "lissy93/dashy:latest",
       "container_name": "dashy",
       "port": 8080,
-      "launch_url": "--kiosk http://dashy:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdashy%3A8080",
       "target_url": "http://dashy:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdashy%3A8080",
       "env": [
         {
           "name": "NODE_ENV",
@@ -3551,8 +3622,9 @@
       "image": "postgres:13",
       "container_name": "davinci-postgres-server",
       "port": 5432,
-      "launch_url": "--kiosk http://davinci-postgres-server:5432",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdavinci-postgres-server%3A5432",
       "target_url": "http://davinci-postgres-server:5432",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdavinci-postgres-server%3A5432",
       "env": [
         {
           "name": "PUID",
@@ -3623,8 +3695,9 @@
       "image": "linuxserver/davos:latest",
       "container_name": "davos",
       "port": 8080,
-      "launch_url": "--kiosk http://davos:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdavos%3A8080",
       "target_url": "http://davos:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdavos%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -3679,8 +3752,9 @@
       "image": "linuxserver/ddclient:latest",
       "container_name": "ddclient",
       "port": 80,
-      "launch_url": "--kiosk http://ddclient:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fddclient%3A80",
       "target_url": "http://ddclient:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fddclient%3A80",
       "env": [
         {
           "name": "PUID",
@@ -3730,8 +3804,9 @@
       "image": "registry.gitlab.com/bockiii/deemix-docker:latest",
       "container_name": "deemix",
       "port": 6595,
-      "launch_url": "--kiosk http://deemix:6595",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdeemix%3A6595",
       "target_url": "http://deemix:6595",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdeemix%3A6595",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -3763,8 +3838,9 @@
       "image": "linuxserver/deluge:latest",
       "container_name": "deluge",
       "port": 8112,
-      "launch_url": "--kiosk http://deluge:8112",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdeluge%3A8112",
       "target_url": "http://deluge:8112",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdeluge%3A8112",
       "env": [
         {
           "name": "PUID",
@@ -3826,8 +3902,9 @@
       "image": "sgtsquiggs/deluge-openvpn:latest",
       "container_name": "deluge-openvpn",
       "port": 8112,
-      "launch_url": "--kiosk http://deluge-openvpn:8112",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdeluge-openvpn%3A8112",
       "target_url": "http://deluge-openvpn:8112",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdeluge-openvpn%3A8112",
       "env": [
         {
           "name": "PUID",
@@ -3894,8 +3971,9 @@
       "image": "linuxserver/digikam:latest",
       "container_name": "digikam",
       "port": 3000,
-      "launch_url": "--kiosk http://digikam:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdigikam%3A3000",
       "target_url": "http://digikam:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdigikam%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -3945,8 +4023,9 @@
       "image": "linuxserver/diskover:latest",
       "container_name": "diskover",
       "port": 80,
-      "launch_url": "--kiosk http://diskover:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdiskover%3A80",
       "target_url": "http://diskover:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdiskover%3A80",
       "env": [
         {
           "name": "PUID",
@@ -4015,8 +4094,9 @@
       "image": "docuseal/docuseal:latest",
       "container_name": "docuseal",
       "port": 3000,
-      "launch_url": "--kiosk http://docuseal:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdocuseal%3A3000",
       "target_url": "http://docuseal:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdocuseal%3A3000",
       "env": [
         {
           "name": "HOST",
@@ -4046,8 +4126,9 @@
       "image": "linuxserver/dogwalk:latest",
       "container_name": "dogwalk",
       "port": 3000,
-      "launch_url": "--kiosk http://dogwalk:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdogwalk%3A3000",
       "target_url": "http://dogwalk:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdogwalk%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -4097,8 +4178,9 @@
       "image": "dokku/dokku:latest",
       "container_name": "dokku",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://dokku:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fdokku%3A443",
       "target_url": "https://dokku:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fdokku%3A443",
       "env": [
         {
           "name": "DOKKU_HOSTNAME",
@@ -4141,8 +4223,9 @@
       "image": "linuxserver/dokuwiki:latest",
       "container_name": "dokuwiki",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://dokuwiki:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fdokuwiki%3A443",
       "target_url": "https://dokuwiki:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fdokuwiki%3A443",
       "env": [
         {
           "name": "PUID",
@@ -4192,8 +4275,9 @@
       "image": "linuxserver/dolphin:latest",
       "container_name": "dolphin",
       "port": 3000,
-      "launch_url": "--kiosk http://dolphin:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdolphin%3A3000",
       "target_url": "http://dolphin:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdolphin%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -4243,8 +4327,9 @@
       "image": "linuxserver/domoticz:latest",
       "container_name": "domoticz",
       "port": 8080,
-      "launch_url": "--kiosk http://domoticz:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdomoticz%3A8080",
       "target_url": "http://domoticz:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdomoticz%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -4287,8 +4372,9 @@
       "image": "donetick/donetick:latest",
       "container_name": "donetick",
       "port": 2021,
-      "launch_url": "--kiosk http://donetick:2021",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdonetick%3A2021",
       "target_url": "http://donetick:2021",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdonetick%3A2021",
       "env": [
         {
           "name": "DT_SQLITE_PATH",
@@ -4325,8 +4411,9 @@
       "image": "linuxserver/doplarr_rs:latest",
       "container_name": "doplarr-rs",
       "port": 80,
-      "launch_url": "--kiosk http://doplarr-rs:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdoplarr-rs%3A80",
       "target_url": "http://doplarr-rs:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdoplarr-rs%3A80",
       "env": [
         {
           "name": "PUID",
@@ -4376,8 +4463,9 @@
       "image": "linuxserver/dosbox-staging:latest",
       "container_name": "dosbox-staging",
       "port": 3000,
-      "launch_url": "--kiosk http://dosbox-staging:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdosbox-staging%3A3000",
       "target_url": "http://dosbox-staging:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdosbox-staging%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -4427,8 +4515,9 @@
       "image": "linuxserver/doublecommander:latest",
       "container_name": "doublecommander",
       "port": 3000,
-      "launch_url": "--kiosk http://doublecommander:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdoublecommander%3A3000",
       "target_url": "http://doublecommander:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdoublecommander%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -4483,8 +4572,9 @@
       "image": "amir20/dozzle:latest",
       "container_name": "dozzle",
       "port": 8080,
-      "launch_url": "--kiosk http://dozzle:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdozzle%3A8080",
       "target_url": "http://dozzle:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdozzle%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -4505,8 +4595,9 @@
       "image": "raesene/dradis:latest",
       "container_name": "dradis",
       "port": 3000,
-      "launch_url": "--kiosk http://dradis:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdradis%3A3000",
       "target_url": "http://dradis:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdradis%3A3000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -4527,8 +4618,9 @@
       "image": "ghcr.io/drawdb-io/drawdb:latest",
       "container_name": "drawdb",
       "port": 80,
-      "launch_url": "--kiosk http://drawdb:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdrawdb%3A80",
       "target_url": "http://drawdb:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdrawdb%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -4549,8 +4641,9 @@
       "image": "silverwind/droppy:latest",
       "container_name": "droppy",
       "port": 8989,
-      "launch_url": "--kiosk http://droppy:8989",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdroppy%3A8989",
       "target_url": "http://droppy:8989",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdroppy%3A8989",
       "env": [
         {
           "name": "GID",
@@ -4667,8 +4760,9 @@
       "image": "drupal:latest",
       "container_name": "drupal",
       "port": 80,
-      "launch_url": "--kiosk http://drupal:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fdrupal%3A80",
       "target_url": "http://drupal:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fdrupal%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -4689,8 +4783,9 @@
       "image": "linuxserver/duckstation:latest",
       "container_name": "duckstation",
       "port": 3000,
-      "launch_url": "--kiosk http://duckstation:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fduckstation%3A3000",
       "target_url": "http://duckstation:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fduckstation%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -4740,8 +4835,9 @@
       "image": "mediadepot/duplicacy:latest",
       "container_name": "duplicacy",
       "port": 3875,
-      "launch_url": "--kiosk http://duplicacy:3875",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fduplicacy%3A3875",
       "target_url": "http://duplicacy:3875",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fduplicacy%3A3875",
       "env": [
         {
           "name": "TZ",
@@ -4814,8 +4910,9 @@
       "image": "linuxserver/duplicati:latest",
       "container_name": "duplicati",
       "port": 8200,
-      "launch_url": "--kiosk http://duplicati:8200",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fduplicati%3A8200",
       "target_url": "http://duplicati:8200",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fduplicati%3A8200",
       "env": [
         {
           "name": "PUID",
@@ -4896,8 +4993,9 @@
       "image": "eclipse-mosquitto:latest",
       "container_name": "eclipse-mosquitto-mqtt",
       "port": 9001,
-      "launch_url": "--kiosk http://eclipse-mosquitto-mqtt:9001",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Feclipse-mosquitto-mqtt%3A9001",
       "target_url": "http://eclipse-mosquitto-mqtt:9001",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Feclipse-mosquitto-mqtt%3A9001",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -4934,8 +5032,9 @@
       "image": "linuxserver/eden:latest",
       "container_name": "eden",
       "port": 3000,
-      "launch_url": "--kiosk http://eden:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Feden%3A3000",
       "target_url": "http://eden:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Feden%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -4985,8 +5084,9 @@
       "image": "elasticsearch:9.5.3",
       "container_name": "elasticsearch",
       "port": 9200,
-      "launch_url": "--kiosk http://elasticsearch:9200",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Felasticsearch%3A9200",
       "target_url": "http://elasticsearch:9200",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Felasticsearch%3A9200",
       "env": [
         {
           "name": "discovery.type",
@@ -5022,8 +5122,9 @@
       "image": "linuxserver/emby:latest",
       "container_name": "emby",
       "port": 8096,
-      "launch_url": "--kiosk http://emby:8096",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Femby%3A8096",
       "target_url": "http://emby:8096",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Femby%3A8096",
       "env": [
         {
           "name": "PUID",
@@ -5088,8 +5189,9 @@
       "image": "linuxserver/embystat:latest",
       "container_name": "embystat",
       "port": 6555,
-      "launch_url": "--kiosk http://embystat:6555",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fembystat%3A6555",
       "target_url": "http://embystat:6555",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fembystat%3A6555",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -5116,8 +5218,9 @@
       "image": "bropat/eufy-security-ws:latest",
       "container_name": "eufy-security-ws",
       "port": 3000,
-      "launch_url": "--kiosk http://eufy-security-ws:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Feufy-security-ws%3A3000",
       "target_url": "http://eufy-security-ws:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Feufy-security-ws%3A3000",
       "env": [
         {
           "name": "USERNAME",
@@ -5160,8 +5263,9 @@
       "image": "linuxserver/faster-whisper:latest",
       "container_name": "faster-whisper",
       "port": 10300,
-      "launch_url": "--kiosk http://faster-whisper:10300",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffaster-whisper%3A10300",
       "target_url": "http://faster-whisper:10300",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffaster-whisper%3A10300",
       "env": [
         {
           "name": "PUID",
@@ -5246,8 +5350,9 @@
       "image": "linuxserver/ferdium:latest",
       "container_name": "ferdium",
       "port": 3000,
-      "launch_url": "--kiosk http://ferdium:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fferdium%3A3000",
       "target_url": "http://ferdium:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fferdium%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -5297,8 +5402,9 @@
       "image": "ferretproject/ferret:latest",
       "container_name": "ferret",
       "port": 8787,
-      "launch_url": "--kiosk http://ferret:8787",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fferret%3A8787",
       "target_url": "http://ferret:8787",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fferret%3A8787",
       "env": [
         {
           "name": "PUBLIC_URL",
@@ -5327,8 +5433,9 @@
       "image": "linuxserver/ffmpeg:latest",
       "container_name": "ffmpeg",
       "port": 80,
-      "launch_url": "--kiosk http://ffmpeg:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fffmpeg%3A80",
       "target_url": "http://ffmpeg:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fffmpeg%3A80",
       "env": [
         {
           "name": "PUID",
@@ -5378,8 +5485,9 @@
       "image": "filebrowser/filebrowser:latest",
       "container_name": "file-browser",
       "port": 80,
-      "launch_url": "--kiosk http://file-browser:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffile-browser%3A80",
       "target_url": "http://file-browser:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffile-browser%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -5400,8 +5508,9 @@
       "image": "filebrowser/filebrowser:latest",
       "container_name": "filebrowser-latest",
       "port": 80,
-      "launch_url": "--kiosk http://filebrowser-latest:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffilebrowser-latest%3A80",
       "target_url": "http://filebrowser-latest:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffilebrowser-latest%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -5438,8 +5547,9 @@
       "image": "filebrowser/filebrowser:s6",
       "container_name": "filebrowser-s6",
       "port": 80,
-      "launch_url": "--kiosk http://filebrowser-s6:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffilebrowser-s6%3A80",
       "target_url": "http://filebrowser-s6:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffilebrowser-s6%3A80",
       "env": [
         {
           "name": "PUID",
@@ -5492,8 +5602,9 @@
       "image": "linuxserver/filezilla:latest",
       "container_name": "filezilla",
       "port": 3000,
-      "launch_url": "--kiosk http://filezilla:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffilezilla%3A3000",
       "target_url": "http://filezilla:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffilezilla%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -5543,8 +5654,9 @@
       "image": "linuxserver/firefox:latest",
       "container_name": "firefox",
       "port": 3000,
-      "launch_url": "--kiosk http://firefox:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffirefox%3A3000",
       "target_url": "http://firefox:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffirefox%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -5601,8 +5713,9 @@
       "image": "pawelmalak/flame:multiarch",
       "container_name": "flame",
       "port": 5005,
-      "launch_url": "--kiosk http://flame:5005",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fflame%3A5005",
       "target_url": "http://flame:5005",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fflame%3A5005",
       "env": [
         {
           "name": "PASSWORD",
@@ -5638,8 +5751,9 @@
       "image": "pawelmalak/flame:latest",
       "container_name": "flame-dashboard",
       "port": 5005,
-      "launch_url": "--kiosk http://flame-dashboard:5005",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fflame-dashboard%3A5005",
       "target_url": "http://flame-dashboard:5005",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fflame-dashboard%3A5005",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -5666,8 +5780,9 @@
       "image": "ghcr.io/flaresolverr/flaresolverr:latest",
       "container_name": "flaresolverr",
       "port": 8191,
-      "launch_url": "--kiosk http://flaresolverr:8191",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fflaresolverr%3A8191",
       "target_url": "http://flaresolverr:8191",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fflaresolverr%3A8191",
       "env": [
         {
           "name": "LOG_LEVEL",
@@ -5718,8 +5833,9 @@
       "image": "linuxserver/flexget:latest",
       "container_name": "flexget",
       "port": 5050,
-      "launch_url": "--kiosk http://flexget:5050",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fflexget%3A5050",
       "target_url": "http://flexget:5050",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fflexget%3A5050",
       "env": [
         {
           "name": "PUID",
@@ -5802,8 +5918,9 @@
       "image": "softingindustrial/floating-license-server:latest",
       "container_name": "floating-license-server",
       "port": 6200,
-      "launch_url": "--kiosk http://floating-license-server:6200",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffloating-license-server%3A6200",
       "target_url": "http://floating-license-server:6200",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffloating-license-server%3A6200",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -5824,8 +5941,9 @@
       "image": "ghcr.io/zerx-lab/fluxdown-server:0.2.3",
       "container_name": "fluxdown",
       "port": 17800,
-      "launch_url": "--kiosk http://fluxdown:17800",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffluxdown%3A17800",
       "target_url": "http://fluxdown:17800",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffluxdown%3A17800",
       "env": [
         {
           "name": "TZ",
@@ -5855,8 +5973,9 @@
       "image": "linuxserver/flycast:latest",
       "container_name": "flycast",
       "port": 3000,
-      "launch_url": "--kiosk http://flycast:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fflycast%3A3000",
       "target_url": "http://flycast:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fflycast%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -5906,8 +6025,9 @@
       "image": "linuxserver/foldingathome:latest",
       "container_name": "foldingathome",
       "port": 80,
-      "launch_url": "--kiosk http://foldingathome:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffoldingathome%3A80",
       "target_url": "http://foldingathome:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffoldingathome%3A80",
       "env": [
         {
           "name": "PUID",
@@ -5978,8 +6098,9 @@
       "image": "codeberg.org/forgejo/forgejo:15",
       "container_name": "forgejo",
       "port": 3000,
-      "launch_url": "--kiosk http://forgejo:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fforgejo%3A3000",
       "target_url": "http://forgejo:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fforgejo%3A3000",
       "env": [
         {
           "name": "USER_UID",
@@ -6016,8 +6137,9 @@
       "image": "felddy/foundryvtt:release",
       "container_name": "foundryvtt-server",
       "port": 30000,
-      "launch_url": "--kiosk http://foundryvtt-server:30000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffoundryvtt-server%3A30000",
       "target_url": "http://foundryvtt-server:30000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffoundryvtt-server%3A30000",
       "env": [
         {
           "name": "FOUNDRY_USERNAME",
@@ -6074,8 +6196,9 @@
       "image": "linuxserver/freecad:latest",
       "container_name": "freecad",
       "port": 3000,
-      "launch_url": "--kiosk http://freecad:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffreecad%3A3000",
       "target_url": "http://freecad:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffreecad%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -6125,8 +6248,9 @@
       "image": "linuxserver/freshrss:latest",
       "container_name": "freshrss",
       "port": 80,
-      "launch_url": "--kiosk http://freshrss:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffreshrss%3A80",
       "target_url": "http://freshrss:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffreshrss%3A80",
       "env": [
         {
           "name": "PUID",
@@ -6176,8 +6300,9 @@
       "image": "public.ecr.aws/n9a9v7z5/mfgx-native-app-device-gateway-server:latest",
       "container_name": "fuuz-device-gateway",
       "port": 5500,
-      "launch_url": "--kiosk http://fuuz-device-gateway:5500",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ffuuz-device-gateway%3A5500",
       "target_url": "http://fuuz-device-gateway:5500",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ffuuz-device-gateway%3A5500",
       "env": [
         {
           "name": "FUUZ_API_KEY",
@@ -6240,8 +6365,9 @@
       "image": "housewrecker/gaps:latest",
       "container_name": "gaps",
       "port": 8484,
-      "launch_url": "--kiosk http://gaps:8484",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgaps%3A8484",
       "target_url": "http://gaps:8484",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgaps%3A8484",
       "env": [
         {
           "name": "TZ",
@@ -6288,8 +6414,9 @@
       "image": "twinproduction/gatus:stable",
       "container_name": "gatus",
       "port": 8080,
-      "launch_url": "--kiosk http://gatus:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgatus%3A8080",
       "target_url": "http://gatus:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgatus%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -6310,8 +6437,9 @@
       "image": "ghost:latest",
       "container_name": "ghost",
       "port": 2368,
-      "launch_url": "--kiosk http://ghost:2368",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fghost%3A2368",
       "target_url": "http://ghost:2368",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fghost%3A2368",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -6332,8 +6460,9 @@
       "image": "linuxserver/gimp:latest",
       "container_name": "gimp",
       "port": 3000,
-      "launch_url": "--kiosk http://gimp:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgimp%3A3000",
       "target_url": "http://gimp:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgimp%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -6383,8 +6512,9 @@
       "image": "gitea/gitea:latest",
       "container_name": "gitea",
       "port": 3000,
-      "launch_url": "--kiosk http://gitea:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgitea%3A3000",
       "target_url": "http://gitea:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgitea%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -6427,8 +6557,9 @@
       "image": "linuxserver/github-desktop:latest",
       "container_name": "github-desktop",
       "port": 3000,
-      "launch_url": "--kiosk http://github-desktop:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgithub-desktop%3A3000",
       "target_url": "http://github-desktop:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgithub-desktop%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -6478,8 +6609,9 @@
       "image": "gitlab/gitlab-ce:latest",
       "container_name": "gitlab-ce",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://gitlab-ce:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fgitlab-ce%3A443",
       "target_url": "https://gitlab-ce:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fgitlab-ce%3A443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -6500,8 +6632,9 @@
       "image": "linuxserver/gitqlient:latest",
       "container_name": "gitqlient",
       "port": 3000,
-      "launch_url": "--kiosk http://gitqlient:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgitqlient%3A3000",
       "target_url": "http://gitqlient:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgitqlient%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -6551,8 +6684,9 @@
       "image": "glanceapp/glance:latest",
       "container_name": "glance",
       "port": 8080,
-      "launch_url": "--kiosk http://glance:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fglance%3A8080",
       "target_url": "http://glance:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fglance%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -6573,8 +6707,9 @@
       "image": "serjs/go-socks5-proxy:latest",
       "container_name": "go-socks5-proxy",
       "port": 8080,
-      "launch_url": "--kiosk http://go-socks5-proxy:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgo-socks5-proxy%3A8080",
       "target_url": "http://go-socks5-proxy:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgo-socks5-proxy%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -6595,8 +6730,9 @@
       "image": "gotenberg/gotenberg:8",
       "container_name": "gotenberg",
       "port": 3000,
-      "launch_url": "--kiosk http://gotenberg:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgotenberg%3A3000",
       "target_url": "http://gotenberg:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgotenberg%3A3000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -6617,8 +6753,9 @@
       "image": "gotify/server-arm7:latest",
       "container_name": "gotify",
       "port": 80,
-      "launch_url": "--kiosk http://gotify:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgotify%3A80",
       "target_url": "http://gotify:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgotify%3A80",
       "env": [
         {
           "name": "TZ",
@@ -6668,8 +6805,9 @@
       "image": "superseriousbusiness/gotosocial:latest",
       "container_name": "gotosocial",
       "port": 8080,
-      "launch_url": "--kiosk http://gotosocial:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgotosocial%3A8080",
       "target_url": "http://gotosocial:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgotosocial%3A8080",
       "env": [
         {
           "name": "GTS_HOST",
@@ -6720,8 +6858,9 @@
       "image": "linuxserver/grav:latest",
       "container_name": "grav",
       "port": 80,
-      "launch_url": "--kiosk http://grav:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgrav%3A80",
       "target_url": "http://grav:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgrav%3A80",
       "env": [
         {
           "name": "PUID",
@@ -6771,8 +6910,9 @@
       "image": "linuxserver/grocy:latest",
       "container_name": "grocy",
       "port": 80,
-      "launch_url": "--kiosk http://grocy:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgrocy%3A80",
       "target_url": "http://grocy:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgrocy%3A80",
       "env": [
         {
           "name": "PUID",
@@ -6822,8 +6962,9 @@
       "image": "oznu/guacamole:latest",
       "container_name": "guacamole",
       "port": 8080,
-      "launch_url": "--kiosk http://guacamole:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fguacamole%3A8080",
       "target_url": "http://guacamole:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fguacamole%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -6850,8 +6991,9 @@
       "image": "linuxserver/gzdoom:latest",
       "container_name": "gzdoom",
       "port": 3000,
-      "launch_url": "--kiosk http://gzdoom:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgzdoom%3A3000",
       "target_url": "http://gzdoom:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgzdoom%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -6901,8 +7043,9 @@
       "image": "linuxserver/habridge:latest",
       "container_name": "habridge",
       "port": 8080,
-      "launch_url": "--kiosk http://habridge:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhabridge%3A8080",
       "target_url": "http://habridge:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhabridge%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -6959,8 +7102,9 @@
       "image": "linuxserver/handbrake:latest",
       "container_name": "handbrake",
       "port": 3000,
-      "launch_url": "--kiosk http://handbrake:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhandbrake%3A3000",
       "target_url": "http://handbrake:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhandbrake%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -7010,8 +7154,9 @@
       "image": "linuxserver/headphones:latest",
       "container_name": "headphones",
       "port": 8181,
-      "launch_url": "--kiosk http://headphones:8181",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fheadphones%3A8181",
       "target_url": "http://headphones:8181",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fheadphones%3A8181",
       "env": [
         {
           "name": "PUID",
@@ -7064,8 +7209,9 @@
       "image": "linuxserver/healthchecks:latest",
       "container_name": "healthchecks",
       "port": 8000,
-      "launch_url": "--kiosk http://healthchecks:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhealthchecks%3A8000",
       "target_url": "http://healthchecks:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhealthchecks%3A8000",
       "env": [
         {
           "name": "PUID",
@@ -7248,8 +7394,9 @@
       "image": "linuxserver/hedgedoc:latest",
       "container_name": "hedgedoc",
       "port": 3000,
-      "launch_url": "--kiosk http://hedgedoc:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhedgedoc%3A3000",
       "target_url": "http://hedgedoc:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhedgedoc%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -7376,8 +7523,9 @@
       "image": "linuxserver/heimdall:latest",
       "container_name": "heimdall",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://heimdall:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fheimdall%3A443",
       "target_url": "https://heimdall:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fheimdall%3A443",
       "env": [
         {
           "name": "PUID",
@@ -7434,8 +7582,9 @@
       "image": "linuxserver/helium:latest",
       "container_name": "helium",
       "port": 3000,
-      "launch_url": "--kiosk http://helium:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhelium%3A3000",
       "target_url": "http://helium:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhelium%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -7492,8 +7641,9 @@
       "image": "linuxserver/hishtory-server:latest",
       "container_name": "hishtory-server",
       "port": 8080,
-      "launch_url": "--kiosk http://hishtory-server:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhishtory-server%3A8080",
       "target_url": "http://hishtory-server:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhishtory-server%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -7557,8 +7707,9 @@
       "image": "ghcr.io/marlburrow/hivekeep:latest",
       "container_name": "hivekeep",
       "port": 3000,
-      "launch_url": "--kiosk http://hivekeep:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhivekeep%3A3000",
       "target_url": "http://hivekeep:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhivekeep%3A3000",
       "env": [
         {
           "name": "HOST",
@@ -7601,8 +7752,9 @@
       "image": "ghcr.io/ajnart/homarr:latest",
       "container_name": "homarr",
       "port": 7575,
-      "launch_url": "--kiosk http://homarr:7575",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhomarr%3A7575",
       "target_url": "http://homarr:7575",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhomarr%3A7575",
       "env": [
         {
           "name": "PUID",
@@ -7650,8 +7802,9 @@
       "image": "ghcr.io/ajnart/homarr:latest",
       "container_name": "homarr-secured",
       "port": 7575,
-      "launch_url": "--kiosk http://homarr-secured:7575",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhomarr-secured%3A7575",
       "target_url": "http://homarr-secured:7575",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhomarr-secured%3A7575",
       "env": [
         {
           "name": "PUID",
@@ -7699,8 +7852,9 @@
       "image": "ghcr.io/sysadminsmedia/homebox:latest",
       "container_name": "homebox",
       "port": 7745,
-      "launch_url": "--kiosk http://homebox:7745",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhomebox%3A7745",
       "target_url": "http://homebox:7745",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhomebox%3A7745",
       "env": [
         {
           "name": "TZ",
@@ -7730,8 +7884,9 @@
       "image": "ghcr.io/benphelps/homepage:latest",
       "container_name": "homepage",
       "port": 3000,
-      "launch_url": "--kiosk http://homepage:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhomepage%3A3000",
       "target_url": "http://homepage:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhomepage%3A3000",
       "env": [
         {
           "name": "PGID",
@@ -7798,8 +7953,9 @@
       "image": "b4bz/homer:latest",
       "container_name": "homer",
       "port": 8080,
-      "launch_url": "--kiosk http://homer:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhomer%3A8080",
       "target_url": "http://homer:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhomer%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -7831,8 +7987,9 @@
       "image": "linuxserver/htpcmanager:latest",
       "container_name": "htpcmanager",
       "port": 8085,
-      "launch_url": "--kiosk http://htpcmanager:8085",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhtpcmanager%3A8085",
       "target_url": "http://htpcmanager:8085",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhtpcmanager%3A8085",
       "env": [
         {
           "name": "PUID",
@@ -7882,8 +8039,9 @@
       "image": "httpd:latest",
       "container_name": "httpd",
       "port": 80,
-      "launch_url": "--kiosk http://httpd:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhttpd%3A80",
       "target_url": "http://httpd:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhttpd%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -7904,8 +8062,9 @@
       "image": "huginn/huginn:latest",
       "container_name": "huginn",
       "port": 3000,
-      "launch_url": "--kiosk http://huginn:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhuginn%3A3000",
       "target_url": "http://huginn:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhuginn%3A3000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -7932,8 +8091,9 @@
       "image": "linuxserver/hydra2:latest",
       "container_name": "hydra2",
       "port": 5076,
-      "launch_url": "--kiosk http://hydra2:5076",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fhydra2%3A5076",
       "target_url": "http://hydra2:5076",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fhydra2%3A5076",
       "env": [
         {
           "name": "PUID",
@@ -7977,8 +8137,9 @@
       "image": "influxdb:1.8.10",
       "container_name": "influxdb-1-8-10",
       "port": 8086,
-      "launch_url": "--kiosk http://influxdb-1-8-10:8086",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Finfluxdb-1-8-10%3A8086",
       "target_url": "http://influxdb-1-8-10:8086",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Finfluxdb-1-8-10%3A8086",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -8010,8 +8171,9 @@
       "image": "linuxserver/inkscape:latest",
       "container_name": "inkscape",
       "port": 3000,
-      "launch_url": "--kiosk http://inkscape:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Finkscape%3A3000",
       "target_url": "http://inkscape:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Finkscape%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -8061,8 +8223,9 @@
       "image": "linuxserver/intellij-idea:latest",
       "container_name": "intellij-idea",
       "port": 3000,
-      "launch_url": "--kiosk http://intellij-idea:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fintellij-idea%3A3000",
       "target_url": "http://intellij-idea:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fintellij-idea%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -8112,8 +8275,9 @@
       "image": "buanet/iobroker:latest",
       "container_name": "iobroker",
       "port": 8081,
-      "launch_url": "--kiosk http://iobroker:8081",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fiobroker%3A8081",
       "target_url": "http://iobroker:8081",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fiobroker%3A8081",
       "env": [
         {
           "name": "PUID",
@@ -8156,8 +8320,9 @@
       "image": "corentinth/it-tools:latest",
       "container_name": "it-tools",
       "port": 80,
-      "launch_url": "--kiosk http://it-tools:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fit-tools%3A80",
       "target_url": "http://it-tools:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fit-tools%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -8178,8 +8343,9 @@
       "image": "linuxserver/jackett:latest",
       "container_name": "jackett",
       "port": 9117,
-      "launch_url": "--kiosk http://jackett:9117",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fjackett%3A9117",
       "target_url": "http://jackett:9117",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fjackett%3A9117",
       "env": [
         {
           "name": "PUID",
@@ -8248,8 +8414,9 @@
       "image": "jaymoulin/jdownloader:latest",
       "container_name": "jdownloader",
       "port": 3129,
-      "launch_url": "--kiosk http://jdownloader:3129",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fjdownloader%3A3129",
       "target_url": "http://jdownloader:3129",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fjdownloader%3A3129",
       "env": [
         {
           "name": "MYJD_DEVICE_NAME",
@@ -8304,8 +8471,9 @@
       "image": "linuxserver/jellyfin:latest",
       "container_name": "jellyfin",
       "port": 8096,
-      "launch_url": "--kiosk http://jellyfin:8096",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fjellyfin%3A8096",
       "target_url": "http://jellyfin:8096",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fjellyfin%3A8096",
       "env": [
         {
           "name": "PUID",
@@ -8372,8 +8540,9 @@
       "image": "hrfee/jfa-go:latest",
       "container_name": "jellyfin-accounts",
       "port": 8056,
-      "launch_url": "--kiosk http://jellyfin-accounts:8056",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fjellyfin-accounts%3A8056",
       "target_url": "http://jellyfin-accounts:8056",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fjellyfin-accounts%3A8056",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -8405,8 +8574,9 @@
       "image": "fallenbagel/jellyseerr:latest",
       "container_name": "jellyseerr",
       "port": 5055,
-      "launch_url": "--kiosk http://jellyseerr:5055",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fjellyseerr%3A5055",
       "target_url": "http://jellyseerr:5055",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fjellyseerr%3A5055",
       "env": [
         {
           "name": "PUID",
@@ -8449,8 +8619,9 @@
       "image": "jenkins/jenkins:lts",
       "container_name": "jenkins",
       "port": 8080,
-      "launch_url": "--kiosk http://jenkins:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fjenkins%3A8080",
       "target_url": "http://jenkins:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fjenkins%3A8080",
       "env": [
         {
           "name": "JENKINS_OPTS",
@@ -8479,8 +8650,9 @@
       "image": "joomla:latest",
       "container_name": "joomla",
       "port": 80,
-      "launch_url": "--kiosk http://joomla:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fjoomla%3A80",
       "target_url": "http://joomla:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fjoomla%3A80",
       "env": [
         {
           "name": "JOOMLA_DB_HOST",
@@ -8515,8 +8687,9 @@
       "image": "linuxserver/joplin:latest",
       "container_name": "joplin",
       "port": 3000,
-      "launch_url": "--kiosk http://joplin:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fjoplin%3A3000",
       "target_url": "http://joplin:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fjoplin%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -8566,8 +8739,9 @@
       "image": "quay.io/jupyter/scipy-notebook:latest",
       "container_name": "jupyterlab",
       "port": 8888,
-      "launch_url": "--kiosk http://jupyterlab:8888",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fjupyterlab%3A8888",
       "target_url": "http://jupyterlab:8888",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fjupyterlab%3A8888",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -8588,8 +8762,9 @@
       "image": "linuxserver/kali-linux:latest",
       "container_name": "kali-linux",
       "port": 3000,
-      "launch_url": "--kiosk http://kali-linux:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fkali-linux%3A3000",
       "target_url": "http://kali-linux:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fkali-linux%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -8639,8 +8814,9 @@
       "image": "kanboard/kanboard:latest",
       "container_name": "kanboard",
       "port": 80,
-      "launch_url": "--kiosk http://kanboard:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fkanboard%3A80",
       "target_url": "http://kanboard:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fkanboard%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -8661,8 +8837,9 @@
       "image": "linuxserver/kavita:latest",
       "container_name": "kavita",
       "port": 5000,
-      "launch_url": "--kiosk http://kavita:5000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fkavita%3A5000",
       "target_url": "http://kavita:5000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fkavita%3A5000",
       "env": [
         {
           "name": "PUID",
@@ -8717,8 +8894,9 @@
       "image": "linuxserver/kdenlive:latest",
       "container_name": "kdenlive",
       "port": 3000,
-      "launch_url": "--kiosk http://kdenlive:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fkdenlive%3A3000",
       "target_url": "http://kdenlive:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fkdenlive%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -8768,8 +8946,9 @@
       "image": "linuxserver/keepassxc:latest",
       "container_name": "keepassxc",
       "port": 3000,
-      "launch_url": "--kiosk http://keepassxc:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fkeepassxc%3A3000",
       "target_url": "http://keepassxc:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fkeepassxc%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -8819,8 +8998,9 @@
       "image": "linuxserver/kicad:latest",
       "container_name": "kicad",
       "port": 3000,
-      "launch_url": "--kiosk http://kicad:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fkicad%3A3000",
       "target_url": "http://kicad:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fkicad%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -8870,8 +9050,9 @@
       "image": "linuxserver/kimai:latest",
       "container_name": "kimai",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://kimai:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fkimai%3A443",
       "target_url": "https://kimai:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fkimai%3A443",
       "env": [
         {
           "name": "PUID",
@@ -8949,8 +9130,9 @@
       "image": "linuxserver/kodi-headless:latest",
       "container_name": "kodi-headless",
       "port": 8080,
-      "launch_url": "--kiosk http://kodi-headless:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fkodi-headless%3A8080",
       "target_url": "http://kodi-headless:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fkodi-headless%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -8993,8 +9175,9 @@
       "image": "linuxserver/kometa:latest",
       "container_name": "kometa",
       "port": 80,
-      "launch_url": "--kiosk http://kometa:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fkometa%3A80",
       "target_url": "http://kometa:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fkometa%3A80",
       "env": [
         {
           "name": "PUID",
@@ -9079,8 +9262,9 @@
       "image": "gotson/komga:latest",
       "container_name": "komga",
       "port": 8080,
-      "launch_url": "--kiosk http://komga:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fkomga%3A8080",
       "target_url": "http://komga:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fkomga%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -9112,8 +9296,9 @@
       "image": "linuxserver/krita:latest",
       "container_name": "krita",
       "port": 3000,
-      "launch_url": "--kiosk http://krita:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fkrita%3A3000",
       "target_url": "http://krita:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fkrita%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -9163,8 +9348,9 @@
       "image": "linuxserver/lazylibrarian:latest",
       "container_name": "lazylibrarian",
       "port": 5299,
-      "launch_url": "--kiosk http://lazylibrarian:5299",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flazylibrarian%3A5299",
       "target_url": "http://lazylibrarian:5299",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flazylibrarian%3A5299",
       "env": [
         {
           "name": "PUID",
@@ -9231,8 +9417,9 @@
       "image": "linuxserver/ldap-auth:latest",
       "container_name": "ldap-auth",
       "port": 9000,
-      "launch_url": "--kiosk http://ldap-auth:9000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fldap-auth%3A9000",
       "target_url": "http://ldap-auth:9000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fldap-auth%3A9000",
       "env": [
         {
           "name": "PUID",
@@ -9303,8 +9490,9 @@
       "image": "linuxserver/letsencrypt:latest",
       "container_name": "let-s-encrypt",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://let-s-encrypt:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Flet-s-encrypt%3A443",
       "target_url": "https://let-s-encrypt:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Flet-s-encrypt%3A443",
       "env": [
         {
           "name": "EMAIL",
@@ -9396,8 +9584,9 @@
       "image": "linuxserver/swag:latest",
       "container_name": "let-s-encrypt-swag",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://let-s-encrypt-swag:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Flet-s-encrypt-swag%3A443",
       "target_url": "https://let-s-encrypt-swag:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Flet-s-encrypt-swag%3A443",
       "env": [
         {
           "name": "EMAIL",
@@ -9489,8 +9678,9 @@
       "image": "ghcr.io/libredb/libredb-studio:latest",
       "container_name": "libredb-studio",
       "port": 3000,
-      "launch_url": "--kiosk http://libredb-studio:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flibredb-studio%3A3000",
       "target_url": "http://libredb-studio:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flibredb-studio%3A3000",
       "env": [
         {
           "name": "AUTH_COOKIE_SECURE",
@@ -9534,8 +9724,9 @@
       "image": "libreddit/libreddit:armv7",
       "container_name": "libreddit",
       "port": 8080,
-      "launch_url": "--kiosk http://libreddit:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flibreddit%3A8080",
       "target_url": "http://libreddit:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flibreddit%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -9562,8 +9753,9 @@
       "image": "linuxserver/libreoffice:latest",
       "container_name": "libreoffice",
       "port": 3000,
-      "launch_url": "--kiosk http://libreoffice:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flibreoffice%3A3000",
       "target_url": "http://libreoffice:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flibreoffice%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -9613,8 +9805,9 @@
       "image": "linuxserver/libresonic:latest",
       "container_name": "libresonic",
       "port": 4040,
-      "launch_url": "--kiosk http://libresonic:4040",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flibresonic%3A4040",
       "target_url": "http://libresonic:4040",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flibresonic%3A4040",
       "env": [
         {
           "name": "CONTEXT_PATH",
@@ -9665,8 +9858,9 @@
       "image": "linuxserver/librespeed:latest",
       "container_name": "librespeed",
       "port": 80,
-      "launch_url": "--kiosk http://librespeed:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flibrespeed%3A80",
       "target_url": "http://librespeed:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flibrespeed%3A80",
       "env": [
         {
           "name": "PUID",
@@ -9779,8 +9973,9 @@
       "image": "linuxserver/librewolf:latest",
       "container_name": "librewolf",
       "port": 3000,
-      "launch_url": "--kiosk http://librewolf:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flibrewolf%3A3000",
       "target_url": "http://librewolf:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flibrewolf%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -9837,8 +10032,9 @@
       "image": "linuxserver/lidarr:latest",
       "container_name": "lidarr",
       "port": 8686,
-      "launch_url": "--kiosk http://lidarr:8686",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flidarr%3A8686",
       "target_url": "http://lidarr:8686",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flidarr%3A8686",
       "env": [
         {
           "name": "PUID",
@@ -9898,8 +10094,9 @@
       "image": "linuxserver/limnoria:latest",
       "container_name": "limnoria",
       "port": 8080,
-      "launch_url": "--kiosk http://limnoria:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flimnoria%3A8080",
       "target_url": "http://limnoria:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flimnoria%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -9949,8 +10146,9 @@
       "image": "sissbruecker/linkding:latest",
       "container_name": "linkding",
       "port": 9090,
-      "launch_url": "--kiosk http://linkding:9090",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flinkding%3A9090",
       "target_url": "http://linkding:9090",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flinkding%3A9090",
       "env": [
         {
           "name": "LD_SUPERUSER_NAME",
@@ -9994,8 +10192,9 @@
       "image": "nitnelave/lldap:stable-debian",
       "container_name": "lldap",
       "port": 3890,
-      "launch_url": "--kiosk http://lldap:3890",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flldap%3A3890",
       "target_url": "http://lldap:3890",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flldap%3A3890",
       "env": [
         {
           "name": "LLDAP_JWT_SECRET",
@@ -10045,8 +10244,9 @@
       "image": "linuxserver/lm-studio:latest",
       "container_name": "lm-studio",
       "port": 3000,
-      "launch_url": "--kiosk http://lm-studio:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flm-studio%3A3000",
       "target_url": "http://lm-studio:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flm-studio%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -10096,8 +10296,9 @@
       "image": "linuxserver/lollypop:latest",
       "container_name": "lollypop",
       "port": 3000,
-      "launch_url": "--kiosk http://lollypop:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flollypop%3A3000",
       "target_url": "http://lollypop:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flollypop%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -10147,8 +10348,9 @@
       "image": "ghcr.io/hargata/lubelogger:latest",
       "container_name": "lubelogger",
       "port": 8080,
-      "launch_url": "--kiosk http://lubelogger:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flubelogger%3A8080",
       "target_url": "http://lubelogger:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flubelogger%3A8080",
       "env": [
         {
           "name": "LUBELOGGER_LOCALE_OVERRIDE",
@@ -10178,8 +10380,9 @@
       "image": "linuxserver/lychee:latest",
       "container_name": "lychee",
       "port": 80,
-      "launch_url": "--kiosk http://lychee:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Flychee%3A80",
       "target_url": "http://lychee:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Flychee%3A80",
       "env": [
         {
           "name": "PUID",
@@ -10297,8 +10500,9 @@
       "image": "alankent/gsd:latest",
       "container_name": "magento-2",
       "port": 80,
-      "launch_url": "--kiosk http://magento-2:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmagento-2%3A80",
       "target_url": "http://magento-2:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmagento-2%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -10319,8 +10523,9 @@
       "image": "ghcr.io/maintainerr/maintainerr:3",
       "container_name": "maintainerr",
       "port": 6246,
-      "launch_url": "--kiosk http://maintainerr:6246",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmaintainerr%3A6246",
       "target_url": "http://maintainerr:6246",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmaintainerr%3A6246",
       "env": [
         {
           "name": "TZ",
@@ -10350,8 +10555,9 @@
       "image": "krateng/maloja:latest",
       "container_name": "maloja",
       "port": 42010,
-      "launch_url": "--kiosk http://maloja:42010",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmaloja%3A42010",
       "target_url": "http://maloja:42010",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmaloja%3A42010",
       "env": [
         {
           "name": "MALOJA_FORCE_PASSWORD",
@@ -10394,8 +10600,9 @@
       "image": "linuxserver/mame:latest",
       "container_name": "mame",
       "port": 3000,
-      "launch_url": "--kiosk http://mame:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmame%3A3000",
       "target_url": "http://mame:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmame%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -10450,8 +10657,9 @@
       "image": "linuxserver/manyfold:latest",
       "container_name": "manyfold",
       "port": 3214,
-      "launch_url": "--kiosk http://manyfold:3214",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmanyfold%3A3214",
       "target_url": "http://manyfold:3214",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmanyfold%3A3214",
       "env": [
         {
           "name": "PUID",
@@ -10527,8 +10735,9 @@
       "image": "mariadb:latest",
       "container_name": "mariadb",
       "port": 3306,
-      "launch_url": "--kiosk http://mariadb:3306",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmariadb%3A3306",
       "target_url": "http://mariadb:3306",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmariadb%3A3306",
       "env": [
         {
           "name": "MYSQL_ROOT_PASSWORD",
@@ -10557,8 +10766,9 @@
       "image": "linuxserver/mastodon:latest",
       "container_name": "mastodon",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://mastodon:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fmastodon%3A443",
       "target_url": "https://mastodon:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fmastodon%3A443",
       "env": [
         {
           "name": "PUID",
@@ -10874,8 +11084,9 @@
       "image": "mautic/mautic:latest",
       "container_name": "mautic",
       "port": 80,
-      "launch_url": "--kiosk http://mautic:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmautic%3A80",
       "target_url": "http://mautic:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmautic%3A80",
       "env": [
         {
           "name": "MAUTIC_DB_HOST",
@@ -10910,8 +11121,9 @@
       "image": "linuxserver/mcmyadmin2:latest",
       "container_name": "mcmyadmin-2",
       "port": 8080,
-      "launch_url": "--kiosk http://mcmyadmin-2:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmcmyadmin-2%3A8080",
       "target_url": "http://mcmyadmin-2:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmcmyadmin-2%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -10948,8 +11160,9 @@
       "image": "hkotel/mealie:v0.4.3",
       "container_name": "mealie",
       "port": 9000,
-      "launch_url": "--kiosk http://mealie:9000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmealie%3A9000",
       "target_url": "http://mealie:9000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmealie%3A9000",
       "env": [
         {
           "name": "PUID",
@@ -11055,8 +11268,9 @@
       "image": "linuxserver/mediaelch:latest",
       "container_name": "mediaelch",
       "port": 3000,
-      "launch_url": "--kiosk http://mediaelch:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmediaelch%3A3000",
       "target_url": "http://mediaelch:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmediaelch%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -11106,8 +11320,9 @@
       "image": "linuxserver/medusa:latest",
       "container_name": "medusa",
       "port": 8081,
-      "launch_url": "--kiosk http://medusa:8081",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmedusa%3A8081",
       "target_url": "http://medusa:8081",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmedusa%3A8081",
       "env": [
         {
           "name": "PUID",
@@ -11167,8 +11382,9 @@
       "image": "linuxserver/melonds:latest",
       "container_name": "melonds",
       "port": 3000,
-      "launch_url": "--kiosk http://melonds:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmelonds%3A3000",
       "target_url": "http://melonds:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmelonds%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -11218,8 +11434,9 @@
       "image": "ghcr.io/mermaid-js/mermaid-live-editor:latest",
       "container_name": "mermaid-live-editor",
       "port": 8080,
-      "launch_url": "--kiosk http://mermaid-live-editor:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmermaid-live-editor%3A8080",
       "target_url": "http://mermaid-live-editor:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmermaid-live-editor%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -11240,8 +11457,9 @@
       "image": "alexta69/metube:latest",
       "container_name": "metube",
       "port": 8081,
-      "launch_url": "--kiosk http://metube:8081",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmetube%3A8081",
       "target_url": "http://metube:8081",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmetube%3A8081",
       "env": [
         {
           "name": "PUID",
@@ -11284,8 +11502,9 @@
       "image": "itzg/minecraft-server:latest",
       "container_name": "minecraft-server",
       "port": 25565,
-      "launch_url": "--kiosk http://minecraft-server:25565",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fminecraft-server%3A25565",
       "target_url": "http://minecraft-server:25565",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fminecraft-server%3A25565",
       "env": [
         {
           "name": "EULA",
@@ -11321,8 +11540,9 @@
       "image": "quay.io/minio/minio:latest",
       "container_name": "minio",
       "port": 9001,
-      "launch_url": "--kiosk http://minio:9001",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fminio%3A9001",
       "target_url": "http://minio:9001",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fminio%3A9001",
       "env": [
         {
           "name": "MINIO_ROOT_USER",
@@ -11357,8 +11577,9 @@
       "image": "linuxserver/minisatip:latest",
       "container_name": "minisatip",
       "port": 8875,
-      "launch_url": "--kiosk http://minisatip:8875",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fminisatip%3A8875",
       "target_url": "http://minisatip:8875",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fminisatip%3A8875",
       "env": [
         {
           "name": "PUID",
@@ -11415,8 +11636,9 @@
       "image": "linuxserver/modmanager:latest",
       "container_name": "modmanager",
       "port": 80,
-      "launch_url": "--kiosk http://modmanager:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmodmanager%3A80",
       "target_url": "http://modmanager:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmodmanager%3A80",
       "env": [
         {
           "name": "PUID",
@@ -11466,8 +11688,9 @@
       "image": "linuxserver/modrinth:latest",
       "container_name": "modrinth",
       "port": 3000,
-      "launch_url": "--kiosk http://modrinth:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmodrinth%3A3000",
       "target_url": "http://modrinth:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmodrinth%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -11517,8 +11740,9 @@
       "image": "mongo:latest",
       "container_name": "mongo",
       "port": 27017,
-      "launch_url": "--kiosk http://mongo:27017",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmongo%3A27017",
       "target_url": "http://mongo:27017",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmongo%3A27017",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -11539,8 +11763,9 @@
       "image": "mozilla/syncserver:latest",
       "container_name": "mozilla-syncserver",
       "port": 5000,
-      "launch_url": "--kiosk http://mozilla-syncserver:5000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmozilla-syncserver%3A5000",
       "target_url": "http://mozilla-syncserver:5000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmozilla-syncserver%3A5000",
       "env": [
         {
           "name": "SYNCSERVER_PUBLIC_URL",
@@ -11628,8 +11853,9 @@
       "image": "linuxserver/msedge:latest",
       "container_name": "msedge",
       "port": 3000,
-      "launch_url": "--kiosk http://msedge:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmsedge%3A3000",
       "target_url": "http://msedge:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmsedge%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -11686,8 +11912,9 @@
       "image": "linuxserver/mstream:latest",
       "container_name": "mstream",
       "port": 3000,
-      "launch_url": "--kiosk http://mstream:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmstream%3A3000",
       "target_url": "http://mstream:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmstream%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -11742,8 +11969,9 @@
       "image": "linuxserver/mullvad-browser:latest",
       "container_name": "mullvad-browser",
       "port": 3000,
-      "launch_url": "--kiosk http://mullvad-browser:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmullvad-browser%3A3000",
       "target_url": "http://mullvad-browser:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmullvad-browser%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -11800,8 +12028,9 @@
       "image": "goofball222/murmur:latest",
       "container_name": "murmur",
       "port": 64738,
-      "launch_url": "--kiosk http://murmur:64738",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmurmur%3A64738",
       "target_url": "http://murmur:64738",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmurmur%3A64738",
       "env": [
         {
           "name": "PUID",
@@ -11861,8 +12090,9 @@
       "image": "linuxserver/musicbrainz:latest",
       "container_name": "musicbrainz",
       "port": 5000,
-      "launch_url": "--kiosk http://musicbrainz:5000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmusicbrainz%3A5000",
       "target_url": "http://musicbrainz:5000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmusicbrainz%3A5000",
       "env": [
         {
           "name": "BRAINZCODE",
@@ -11917,8 +12147,9 @@
       "image": "linuxserver/muximux:latest",
       "container_name": "muximux",
       "port": 80,
-      "launch_url": "--kiosk http://muximux:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmuximux%3A80",
       "target_url": "http://muximux:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmuximux%3A80",
       "env": [
         {
           "name": "PUID",
@@ -11961,8 +12192,9 @@
       "image": "linuxserver/mylar:latest",
       "container_name": "mylar",
       "port": 8090,
-      "launch_url": "--kiosk http://mylar:8090",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmylar%3A8090",
       "target_url": "http://mylar:8090",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmylar%3A8090",
       "env": [
         {
           "name": "PUID",
@@ -12015,8 +12247,9 @@
       "image": "linuxserver/mylar3:latest",
       "container_name": "mylar3",
       "port": 8090,
-      "launch_url": "--kiosk http://mylar3:8090",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmylar3%3A8090",
       "target_url": "http://mylar3:8090",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmylar3%3A8090",
       "env": [
         {
           "name": "PUID",
@@ -12076,8 +12309,9 @@
       "image": "mysql:latest",
       "container_name": "mysql",
       "port": 3306,
-      "launch_url": "--kiosk http://mysql:3306",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmysql%3A3306",
       "target_url": "http://mysql:3306",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmysql%3A3306",
       "env": [
         {
           "name": "MYSQL_ROOT_PASSWORD",
@@ -12106,8 +12340,9 @@
       "image": "linuxserver/mysql-workbench:latest",
       "container_name": "mysql-workbench",
       "port": 3000,
-      "launch_url": "--kiosk http://mysql-workbench:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fmysql-workbench%3A3000",
       "target_url": "http://mysql-workbench:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fmysql-workbench%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -12157,8 +12392,9 @@
       "image": "docker.n8n.io/n8nio/n8n:latest",
       "container_name": "n8n",
       "port": 5678,
-      "launch_url": "--kiosk http://n8n:5678",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fn8n%3A5678",
       "target_url": "http://n8n:5678",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fn8n%3A5678",
       "env": [
         {
           "name": "GENERIC_TIMEZONE",
@@ -12218,8 +12454,9 @@
       "image": "linuxserver/netbootxyz:latest",
       "container_name": "netboot-xyz",
       "port": 3000,
-      "launch_url": "--kiosk http://netboot-xyz:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnetboot-xyz%3A3000",
       "target_url": "http://netboot-xyz:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fnetboot-xyz%3A3000",
       "env": [
         {
           "name": "PGID",
@@ -12284,8 +12521,9 @@
       "image": "linuxserver/netbox:latest",
       "container_name": "netbox",
       "port": 8000,
-      "launch_url": "--kiosk http://netbox:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnetbox%3A8000",
       "target_url": "http://netbox:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fnetbox%3A8000",
       "env": [
         {
           "name": "PUID",
@@ -12489,8 +12727,9 @@
       "image": "netdata/netdata:latest",
       "container_name": "netdata",
       "port": 19999,
-      "launch_url": "--kiosk http://netdata:19999",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnetdata%3A19999",
       "target_url": "http://netdata:19999",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fnetdata%3A19999",
       "env": [
         {
           "name": "DOCKER_USR",
@@ -12563,8 +12802,9 @@
       "image": "linuxserver/nextcloud:latest",
       "container_name": "nextcloud",
       "port": 80,
-      "launch_url": "--kiosk http://nextcloud:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnextcloud%3A80",
       "target_url": "http://nextcloud:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fnextcloud%3A80",
       "env": [
         {
           "name": "PUID",
@@ -12619,8 +12859,9 @@
       "image": "nginx:latest",
       "container_name": "nginx",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://nginx:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fnginx%3A443",
       "target_url": "https://nginx:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fnginx%3A443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -12641,8 +12882,9 @@
       "image": "jc21/nginx-proxy-manager:latest",
       "container_name": "nginx-proxy-manager",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://nginx-proxy-manager:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fnginx-proxy-manager%3A443",
       "target_url": "https://nginx-proxy-manager:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fnginx-proxy-manager%3A443",
       "env": [
         {
           "name": "DB_SQLITE_FILE",
@@ -12683,8 +12925,9 @@
       "image": "jc21/nginx-proxy-manager:latest",
       "container_name": "nginx-proxy-manager-v2-with-sqllite",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://nginx-proxy-manager-v2-with-sqllite:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fnginx-proxy-manager-v2-with-sqllite%3A443",
       "target_url": "https://nginx-proxy-manager-v2-with-sqllite:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fnginx-proxy-manager-v2-with-sqllite%3A443",
       "env": [
         {
           "name": "PUID",
@@ -12739,8 +12982,9 @@
       "image": "jc21/nginx-proxy-manager:v3",
       "container_name": "nginx-proxy-manager-v3-devel-not-ready-for-use",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://nginx-proxy-manager-v3-devel-not-ready-for-use:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fnginx-proxy-manager-v3-devel-not-ready-for-use%3A443",
       "target_url": "https://nginx-proxy-manager-v3-devel-not-ready-for-use:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fnginx-proxy-manager-v3-devel-not-ready-for-use%3A443",
       "env": [
         {
           "name": "PUID",
@@ -12790,8 +13034,9 @@
       "image": "linuxserver/ngircd:latest",
       "container_name": "ngircd",
       "port": 6667,
-      "launch_url": "--kiosk http://ngircd:6667",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fngircd%3A6667",
       "target_url": "http://ngircd:6667",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fngircd%3A6667",
       "env": [
         {
           "name": "PUID",
@@ -12841,8 +13086,9 @@
       "image": "linuxserver/nomacs:latest",
       "container_name": "nomacs",
       "port": 3000,
-      "launch_url": "--kiosk http://nomacs:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnomacs%3A3000",
       "target_url": "http://nomacs:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fnomacs%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -12892,8 +13138,9 @@
       "image": "binwiederhier/ntfy:latest",
       "container_name": "ntfy",
       "port": 80,
-      "launch_url": "--kiosk http://ntfy:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fntfy%3A80",
       "target_url": "http://ntfy:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fntfy%3A80",
       "env": [
         {
           "name": "NTFY_BASE_URL",
@@ -12930,8 +13177,9 @@
       "image": "instantlinux/nut-upsd:latest",
       "container_name": "nut-server",
       "port": 3493,
-      "launch_url": "--kiosk http://nut-server:3493",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnut-server%3A3493",
       "target_url": "http://nut-server:3493",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fnut-server%3A3493",
       "env": [
         {
           "name": "PUID",
@@ -13003,8 +13251,9 @@
       "image": "upshift/nut-upsd:latest",
       "container_name": "nuts",
       "port": 3493,
-      "launch_url": "--kiosk http://nuts:3493",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnuts%3A3493",
       "target_url": "http://nuts:3493",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fnuts%3A3493",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -13031,8 +13280,9 @@
       "image": "linuxserver/nzbget:latest",
       "container_name": "nzbget",
       "port": 6789,
-      "launch_url": "--kiosk http://nzbget:6789",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnzbget%3A6789",
       "target_url": "http://nzbget:6789",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fnzbget%3A6789",
       "env": [
         {
           "name": "PUID",
@@ -13101,8 +13351,9 @@
       "image": "linuxserver/nzbhydra2:latest",
       "container_name": "nzbhydra2",
       "port": 5076,
-      "launch_url": "--kiosk http://nzbhydra2:5076",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnzbhydra2%3A5076",
       "target_url": "http://nzbhydra2:5076",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fnzbhydra2%3A5076",
       "env": [
         {
           "name": "PUID",
@@ -13157,8 +13408,9 @@
       "image": "linuxserver/obsidian:latest",
       "container_name": "obsidian",
       "port": 3000,
-      "launch_url": "--kiosk http://obsidian:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fobsidian%3A3000",
       "target_url": "http://obsidian:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fobsidian%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -13208,8 +13460,9 @@
       "image": "odoo:latest",
       "container_name": "odoo",
       "port": 8069,
-      "launch_url": "--kiosk http://odoo:8069",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fodoo%3A8069",
       "target_url": "http://odoo:8069",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fodoo%3A8069",
       "env": [
         {
           "name": "HOST",
@@ -13250,8 +13503,9 @@
       "image": "mbentley/omada-controller:latest",
       "container_name": "omada-eap-controller",
       "port": 8088,
-      "launch_url": "--kiosk http://omada-eap-controller:8088",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fomada-eap-controller%3A8088",
       "target_url": "http://omada-eap-controller:8088",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fomada-eap-controller%3A8088",
       "env": [
         {
           "name": "PUID",
@@ -13294,8 +13548,9 @@
       "image": "linuxserver/ombi:latest",
       "container_name": "ombi",
       "port": 3579,
-      "launch_url": "--kiosk http://ombi:3579",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fombi%3A3579",
       "target_url": "http://ombi:3579",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fombi%3A3579",
       "env": [
         {
           "name": "PUID",
@@ -13352,8 +13607,9 @@
       "image": "iib0011/omni-tools:latest",
       "container_name": "omnitools",
       "port": 80,
-      "launch_url": "--kiosk http://omnitools:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fomnitools%3A80",
       "target_url": "http://omnitools:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fomnitools%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -13374,8 +13630,9 @@
       "image": "linuxserver/onlyoffice:latest",
       "container_name": "onlyoffice",
       "port": 3000,
-      "launch_url": "--kiosk http://onlyoffice:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fonlyoffice%3A3000",
       "target_url": "http://onlyoffice:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fonlyoffice%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -13425,8 +13682,9 @@
       "image": "ghcr.io/thomiceli/opengist:1",
       "container_name": "opengist",
       "port": 6157,
-      "launch_url": "--kiosk http://opengist:6157",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fopengist%3A6157",
       "target_url": "http://opengist:6157",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fopengist%3A6157",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -13447,8 +13705,9 @@
       "image": "linuxserver/openshot:latest",
       "container_name": "openshot",
       "port": 3000,
-      "launch_url": "--kiosk http://openshot:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fopenshot%3A3000",
       "target_url": "http://openshot:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fopenshot%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -13498,8 +13757,9 @@
       "image": "linuxserver/openssh-server:latest",
       "container_name": "openssh-server",
       "port": 2222,
-      "launch_url": "--kiosk http://openssh-server:2222",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fopenssh-server%3A2222",
       "target_url": "http://openssh-server:2222",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fopenssh-server%3A2222",
       "env": [
         {
           "name": "PUID",
@@ -13619,8 +13879,9 @@
       "image": "ghcr.io/opentodoapp/opentodo:stable",
       "container_name": "opentodo",
       "port": 8080,
-      "launch_url": "--kiosk http://opentodo:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fopentodo%3A8080",
       "target_url": "http://opentodo:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fopentodo%3A8080",
       "env": [
         {
           "name": "OPENTODO_SETUP_TOKEN",
@@ -13671,8 +13932,9 @@
       "image": "linuxserver/openvpn-as:latest",
       "container_name": "openvpn-access-server",
       "port": 943,
-      "launch_url": "--kiosk http://openvpn-access-server:943",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fopenvpn-access-server%3A943",
       "target_url": "http://openvpn-access-server:943",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fopenvpn-access-server%3A943",
       "env": [
         {
           "name": "INTERFACE",
@@ -13722,8 +13984,9 @@
       "image": "linuxserver/openvpn-as:latest",
       "container_name": "openvpn-as",
       "port": 943,
-      "launch_url": "--kiosk http://openvpn-as:943",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fopenvpn-as%3A943",
       "target_url": "http://openvpn-as:943",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fopenvpn-as%3A943",
       "env": [
         {
           "name": "INTERFACE",
@@ -13774,8 +14037,9 @@
       "image": "linuxserver/opera:latest",
       "container_name": "opera",
       "port": 3000,
-      "launch_url": "--kiosk http://opera:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fopera%3A3000",
       "target_url": "http://opera:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fopera%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -13832,8 +14096,9 @@
       "image": "linuxserver/orcaslicer:latest",
       "container_name": "orcaslicer",
       "port": 3000,
-      "launch_url": "--kiosk http://orcaslicer:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Forcaslicer%3A3000",
       "target_url": "http://orcaslicer:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Forcaslicer%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -13883,8 +14148,9 @@
       "image": "organizr/organizr:latest",
       "container_name": "organizr",
       "port": 80,
-      "launch_url": "--kiosk http://organizr:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Forganizr%3A80",
       "target_url": "http://organizr:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Forganizr%3A80",
       "env": [
         {
           "name": "PUID",
@@ -13927,8 +14193,9 @@
       "image": "organizr/organizr:latest",
       "container_name": "organizr-v2",
       "port": 80,
-      "launch_url": "--kiosk http://organizr-v2:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Forganizr-v2%3A80",
       "target_url": "http://organizr-v2:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Forganizr-v2%3A80",
       "env": [
         {
           "name": "PUID",
@@ -13971,8 +14238,9 @@
       "image": "linuxserver/oscam:latest",
       "container_name": "oscam",
       "port": 8888,
-      "launch_url": "--kiosk http://oscam:8888",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Foscam%3A8888",
       "target_url": "http://oscam:8888",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Foscam%3A8888",
       "env": [
         {
           "name": "PUID",
@@ -14022,8 +14290,9 @@
       "image": "lscr.io/linuxserver/overseerr:latest",
       "container_name": "overseerr",
       "port": 5055,
-      "launch_url": "--kiosk http://overseerr:5055",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Foverseerr%3A5055",
       "target_url": "http://overseerr:5055",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Foverseerr%3A5055",
       "env": [
         {
           "name": "PGID",
@@ -14090,8 +14359,9 @@
       "image": "lscr.io/linuxserver/pairdrop:latest",
       "container_name": "pairdrop",
       "port": 3000,
-      "launch_url": "--kiosk http://pairdrop:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpairdrop%3A3000",
       "target_url": "http://pairdrop:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpairdrop%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -14135,8 +14405,9 @@
       "image": "rabbitcompany/passky-client:latest",
       "container_name": "passky-client",
       "port": 80,
-      "launch_url": "--kiosk http://passky-client:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpassky-client%3A80",
       "target_url": "http://passky-client:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpassky-client%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -14157,8 +14428,9 @@
       "image": "rabbitcompany/passky-server:latest",
       "container_name": "passky-server",
       "port": 80,
-      "launch_url": "--kiosk http://passky-server:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpassky-server%3A80",
       "target_url": "http://passky-server:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpassky-server%3A80",
       "env": [
         {
           "name": "ADMIN_USERNAME",
@@ -14201,8 +14473,9 @@
       "image": "linuxserver/pcsx2:latest",
       "container_name": "pcsx2",
       "port": 3000,
-      "launch_url": "--kiosk http://pcsx2:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpcsx2%3A3000",
       "target_url": "http://pcsx2:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpcsx2%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -14252,8 +14525,9 @@
       "image": "linuxserver/pelorus:latest",
       "container_name": "pelorus",
       "port": 3001,
-      "launch_url": "--kiosk http://pelorus:3001",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpelorus%3A3001",
       "target_url": "http://pelorus:3001",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpelorus%3A3001",
       "env": [
         {
           "name": "PUID",
@@ -14303,8 +14577,9 @@
       "image": "dpage/pgadmin4:latest",
       "container_name": "pgadmin",
       "port": 80,
-      "launch_url": "--kiosk http://pgadmin:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpgadmin%3A80",
       "target_url": "http://pgadmin:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpgadmin%3A80",
       "env": [
         {
           "name": "PUID",
@@ -14368,8 +14643,9 @@
       "image": "linuxserver/photoshow:latest",
       "container_name": "photoshow",
       "port": 80,
-      "launch_url": "--kiosk http://photoshow:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fphotoshow%3A80",
       "target_url": "http://photoshow:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fphotoshow%3A80",
       "env": [
         {
           "name": "PUID",
@@ -14422,8 +14698,9 @@
       "image": "linuxserver/phpmyadmin:latest",
       "container_name": "phpmyadmin",
       "port": 80,
-      "launch_url": "--kiosk http://phpmyadmin:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fphpmyadmin%3A80",
       "target_url": "http://phpmyadmin:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fphpmyadmin%3A80",
       "env": [
         {
           "name": "PUID",
@@ -14487,8 +14764,9 @@
       "image": "pihole/pihole:latest",
       "container_name": "pi-hole",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://pi-hole:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fpi-hole%3A443",
       "target_url": "https://pi-hole:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fpi-hole%3A443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -14520,8 +14798,9 @@
       "image": "oijkn/pihole-doh-dot:latest",
       "container_name": "pi-hole-doh-dot",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://pi-hole-doh-dot:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fpi-hole-doh-dot%3A443",
       "target_url": "https://pi-hole-doh-dot:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fpi-hole-doh-dot%3A443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -14553,8 +14832,9 @@
       "image": "cbcrowe/pihole-unbound:latest",
       "container_name": "pi-hole-unbound",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://pi-hole-unbound:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fpi-hole-unbound%3A443",
       "target_url": "https://pi-hole-unbound:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fpi-hole-unbound%3A443",
       "env": [
         {
           "name": "ServerIP",
@@ -14623,8 +14903,9 @@
       "image": "linuxserver/pidgin:latest",
       "container_name": "pidgin",
       "port": 3000,
-      "launch_url": "--kiosk http://pidgin:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpidgin%3A3000",
       "target_url": "http://pidgin:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpidgin%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -14674,8 +14955,9 @@
       "image": "linuxserver/piper:latest",
       "container_name": "piper",
       "port": 10200,
-      "launch_url": "--kiosk http://piper:10200",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpiper%3A10200",
       "target_url": "http://piper:10200",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpiper%3A10200",
       "env": [
         {
           "name": "PUID",
@@ -14774,8 +15056,9 @@
       "image": "linuxserver/piwigo:latest",
       "container_name": "piwigo",
       "port": 80,
-      "launch_url": "--kiosk http://piwigo:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpiwigo%3A80",
       "target_url": "http://piwigo:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpiwigo%3A80",
       "env": [
         {
           "name": "PUID",
@@ -14830,8 +15113,9 @@
       "image": "linuxserver/planka:latest",
       "container_name": "planka",
       "port": 1337,
-      "launch_url": "--kiosk http://planka:1337",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fplanka%3A1337",
       "target_url": "http://planka:1337",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fplanka%3A1337",
       "env": [
         {
           "name": "PUID",
@@ -14944,8 +15228,9 @@
       "image": "plantuml/plantuml-server:jetty",
       "container_name": "plantuml-server",
       "port": 8080,
-      "launch_url": "--kiosk http://plantuml-server:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fplantuml-server%3A8080",
       "target_url": "http://plantuml-server:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fplantuml-server%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -14966,8 +15251,9 @@
       "image": "plesk/plesk:latest",
       "container_name": "plesk",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://plesk:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fplesk%3A443",
       "target_url": "https://plesk:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fplesk%3A443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -14988,8 +15274,9 @@
       "image": "linuxserver/plexrequests:latest",
       "container_name": "plex-requests",
       "port": 3000,
-      "launch_url": "--kiosk http://plex-requests:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fplex-requests%3A3000",
       "target_url": "http://plex-requests:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fplex-requests%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -15039,8 +15326,9 @@
       "image": "plone:latest",
       "container_name": "plone",
       "port": 8080,
-      "launch_url": "--kiosk http://plone:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fplone%3A8080",
       "target_url": "http://plone:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fplone%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -15061,8 +15349,9 @@
       "image": "samuel19982/podfetch:latest",
       "container_name": "podfetch",
       "port": 8000,
-      "launch_url": "--kiosk http://podfetch:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpodfetch%3A8000",
       "target_url": "http://podfetch:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpodfetch%3A8000",
       "env": [
         {
           "name": "DATABASE_URL",
@@ -15138,8 +15427,9 @@
       "image": "postgres:latest",
       "container_name": "postgresql",
       "port": 5432,
-      "launch_url": "--kiosk http://postgresql:5432",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpostgresql%3A5432",
       "target_url": "http://postgresql:5432",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpostgresql%3A5432",
       "env": [
         {
           "name": "POSTGRES_USER",
@@ -15174,8 +15464,9 @@
       "image": "linuxserver/ppsspp:latest",
       "container_name": "ppsspp",
       "port": 3000,
-      "launch_url": "--kiosk http://ppsspp:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fppsspp%3A3000",
       "target_url": "http://ppsspp:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fppsspp%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -15225,8 +15516,9 @@
       "image": "linuxserver/projectsend:latest",
       "container_name": "projectsend",
       "port": 80,
-      "launch_url": "--kiosk http://projectsend:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fprojectsend%3A80",
       "target_url": "http://projectsend:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fprojectsend%3A80",
       "env": [
         {
           "name": "PUID",
@@ -15281,8 +15573,9 @@
       "image": "shenxn/protonmail-bridge:latest",
       "container_name": "protonmail-bridge",
       "port": 143,
-      "launch_url": "--kiosk http://protonmail-bridge:143",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fprotonmail-bridge%3A143",
       "target_url": "http://protonmail-bridge:143",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fprotonmail-bridge%3A143",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -15309,8 +15602,9 @@
       "image": "linuxserver/prowlarr:latest",
       "container_name": "prowlarr",
       "port": 9696,
-      "launch_url": "--kiosk http://prowlarr:9696",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fprowlarr%3A9696",
       "target_url": "http://prowlarr:9696",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fprowlarr%3A9696",
       "env": [
         {
           "name": "PUID",
@@ -15360,8 +15654,9 @@
       "image": "linuxserver/pwndrop:latest",
       "container_name": "pwndrop",
       "port": 8080,
-      "launch_url": "--kiosk http://pwndrop:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpwndrop%3A8080",
       "target_url": "http://pwndrop:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpwndrop%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -15418,8 +15713,9 @@
       "image": "linuxserver/pycharm:latest",
       "container_name": "pycharm",
       "port": 3000,
-      "launch_url": "--kiosk http://pycharm:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpycharm%3A3000",
       "target_url": "http://pycharm:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpycharm%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -15469,8 +15765,9 @@
       "image": "linuxserver/pydio:latest",
       "container_name": "pydio",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://pydio:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fpydio%3A443",
       "target_url": "https://pydio:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fpydio%3A443",
       "env": [
         {
           "name": "PUID",
@@ -15518,8 +15815,9 @@
       "image": "linuxserver/pydio-cells:latest",
       "container_name": "pydio-cells",
       "port": 8080,
-      "launch_url": "--kiosk http://pydio-cells:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpydio-cells%3A8080",
       "target_url": "http://pydio-cells:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpydio-cells%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -15583,8 +15881,9 @@
       "image": "linuxserver/pyload-ng:latest",
       "container_name": "pyload-ng",
       "port": 8000,
-      "launch_url": "--kiosk http://pyload-ng:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fpyload-ng%3A8000",
       "target_url": "http://pyload-ng:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fpyload-ng%3A8000",
       "env": [
         {
           "name": "PUID",
@@ -15639,8 +15938,9 @@
       "image": "linuxserver/qbittorrent:latest",
       "container_name": "qbittorrent",
       "port": 8080,
-      "launch_url": "--kiosk http://qbittorrent:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fqbittorrent%3A8080",
       "target_url": "http://qbittorrent:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fqbittorrent%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -15709,8 +16009,9 @@
       "image": "linuxserver/qdirstat:latest",
       "container_name": "qdirstat",
       "port": 3000,
-      "launch_url": "--kiosk http://qdirstat:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fqdirstat%3A3000",
       "target_url": "http://qdirstat:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fqdirstat%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -15765,8 +16066,9 @@
       "image": "linuxserver/qemu-static:latest",
       "container_name": "qemu-static",
       "port": 80,
-      "launch_url": "--kiosk http://qemu-static:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fqemu-static%3A80",
       "target_url": "http://qemu-static:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fqemu-static%3A80",
       "env": [
         {
           "name": "PUID",
@@ -15816,8 +16118,9 @@
       "image": "hotio/qflood:latest",
       "container_name": "qflood",
       "port": 8080,
-      "launch_url": "--kiosk http://qflood:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fqflood%3A8080",
       "target_url": "http://qflood:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fqflood%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -15886,8 +16189,9 @@
       "image": "linuxserver/quassel-core:latest",
       "container_name": "quassel-irc",
       "port": 4242,
-      "launch_url": "--kiosk http://quassel-irc:4242",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fquassel-irc%3A4242",
       "target_url": "http://quassel-irc:4242",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fquassel-irc%3A4242",
       "env": [
         {
           "name": "PUID",
@@ -15930,8 +16234,9 @@
       "image": "linuxserver/quassel-core:latest",
       "container_name": "quassel-core",
       "port": 4242,
-      "launch_url": "--kiosk http://quassel-core:4242",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fquassel-core%3A4242",
       "target_url": "http://quassel-core:4242",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fquassel-core%3A4242",
       "env": [
         {
           "name": "PGID",
@@ -15975,8 +16280,9 @@
       "image": "rabbitmq:latest",
       "container_name": "rabbitmq",
       "port": 5671,
-      "launch_url": "--kiosk http://rabbitmq:5671",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Frabbitmq%3A5671",
       "target_url": "http://rabbitmq:5671",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Frabbitmq%3A5671",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -15997,8 +16303,9 @@
       "image": "linuxserver/radarr:latest",
       "container_name": "radarr",
       "port": 7878,
-      "launch_url": "--kiosk http://radarr:7878",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fradarr%3A7878",
       "target_url": "http://radarr:7878",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fradarr%3A7878",
       "env": [
         {
           "name": "PUID",
@@ -16058,8 +16365,9 @@
       "image": "linuxserver/raneto:latest",
       "container_name": "raneto",
       "port": 3000,
-      "launch_url": "--kiosk http://raneto:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Franeto%3A3000",
       "target_url": "http://raneto:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Franeto%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -16109,8 +16417,9 @@
       "image": "linuxserver/rawtherapee:latest",
       "container_name": "rawtherapee",
       "port": 3000,
-      "launch_url": "--kiosk http://rawtherapee:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Frawtherapee%3A3000",
       "target_url": "http://rawtherapee:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Frawtherapee%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -16160,8 +16469,9 @@
       "image": "kartikey31choudhary/reach-me-out:latest",
       "container_name": "reach-me-out",
       "port": 80,
-      "launch_url": "--kiosk http://reach-me-out:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Freach-me-out%3A80",
       "target_url": "http://reach-me-out:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Freach-me-out%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -16188,8 +16498,9 @@
       "image": "amruthpillai/reactive-resume:latest",
       "container_name": "reactive-resume",
       "port": 80,
-      "launch_url": "--kiosk http://reactive-resume:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Freactive-resume%3A80",
       "target_url": "http://reactive-resume:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Freactive-resume%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -16216,8 +16527,9 @@
       "image": "ghcr.io/linuxserver/readarr:nightly",
       "container_name": "readarr",
       "port": 8787,
-      "launch_url": "--kiosk http://readarr:8787",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Freadarr%3A8787",
       "target_url": "http://readarr:8787",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Freadarr%3A8787",
       "env": [
         {
           "name": "PGID",
@@ -16299,8 +16611,9 @@
       "image": "codeberg.org/readeck/readeck:latest",
       "container_name": "readeck",
       "port": 8000,
-      "launch_url": "--kiosk http://readeck:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Freadeck%3A8000",
       "target_url": "http://readeck:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Freadeck%3A8000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -16321,8 +16634,9 @@
       "image": "redis:latest",
       "container_name": "redis",
       "port": 6379,
-      "launch_url": "--kiosk http://redis:6379",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fredis%3A6379",
       "target_url": "http://redis:6379",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fredis%3A6379",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -16343,8 +16657,9 @@
       "image": "redmine:latest",
       "container_name": "redmine",
       "port": 3000,
-      "launch_url": "--kiosk http://redmine:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fredmine%3A3000",
       "target_url": "http://redmine:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fredmine%3A3000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -16365,8 +16680,9 @@
       "image": "registry:latest",
       "container_name": "registry",
       "port": 5000,
-      "launch_url": "--kiosk http://registry:5000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fregistry%3A5000",
       "target_url": "http://registry:5000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fregistry%3A5000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -16387,8 +16703,9 @@
       "image": "registry:latest",
       "container_name": "registry-cache",
       "port": 5000,
-      "launch_url": "--kiosk http://registry-cache:5000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fregistry-cache%3A5000",
       "target_url": "http://registry-cache:5000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fregistry-cache%3A5000",
       "env": [
         {
           "name": "REGISTRY_PROXY_REMOTEURL",
@@ -16417,8 +16734,9 @@
       "image": "linuxserver/remmina:latest",
       "container_name": "remmina",
       "port": 3000,
-      "launch_url": "--kiosk http://remmina:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fremmina%3A3000",
       "target_url": "http://remmina:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fremmina%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -16468,8 +16786,9 @@
       "image": "linuxserver/resilio-sync:latest",
       "container_name": "resilio-sync",
       "port": 8888,
-      "launch_url": "--kiosk http://resilio-sync:8888",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fresilio-sync%3A8888",
       "target_url": "http://resilio-sync:8888",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fresilio-sync%3A8888",
       "env": [
         {
           "name": "PUID",
@@ -16529,8 +16848,9 @@
       "image": "linuxserver/retroarch:latest",
       "container_name": "retroarch",
       "port": 3000,
-      "launch_url": "--kiosk http://retroarch:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fretroarch%3A3000",
       "target_url": "http://retroarch:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fretroarch%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -16580,8 +16900,9 @@
       "image": "cloudogu/reveal.js:latest",
       "container_name": "reveal-js",
       "port": 8080,
-      "launch_url": "--kiosk http://reveal-js:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Freveal-js%3A8080",
       "target_url": "http://reveal-js:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Freveal-js%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -16613,8 +16934,9 @@
       "image": "linuxserver/rpcs3:latest",
       "container_name": "rpcs3",
       "port": 3000,
-      "launch_url": "--kiosk http://rpcs3:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Frpcs3%3A3000",
       "target_url": "http://rpcs3:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Frpcs3%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -16664,8 +16986,9 @@
       "image": "linuxserver/rsnapshot:latest",
       "container_name": "rsnapshot",
       "port": 80,
-      "launch_url": "--kiosk http://rsnapshot:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Frsnapshot%3A80",
       "target_url": "http://rsnapshot:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Frsnapshot%3A80",
       "env": [
         {
           "name": "PUID",
@@ -16725,8 +17048,9 @@
       "image": "diygod/rsshub:latest",
       "container_name": "rsshub",
       "port": 1200,
-      "launch_url": "--kiosk http://rsshub:1200",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Frsshub%3A1200",
       "target_url": "http://rsshub:1200",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Frsshub%3A1200",
       "env": [
         {
           "name": "ACCESS_KEY",
@@ -16755,8 +17079,9 @@
       "image": "linuxserver/rustdesk:latest",
       "container_name": "rustdesk",
       "port": 3000,
-      "launch_url": "--kiosk http://rustdesk:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Frustdesk%3A3000",
       "target_url": "http://rustdesk:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Frustdesk%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -16806,8 +17131,9 @@
       "image": "crazymax/rtorrent-rutorrent:latest",
       "container_name": "rutorrent",
       "port": 8080,
-      "launch_url": "--kiosk http://rutorrent:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Frutorrent%3A8080",
       "target_url": "http://rutorrent:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Frutorrent%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -16888,8 +17214,9 @@
       "image": "linuxserver/sabnzbd:latest",
       "container_name": "sabnzbd",
       "port": 8080,
-      "launch_url": "--kiosk http://sabnzbd:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsabnzbd%3A8080",
       "target_url": "http://sabnzbd:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsabnzbd%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -16949,8 +17276,9 @@
       "image": "scality/s3server:latest",
       "container_name": "scality-s3",
       "port": 8000,
-      "launch_url": "--kiosk http://scality-s3:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fscality-s3%3A8000",
       "target_url": "http://scality-s3:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fscality-s3%3A8000",
       "env": [
         {
           "name": "SCALITY_ACCESS_KEY",
@@ -16985,8 +17313,9 @@
       "image": "analogj/scrutiny:latest",
       "container_name": "scrutiny",
       "port": 8080,
-      "launch_url": "--kiosk http://scrutiny:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fscrutiny%3A8080",
       "target_url": "http://scrutiny:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fscrutiny%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -17035,8 +17364,9 @@
       "image": "linuxserver/scummvm:latest",
       "container_name": "scummvm",
       "port": 3000,
-      "launch_url": "--kiosk http://scummvm:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fscummvm%3A3000",
       "target_url": "http://scummvm:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fscummvm%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -17086,8 +17416,9 @@
       "image": "linuxserver/sealskin:latest",
       "container_name": "sealskin",
       "port": 8443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://sealskin:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fsealskin%3A8443",
       "target_url": "https://sealskin:8443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fsealskin%3A8443",
       "env": [
         {
           "name": "PUID",
@@ -17149,8 +17480,9 @@
       "image": "searxng/searxng:latest",
       "container_name": "searxng",
       "port": 8080,
-      "launch_url": "--kiosk http://searxng:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsearxng%3A8080",
       "target_url": "http://searxng:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsearxng%3A8080",
       "env": [
         {
           "name": "BASE_URL",
@@ -17193,8 +17525,9 @@
       "image": "ghcr.io/seerr-team/seerr:v3",
       "container_name": "seerr",
       "port": 5055,
-      "launch_url": "--kiosk http://seerr:5055",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fseerr%3A5055",
       "target_url": "http://seerr:5055",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fseerr%3A5055",
       "env": [
         {
           "name": "TZ",
@@ -17224,8 +17557,9 @@
       "image": "linuxserver/shadps4:latest",
       "container_name": "shadps4",
       "port": 3000,
-      "launch_url": "--kiosk http://shadps4:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fshadps4%3A3000",
       "target_url": "http://shadps4:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fshadps4%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -17275,8 +17609,9 @@
       "image": "nicholaswilde/shiori:latest",
       "container_name": "shiori",
       "port": 8080,
-      "launch_url": "--kiosk http://shiori:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fshiori%3A8080",
       "target_url": "http://shiori:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fshiori%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -17303,8 +17638,9 @@
       "image": "linuxserver/shotcut:latest",
       "container_name": "shotcut",
       "port": 3000,
-      "launch_url": "--kiosk http://shotcut:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fshotcut%3A3000",
       "target_url": "http://shotcut:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fshotcut%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -17354,8 +17690,9 @@
       "image": "linuxserver/sickchill:latest",
       "container_name": "sickchill",
       "port": 8081,
-      "launch_url": "--kiosk http://sickchill:8081",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsickchill%3A8081",
       "target_url": "http://sickchill:8081",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsickchill%3A8081",
       "env": [
         {
           "name": "PUID",
@@ -17408,8 +17745,9 @@
       "image": "linuxserver/sickgear:latest",
       "container_name": "sickgear",
       "port": 8081,
-      "launch_url": "--kiosk http://sickgear:8081",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsickgear%3A8081",
       "target_url": "http://sickgear:8081",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsickgear%3A8081",
       "env": [
         {
           "name": "PUID",
@@ -17469,8 +17807,9 @@
       "image": "linuxserver/sickrage:latest",
       "container_name": "sickrage",
       "port": 8081,
-      "launch_url": "--kiosk http://sickrage:8081",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsickrage%3A8081",
       "target_url": "http://sickrage:8081",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsickrage%3A8081",
       "env": [
         {
           "name": "PGID",
@@ -17552,8 +17891,9 @@
       "image": "linuxserver/signal:latest",
       "container_name": "signal",
       "port": 3000,
-      "launch_url": "--kiosk http://signal:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsignal%3A3000",
       "target_url": "http://signal:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsignal%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -17603,8 +17943,9 @@
       "image": "ghcr.io/silverbulletmd/silverbullet:latest-slim",
       "container_name": "silverbullet",
       "port": 3000,
-      "launch_url": "--kiosk http://silverbullet:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsilverbullet%3A3000",
       "target_url": "http://silverbullet:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsilverbullet%3A3000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -17625,8 +17966,9 @@
       "image": "linuxserver/smokeping:latest",
       "container_name": "smokeping",
       "port": 80,
-      "launch_url": "--kiosk http://smokeping:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsmokeping%3A80",
       "target_url": "http://smokeping:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsmokeping%3A80",
       "env": [
         {
           "name": "PUID",
@@ -17702,8 +18044,9 @@
       "image": "snowmean/snibox-sqlite:latest",
       "container_name": "snibox",
       "port": 3000,
-      "launch_url": "--kiosk http://snibox:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsnibox%3A3000",
       "target_url": "http://snibox:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsnibox%3A3000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -17730,8 +18073,9 @@
       "image": "pawelmalak/snippet-box:arm",
       "container_name": "snippet-box",
       "port": 5000,
-      "launch_url": "--kiosk http://snippet-box:5000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsnippet-box%3A5000",
       "target_url": "http://snippet-box:5000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsnippet-box%3A5000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -17758,8 +18102,9 @@
       "image": "linuxserver/socket-proxy:latest",
       "container_name": "socket-proxy",
       "port": 80,
-      "launch_url": "--kiosk http://socket-proxy:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsocket-proxy%3A80",
       "target_url": "http://socket-proxy:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsocket-proxy%3A80",
       "env": [
         {
           "name": "PUID",
@@ -17809,8 +18154,9 @@
       "image": "ghcr.io/fclairamb/solidping:latest",
       "container_name": "solidping",
       "port": 4000,
-      "launch_url": "--kiosk http://solidping:4000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsolidping%3A4000",
       "target_url": "http://solidping:4000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsolidping%3A4000",
       "env": [
         {
           "name": "SP_NODE_NAME",
@@ -17847,8 +18193,9 @@
       "image": "solr:latest",
       "container_name": "solr",
       "port": 8983,
-      "launch_url": "--kiosk http://solr:8983",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsolr%3A8983",
       "target_url": "http://solr:8983",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsolr%3A8983",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -17869,8 +18216,9 @@
       "image": "linuxserver/sonarr:latest",
       "container_name": "sonarr",
       "port": 8989,
-      "launch_url": "--kiosk http://sonarr:8989",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsonarr%3A8989",
       "target_url": "http://sonarr:8989",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsonarr%3A8989",
       "env": [
         {
           "name": "PUID",
@@ -17930,8 +18278,9 @@
       "image": "linuxserver/speedtest-tracker:latest",
       "container_name": "speedtest-tracker",
       "port": 80,
-      "launch_url": "--kiosk http://speedtest-tracker:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fspeedtest-tracker%3A80",
       "target_url": "http://speedtest-tracker:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fspeedtest-tracker%3A80",
       "env": [
         {
           "name": "PUID",
@@ -18065,8 +18414,9 @@
       "image": "ghcr.io/donkie/spoolman:latest",
       "container_name": "spoolman",
       "port": 8000,
-      "launch_url": "--kiosk http://spoolman:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fspoolman%3A8000",
       "target_url": "http://spoolman:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fspoolman%3A8000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -18087,8 +18437,9 @@
       "image": "linuxserver/spotube:latest",
       "container_name": "spotube",
       "port": 3000,
-      "launch_url": "--kiosk http://spotube:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fspotube%3A3000",
       "target_url": "http://spotube:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fspotube%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -18138,8 +18489,9 @@
       "image": "linuxserver/sqlitebrowser:latest",
       "container_name": "sqlitebrowser",
       "port": 3000,
-      "launch_url": "--kiosk http://sqlitebrowser:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsqlitebrowser%3A3000",
       "target_url": "http://sqlitebrowser:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsqlitebrowser%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -18189,8 +18541,9 @@
       "image": "niruix/sshwifty:latest",
       "container_name": "sshwifty",
       "port": 8182,
-      "launch_url": "--kiosk http://sshwifty:8182",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsshwifty%3A8182",
       "target_url": "http://sshwifty:8182",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsshwifty%3A8182",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -18211,8 +18564,9 @@
       "image": "stalwartlabs/stalwart:latest",
       "container_name": "stalwart-mail-server",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://stalwart-mail-server:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fstalwart-mail-server%3A443",
       "target_url": "https://stalwart-mail-server:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fstalwart-mail-server%3A443",
       "env": [
         {
           "name": "STALWART_RECOVERY_ADMIN",
@@ -18242,8 +18596,9 @@
       "image": "statping/statping:latest",
       "container_name": "statping",
       "port": 8080,
-      "launch_url": "--kiosk http://statping:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fstatping%3A8080",
       "target_url": "http://statping:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fstatping%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -18270,8 +18625,9 @@
       "image": "linuxserver/steam:latest",
       "container_name": "steam",
       "port": 3000,
-      "launch_url": "--kiosk http://steam:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsteam%3A3000",
       "target_url": "http://steam:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsteam%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -18321,8 +18677,9 @@
       "image": "frooodle/s-pdf:0.18.1",
       "container_name": "stirling-pdf-shmolf",
       "port": 8080,
-      "launch_url": "--kiosk http://stirling-pdf-shmolf:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fstirling-pdf-shmolf%3A8080",
       "target_url": "http://stirling-pdf-shmolf:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fstirling-pdf-shmolf%3A8080",
       "env": [
         {
           "name": "PUID",
@@ -18377,8 +18734,9 @@
       "image": "aaronleopold/stump:latest",
       "container_name": "stump",
       "port": 10801,
-      "launch_url": "--kiosk http://stump:10801",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fstump%3A10801",
       "target_url": "http://stump:10801",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fstump%3A10801",
       "env": [
         {
           "name": "PUID",
@@ -18422,8 +18780,9 @@
       "image": "johannesjo/super-productivity:latest",
       "container_name": "super-productivity",
       "port": 80,
-      "launch_url": "--kiosk http://super-productivity:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsuper-productivity%3A80",
       "target_url": "http://super-productivity:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsuper-productivity%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -18444,8 +18803,9 @@
       "image": "surrealdb/surrealdb:latest",
       "container_name": "surrealdb",
       "port": 8000,
-      "launch_url": "--kiosk http://surrealdb:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsurrealdb%3A8000",
       "target_url": "http://surrealdb:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsurrealdb%3A8000",
       "env": [
         {
           "name": "SDB_USERNAME",
@@ -18488,8 +18848,9 @@
       "image": "linuxserver/swag:latest",
       "container_name": "swag",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://swag:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fswag%3A443",
       "target_url": "https://swag:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fswag%3A443",
       "env": [
         {
           "name": "PUID",
@@ -18637,8 +18998,9 @@
       "image": "linuxserver/synclounge:latest",
       "container_name": "synclounge",
       "port": 8088,
-      "launch_url": "--kiosk http://synclounge:8088",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsynclounge%3A8088",
       "target_url": "http://synclounge:8088",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsynclounge%3A8088",
       "env": [
         {
           "name": "AUTH_LIST",
@@ -18674,8 +19036,9 @@
       "image": "linuxserver/syncthing:latest",
       "container_name": "syncthing",
       "port": 8384,
-      "launch_url": "--kiosk http://syncthing:8384",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsyncthing%3A8384",
       "target_url": "http://syncthing:8384",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsyncthing%3A8384",
       "env": [
         {
           "name": "PUID",
@@ -18735,8 +19098,9 @@
       "image": "linuxserver/syslog-ng:latest",
       "container_name": "syslog-ng",
       "port": 6601,
-      "launch_url": "--kiosk http://syslog-ng:6601",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fsyslog-ng%3A6601",
       "target_url": "http://syslog-ng:6601",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fsyslog-ng%3A6601",
       "env": [
         {
           "name": "PUID",
@@ -18798,8 +19162,9 @@
       "image": "linuxserver/tautulli:latest",
       "container_name": "tautulli",
       "port": 8181,
-      "launch_url": "--kiosk http://tautulli:8181",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftautulli%3A8181",
       "target_url": "http://tautulli:8181",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftautulli%3A8181",
       "env": [
         {
           "name": "PUID",
@@ -18849,8 +19214,9 @@
       "image": "technitium/dns-server:latest",
       "container_name": "technitium-dns",
       "port": 5380,
-      "launch_url": "--kiosk http://technitium-dns:5380",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftechnitium-dns%3A5380",
       "target_url": "http://technitium-dns:5380",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftechnitium-dns%3A5380",
       "env": [
         {
           "name": "DNS_SERVER_DOMAIN",
@@ -18887,8 +19253,9 @@
       "image": "linuxserver/telegram:latest",
       "container_name": "telegram",
       "port": 3000,
-      "launch_url": "--kiosk http://telegram:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftelegram%3A3000",
       "target_url": "http://telegram:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftelegram%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -18938,8 +19305,9 @@
       "image": "ghcr.io/lukegus/termix:latest",
       "container_name": "termix",
       "port": 8080,
-      "launch_url": "--kiosk http://termix:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftermix%3A8080",
       "target_url": "http://termix:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftermix%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -18960,8 +19328,9 @@
       "image": "passivelemon/terraria-docker:latest",
       "container_name": "terraria-server-shmolf",
       "port": 7777,
-      "launch_url": "--kiosk http://terraria-server-shmolf:7777",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fterraria-server-shmolf%3A7777",
       "target_url": "http://terraria-server-shmolf:7777",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fterraria-server-shmolf%3A7777",
       "env": [
         {
           "name": "PUID",
@@ -19011,8 +19380,9 @@
       "image": "linuxserver/thelounge:latest",
       "container_name": "thelounge",
       "port": 9000,
-      "launch_url": "--kiosk http://thelounge:9000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fthelounge%3A9000",
       "target_url": "http://thelounge:9000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fthelounge%3A9000",
       "env": [
         {
           "name": "PUID",
@@ -19062,8 +19432,9 @@
       "image": "linuxserver/thunderbird:latest",
       "container_name": "thunderbird",
       "port": 3000,
-      "launch_url": "--kiosk http://thunderbird:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fthunderbird%3A3000",
       "target_url": "http://thunderbird:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fthunderbird%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -19113,8 +19484,9 @@
       "image": "nicolaw/tiddlywiki:latest",
       "container_name": "tiddlywiki",
       "port": 8080,
-      "launch_url": "--kiosk http://tiddlywiki:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftiddlywiki%3A8080",
       "target_url": "http://tiddlywiki:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftiddlywiki%3A8080",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -19141,8 +19513,9 @@
       "image": "lunik1/tt-rss:latest",
       "container_name": "tiny-tiny-rss",
       "port": 80,
-      "launch_url": "--kiosk http://tiny-tiny-rss:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftiny-tiny-rss%3A80",
       "target_url": "http://tiny-tiny-rss:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftiny-tiny-rss%3A80",
       "env": [
         {
           "name": "PUID",
@@ -19185,8 +19558,9 @@
       "image": "traefik:latest",
       "container_name": "traefik",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://traefik:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Ftraefik%3A443",
       "target_url": "https://traefik:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Ftraefik%3A443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -19223,8 +19597,9 @@
       "image": "linuxserver/transmission:latest",
       "container_name": "transmission",
       "port": 9091,
-      "launch_url": "--kiosk http://transmission:9091",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftransmission%3A9091",
       "target_url": "http://transmission:9091",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftransmission%3A9091",
       "env": [
         {
           "name": "PUID",
@@ -19326,8 +19701,9 @@
       "image": "haugene/transmission-openvpn:latest",
       "container_name": "transmission-openvpn",
       "port": 9091,
-      "launch_url": "--kiosk http://transmission-openvpn:9091",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftransmission-openvpn%3A9091",
       "target_url": "http://transmission-openvpn:9091",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftransmission-openvpn%3A9091",
       "env": [
         {
           "name": "PUID",
@@ -19398,8 +19774,9 @@
       "image": "mauriceboe/trek:4",
       "container_name": "trek",
       "port": 3000,
-      "launch_url": "--kiosk http://trek:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftrek%3A3000",
       "target_url": "http://trek:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftrek%3A3000",
       "env": [
         {
           "name": "COOKIE_SECURE",
@@ -19436,8 +19813,9 @@
       "image": "zadam/trilium:latest",
       "container_name": "trilium",
       "port": 8080,
-      "launch_url": "--kiosk http://trilium:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftrilium%3A8080",
       "target_url": "http://trilium:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftrilium%3A8080",
       "env": [
         {
           "name": "TRILIUM_DATA_DIR",
@@ -19480,8 +19858,9 @@
       "image": "linuxserver/tvheadend:latest",
       "container_name": "tvheadend",
       "port": 9981,
-      "launch_url": "--kiosk http://tvheadend:9981",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftvheadend%3A9981",
       "target_url": "http://tvheadend:9981",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftvheadend%3A9981",
       "env": [
         {
           "name": "PUID",
@@ -19543,8 +19922,9 @@
       "image": "rdavidoff/twitch-channel-points-miner-v2:latest",
       "container_name": "twitch-points-miner",
       "port": 5000,
-      "launch_url": "--kiosk http://twitch-points-miner:5000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Ftwitch-points-miner%3A5000",
       "target_url": "http://twitch-points-miner:5000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Ftwitch-points-miner%3A5000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -19586,8 +19966,9 @@
       "image": "linuxserver/ubooquity:latest",
       "container_name": "ubooquity",
       "port": 2202,
-      "launch_url": "--kiosk http://ubooquity:2202",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fubooquity%3A2202",
       "target_url": "http://ubooquity:2202",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fubooquity%3A2202",
       "env": [
         {
           "name": "PUID",
@@ -19659,8 +20040,9 @@
       "image": "linuxserver/ungoogled-chromium:latest",
       "container_name": "ungoogled-chromium",
       "port": 3000,
-      "launch_url": "--kiosk http://ungoogled-chromium:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fungoogled-chromium%3A3000",
       "target_url": "http://ungoogled-chromium:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fungoogled-chromium%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -19717,8 +20099,9 @@
       "image": "linuxserver/unifi-controller:latest",
       "container_name": "unifi-controller",
       "port": 8443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://unifi-controller:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Funifi-controller%3A8443",
       "target_url": "https://unifi-controller:8443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Funifi-controller%3A8443",
       "env": [
         {
           "name": "PUID",
@@ -19761,8 +20144,9 @@
       "image": "pducharme/unifi-video-controller:latest",
       "container_name": "unifi-video",
       "port": 1935,
-      "launch_url": "--kiosk http://unifi-video:1935",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Funifi-video%3A1935",
       "target_url": "http://unifi-video:1935",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Funifi-video%3A1935",
       "env": [
         {
           "name": "PUID",
@@ -19824,8 +20208,9 @@
       "image": "linuxserver/unifi-network-application:latest",
       "container_name": "unifi-network-application",
       "port": 8443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://unifi-network-application:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Funifi-network-application%3A8443",
       "target_url": "https://unifi-network-application:8443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Funifi-network-application%3A8443",
       "env": [
         {
           "name": "PUID",
@@ -19938,8 +20323,9 @@
       "image": "josh5/unmanic:latest",
       "container_name": "unmanic",
       "port": 8888,
-      "launch_url": "--kiosk http://unmanic:8888",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Funmanic%3A8888",
       "target_url": "http://unmanic:8888",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Funmanic%3A8888",
       "env": [
         {
           "name": "PUID",
@@ -19992,8 +20378,9 @@
       "image": "louislam/uptime-kuma:latest",
       "container_name": "uptime-kuma",
       "port": 3001,
-      "launch_url": "--kiosk http://uptime-kuma:3001",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fuptime-kuma%3A3001",
       "target_url": "http://uptime-kuma:3001",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fuptime-kuma%3A3001",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -20020,8 +20407,9 @@
       "image": "uroni/urbackup-server:latest",
       "container_name": "urbackup",
       "port": 55415,
-      "launch_url": "--kiosk http://urbackup:55415",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Furbackup%3A55415",
       "target_url": "http://urbackup:55415",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Furbackup%3A55415",
       "env": [
         {
           "name": "PUID",
@@ -20069,8 +20457,9 @@
       "image": "mediadepot/urlwatch:master",
       "container_name": "urlwatch",
       "port": 8081,
-      "launch_url": "--kiosk http://urlwatch:8081",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Furlwatch%3A8081",
       "target_url": "http://urlwatch:8081",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Furlwatch%3A8081",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -20114,8 +20503,9 @@
       "image": "vaultwarden/server:latest",
       "container_name": "vaultwarden",
       "port": 80,
-      "launch_url": "--kiosk http://vaultwarden:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fvaultwarden%3A80",
       "target_url": "http://vaultwarden:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fvaultwarden%3A80",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -20142,8 +20532,9 @@
       "image": "verdaccio/verdaccio:6",
       "container_name": "verdaccio",
       "port": 4873,
-      "launch_url": "--kiosk http://verdaccio:4873",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fverdaccio%3A4873",
       "target_url": "http://verdaccio:4873",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fverdaccio%3A4873",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -20164,8 +20555,9 @@
       "image": "linuxserver/vivaldi:latest",
       "container_name": "vivaldi",
       "port": 3000,
-      "launch_url": "--kiosk http://vivaldi:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fvivaldi%3A3000",
       "target_url": "http://vivaldi:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fvivaldi%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -20222,8 +20614,9 @@
       "image": "linuxserver/vlc:latest",
       "container_name": "vlc",
       "port": 3000,
-      "launch_url": "--kiosk http://vlc:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fvlc%3A3000",
       "target_url": "http://vlc:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fvlc%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -20280,8 +20673,9 @@
       "image": "mikolatero/vlmcsd:latest",
       "container_name": "vlmcsd-kms",
       "port": 1688,
-      "launch_url": "--kiosk http://vlmcsd-kms:1688",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fvlmcsd-kms%3A1688",
       "target_url": "http://vlmcsd-kms:1688",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fvlmcsd-kms%3A1688",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -20302,8 +20696,9 @@
       "image": "linuxserver/vscode:latest",
       "container_name": "vscode",
       "port": 3000,
-      "launch_url": "--kiosk http://vscode:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fvscode%3A3000",
       "target_url": "http://vscode:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fvscode%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -20353,8 +20748,9 @@
       "image": "linuxserver/vscodium:latest",
       "container_name": "vscodium",
       "port": 3000,
-      "launch_url": "--kiosk http://vscodium:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fvscodium%3A3000",
       "target_url": "http://vscodium:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fvscodium%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -20404,8 +20800,9 @@
       "image": "linuxserver/vscodium-web:latest",
       "container_name": "vscodium-web",
       "port": 8000,
-      "launch_url": "--kiosk http://vscodium-web:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fvscodium-web%3A8000",
       "target_url": "http://vscodium-web:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fvscodium-web%3A8000",
       "env": [
         {
           "name": "PUID",
@@ -20490,8 +20887,9 @@
       "image": "bellamy/wallos:latest",
       "container_name": "wallos",
       "port": 80,
-      "launch_url": "--kiosk http://wallos:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwallos%3A80",
       "target_url": "http://wallos:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwallos%3A80",
       "env": [
         {
           "name": "TZ",
@@ -20521,8 +20919,9 @@
       "image": "containrrr/watchtower:latest",
       "container_name": "watchtower-shmolf",
       "port": 9001,
-      "launch_url": "--kiosk http://watchtower-shmolf:9001",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwatchtower-shmolf%3A9001",
       "target_url": "http://watchtower-shmolf:9001",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwatchtower-shmolf%3A9001",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -20543,8 +20942,9 @@
       "image": "linuxserver/webcord:latest",
       "container_name": "webcord",
       "port": 3000,
-      "launch_url": "--kiosk http://webcord:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwebcord%3A3000",
       "target_url": "http://webcord:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwebcord%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -20594,8 +20994,9 @@
       "image": "linuxserver/webgrabplus:latest",
       "container_name": "webgrabplus",
       "port": 80,
-      "launch_url": "--kiosk http://webgrabplus:80",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwebgrabplus%3A80",
       "target_url": "http://webgrabplus:80",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwebgrabplus%3A80",
       "env": [
         {
           "name": "PUID",
@@ -20650,8 +21051,9 @@
       "image": "linuxserver/webstation:latest",
       "container_name": "webstation",
       "port": 3000,
-      "launch_url": "--kiosk http://webstation:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwebstation%3A3000",
       "target_url": "http://webstation:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwebstation%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -20701,8 +21103,9 @@
       "image": "linuxserver/webtop:latest",
       "container_name": "webtop",
       "port": 3000,
-      "launch_url": "--kiosk http://webtop:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwebtop%3A3000",
       "target_url": "http://webtop:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwebtop%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -20752,8 +21155,9 @@
       "image": "linuxserver/weixin:latest",
       "container_name": "weixin",
       "port": 3000,
-      "launch_url": "--kiosk http://weixin:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fweixin%3A3000",
       "target_url": "http://weixin:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fweixin%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -20803,8 +21207,9 @@
       "image": "benbusby/whoogle-search:latest",
       "container_name": "whoogle",
       "port": 5000,
-      "launch_url": "--kiosk http://whoogle:5000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwhoogle%3A5000",
       "target_url": "http://whoogle:5000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwhoogle%3A5000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -20831,8 +21236,9 @@
       "image": "linuxserver/wikijs:latest",
       "container_name": "wikijs",
       "port": 3000,
-      "launch_url": "--kiosk http://wikijs:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwikijs%3A3000",
       "target_url": "http://wikijs:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwikijs%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -20929,8 +21335,9 @@
       "image": "linuxserver/winegui:latest",
       "container_name": "winegui",
       "port": 3000,
-      "launch_url": "--kiosk http://winegui:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwinegui%3A3000",
       "target_url": "http://winegui:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwinegui%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -20980,8 +21387,9 @@
       "image": "ghcr.io/wizarrrr/wizarr:latest",
       "container_name": "wizarr",
       "port": 5690,
-      "launch_url": "--kiosk http://wizarr:5690",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwizarr%3A5690",
       "target_url": "http://wizarr:5690",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwizarr%3A5690",
       "env": [
         {
           "name": "APP_URL",
@@ -21034,8 +21442,9 @@
       "image": "sameersbn/wowza:4.1.2-8",
       "container_name": "wowza",
       "port": 1935,
-      "launch_url": "--kiosk http://wowza:1935",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwowza%3A1935",
       "target_url": "http://wowza:1935",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwowza%3A1935",
       "env": [
         {
           "name": "WOWZA_ACCEPT_LICENSE",
@@ -21072,8 +21481,9 @@
       "image": "linuxserver/wps-office:latest",
       "container_name": "wps-office",
       "port": 3000,
-      "launch_url": "--kiosk http://wps-office:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fwps-office%3A3000",
       "target_url": "http://wps-office:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fwps-office%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -21123,8 +21533,9 @@
       "image": "linuxserver/xbackbone:latest",
       "container_name": "xbackbone",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://xbackbone:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fxbackbone%3A443",
       "target_url": "https://xbackbone:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fxbackbone%3A443",
       "env": [
         {
           "name": "PUID",
@@ -21174,8 +21585,9 @@
       "image": "linuxserver/xemu:latest",
       "container_name": "xemu",
       "port": 3000,
-      "launch_url": "--kiosk http://xemu:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fxemu%3A3000",
       "target_url": "http://xemu:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fxemu%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -21225,8 +21637,9 @@
       "image": "linuxserver/yaak:latest",
       "container_name": "yaak",
       "port": 3000,
-      "launch_url": "--kiosk http://yaak:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fyaak%3A3000",
       "target_url": "http://yaak:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fyaak%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -21276,8 +21689,9 @@
       "image": "selfhostedpro/yacht:latest",
       "container_name": "yacht",
       "port": 8000,
-      "launch_url": "--kiosk http://yacht:8000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fyacht%3A8000",
       "target_url": "http://yacht:8000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fyacht%3A8000",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -21304,8 +21718,9 @@
       "image": "linuxserver/your_spotify:latest",
       "container_name": "your-spotify",
       "port": 443,
-      "launch_url": "--kiosk --ignore-certificate-errors https://your-spotify:443",
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fyour-spotify%3A443",
       "target_url": "https://your-spotify:443",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fyour-spotify%3A443",
       "env": [
         {
           "name": "PUID",
@@ -21397,8 +21812,9 @@
       "image": "tzahi12345/youtubedl-material:latest",
       "container_name": "youtubedl-material",
       "port": 17442,
-      "launch_url": "--kiosk http://youtubedl-material:17442",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fyoutubedl-material%3A17442",
       "target_url": "http://youtubedl-material:17442",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fyoutubedl-material%3A17442",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -21445,8 +21861,9 @@
       "image": "linuxserver/zen:latest",
       "container_name": "zen",
       "port": 3000,
-      "launch_url": "--kiosk http://zen:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fzen%3A3000",
       "target_url": "http://zen:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fzen%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -21496,8 +21913,9 @@
       "image": "linuxserver/znc:latest",
       "container_name": "znc",
       "port": 6501,
-      "launch_url": "--kiosk http://znc:6501",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fznc%3A6501",
       "target_url": "http://znc:6501",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fznc%3A6501",
       "env": [
         {
           "name": "PUID",
@@ -21547,8 +21965,9 @@
       "image": "linuxserver/zotero:latest",
       "container_name": "zotero",
       "port": 3000,
-      "launch_url": "--kiosk http://zotero:3000",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fzotero%3A3000",
       "target_url": "http://zotero:3000",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fzotero%3A3000",
       "env": [
         {
           "name": "PUID",
@@ -21598,8 +22017,9 @@
       "image": "zusam/zusam:latest",
       "container_name": "zus-am",
       "port": 8080,
-      "launch_url": "--kiosk http://zus-am:8080",
+      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fzus-am%3A8080",
       "target_url": "http://zus-am:8080",
+      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fzus-am%3A8080",
       "env": [
         {
           "name": "INIT_USER",

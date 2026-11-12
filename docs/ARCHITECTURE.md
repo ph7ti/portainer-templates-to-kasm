@@ -1,131 +1,148 @@
-# Arquitetura e decisões
+# Architecture and decisions
 
-## Fluxo de uma sessão
+## Session flow
 
-1. O usuário clica em **Teste: Nextcloud** no dashboard do Kasm.
-2. O Kasm cria a sessão do workspace registry 1.1. A imagem é
-   `kasmweb/chrome:1.19.0` com `run_config.environment.LAUNCH_URL =
-   "--kiosk http://nextcloud:80"` (override: o LinuxServer também escuta 80;
-   a 443 usaria TLS autoassinado).
-3. O navegador sobe na rede Docker do agente (`kasm_default_network`) e tenta
-   abrir `http://nextcloud:80`. Ainda pode não haver backend — ver “corrida de
-   inicialização”.
-4. O orquestrador faz poll em `/api/public/get_kasms` (API legacy desta build).
-   Quando vê a sessão cujo `image.friendly_name` (ou `image_id`) corresponde a um
-   app do manifesto, executa:
-   - descoberta da rede: usa `docker_network` da API se existir; senão
-     inspeciona o `container_id` do navegador e escolhe a rede `kasm*`;
-   - `docker run` do backend com `name=<slug>`, `network=<rede>`,
-     `restart_policy=no`, labels `kasm-teste.*`.
-5. O Kasm encaminha o stream do Chrome; o Chrome acessa o backend pelo DNS
-   interno do Docker.
-6. Ao fechar a aba/expirar, o Kasm remove a sessão do navegador (política de
-   grupo `keepalive_expiration_action=delete`). No próximo poll o orquestrador
-   não vê mais a sessão e remove o backend (`stop(timeout=5)` +
-   `remove(force=True, v=True)`) e os volumes nomeados.
+1. The user clicks **Teste: Nextcloud** in the Kasm dashboard.
+2. Kasm creates a workspace session from the registry entry
+   (`kasmweb/chrome:1.19.0`). Its `run_config.environment.LAUNCH_URL` points to
+   the waiting page:
+   `--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnextcloud%3A80`.
+3. Chrome starts on the Kasm workspace network and opens `kasm-wait`.
+4. The waiting page polls `http://nextcloud:80` every 2 seconds and, as soon as
+   the backend answers, redirects the browser to it. If the backend is still
+   down, the user sees a spinner and “your app container is starting”.
+5. In parallel, the orchestrator polls `/api/public/get_kasms` (legacy API in
+   this build). When it sees the session and matches it to a manifest app, it:
+   - discovers the network (API `docker_network`, or `docker inspect` of the
+     browser `container_id`);
+   - runs the backend with `name=<slug>`, `network=<network>`, labels
+     `kasm-teste.*`, `restart_policy=no`.
+6. When the user closes the tab or the session expires, Kasm removes the browser
+   session. On its next poll the orchestrator sees no session and removes the
+   backend (`stop(timeout=5)` + `remove(force=True, v=True)`) and its named
+   volumes.
 
-## Por que orquestração externa
+## Why external orchestration
 
-O Kasm **não** cria múltiplos contêineres por sessão. O workspace é um único
-contêiner (o navegador). O serviço da aplicação precisa de um segundo contêiner;
-o lugar natural para gerenciá-lo é um processo com acesso ao socket Docker do
-agente. A alternativa (embutir o backend na imagem do navegador) exigiria
-rebuild de imagens, rejeitada.
+Kasm does **not** create multiple containers per session. A workspace is one
+container (the browser). The application needs a second container, so an
+external process with access to the Docker socket must manage it. Rebuilding the
+browser image with the app embedded was rejected (image rebuilds are out of
+scope).
 
-## API do Kasm
+## Waiting page
 
-A build instalada (1.19.0.842dcf) expõe a **Developer API legacy**:
+`waiter/wait_server.py` is a dependency-free Python HTTP server:
 
-- `POST /api/public/get_kasms` com `{api_key, api_key_secret}` no corpo;
-- `POST /api/public/get_images` idem;
-- respostas `{kasms: [...]}` e `{images: [...]}`.
+- `GET /wait?target=http://app:port` returns the waiting page.
+- `GET /healthz` returns `ok`.
+- The page validates the target (only `http(s)://host[:port]`), then polls with
+  `fetch(target, {mode:"no-cors", cache:"no-store"})` every 2 s. A successful
+  opaque response means the backend is up; the page redirects after 450 ms.
+- After 30 attempts (60 s) it shows an “Open now / Abrir agora” link.
+- It is deployed as `kasm-wait` on `kasm_default_network`, so the browser can
+  resolve it by name. With ephemeral Kasm networks the container would need to
+  be attached per session; the validated deployment uses the fixed network.
 
-A documentação 1.19 mais nova descreve `GET /api/session/sessions` com HTTP
-Basic, mas essa rota responde **404** nesta build. O cliente detecta
-automaticamente e normaliza os dois formatos para `Session`. O modo pode ser
-forçado com `KASM_API_MODE=legacy|v2`.
+Limitations: HTTPS targets with self-signed certificates may reject the polling
+fetch; the fallback link covers that case. The page can only test reachability,
+not application readiness.
 
-Campos usados para casar sessão ↔ app:
+## Kasm API
 
-1. `image_id` da sessão, comparado ao mapa `friendly_name → image_id` obtido de
-   `get_images` (mais robusto; sobrevive a renomear o workspace no Kasm);
-2. fallback: `image.friendly_name` normalizado (`casefold`, espaços
-   colapsados).
+The installed build (1.19.0.842dcf) exposes the **legacy Developer API**:
 
-O índice de imagens é opcional: se a chave não tiver `Images View`, o cliente
-loga aviso e usa apenas o nome.
+- `POST /api/public/get_kasms` with `{api_key, api_key_secret}` in the body;
+- `POST /api/public/get_images` likewise;
+- responses `{kasms: [...]}` and `{images: [...]}`;
+- `POST /api/public/create_registry`, `get_registries`, `delete_registry`;
+- `POST /api/public/create_image`, `update_image`, `get_images`.
 
-## Rede
+The newer documentation describes `GET /api/session/sessions` with HTTP Basic,
+but that route returns **404** in this build. `KasmClient` auto-detects the mode
+and normalizes both response formats. Force it with `KASM_API_MODE=legacy|v2`.
 
-- **Rede fixa** (esta instalação): `auto_generate_kasm_docker_networks: false`;
-  os workspaces usam `kasm_default_network` (bridge user-defined, DNS interno).
-  O backend entra nela e o nome do contêiner vira DNS.
-- **Rede efêmera por sessão**: o Kasm cria uma rede por sessão. O orquestrador
-  lê `NetworkSettings.Networks` do contêiner do navegador via `container_id` e
-  usa essa rede. A API 1.19 nova também expõe `docker_network`, usado quando
-  presente.
-- O backend é removido **antes** de o Kasm apagar a rede efêmera; como o poll
-  é de 5 s, a janela de corrida é pequena. Se a rede for removida enquanto o
-  backend estiver anexado, o Docker impede a remoção; o Kasm pode registrar
-  erro de limpeza. Monitore `docker network ls` em testes com rede efêmera.
+Session matching order:
 
-## Backend único por app
+1. session `image_id` against the `friendly_name → image_id` map built from
+   `get_images` (survives renaming a workspace in Kasm);
+2. fallback: normalized `image.friendly_name` (casefold, collapsed spaces).
 
-O `LAUNCH_URL` é estático, então o nome do backend precisa ser previsível. Isso
-força **um contêiner por app**, compartilhado por sessões simultâneas. O
-orquestrador mantém um conjunto de `session_id` por slug (contagem de
-referência): sobe na primeira e remove quando a última sai. Duas sessões do
-mesmo app leem/escrevem no mesmo serviço — aceitável para demonstração, não para
-isolamento real. Para isolamento por usuário seria necessário um proxy/roteador
-que mapeasse sessão → backend dinâmico, fora do escopo do registry 1.1.
+The image index is optional: without `Images View` the client logs a warning and
+uses names only.
 
-## Estado e recuperação
+## Network
 
-- A fonte de verdade é a API do Kasm + os labels Docker `kasm-teste.managed`,
+- **Fixed network** (this deployment): `auto_generate_kasm_docker_networks:
+  false`, workspaces and `kasm-wait` use `kasm_default_network`, a user-defined
+  bridge with embedded DNS. The backend joins it and its container name becomes
+  the DNS name used by `LAUNCH_URL`.
+- **Ephemeral network**: the orchestrator reads
+  `NetworkSettings.Networks` of the browser container and uses that network. It
+  removes the backend before Kasm deletes the network; the 5 s poll keeps the
+  race window small.
+- The waiting page must be reachable on the same network.
+
+## One backend per app
+
+The static `LAUNCH_URL` forces a predictable backend name, so one container is
+shared by concurrent sessions of the same app. The orchestrator keeps a set of
+`session_id` per slug (reference count): it starts on the first session and
+removes when the last one leaves. Concurrent sessions read/write the same
+service — acceptable for a demo, not per-user isolation. Per-user isolation
+would require a session-aware proxy/router, outside the registry 1.1 scope.
+
+## State and recovery
+
+- Source of truth: Kasm API plus Docker labels `kasm-teste.managed`,
   `kasm-teste.app`, `kasm-teste.image`.
-- `state.json` é apenas observabilidade (sessões ativas, redes, timestamp).
-- Na primeira reconciliação bem-sucedida o orquestrador limpa contêineres
-  gerenciados que não correspondem a sessões ativas (órfãos de reinício).
-- Falha de API **não** remove backends: o loop loga o erro e mantém o estado.
-- Falha ao subir um backend entra em backoff (`RETRY_INTERVAL`, padrão 30 s),
-  sem derrubar o loop.
-- Conflito de nome com contêiner não gerenciado é recusado (nunca removemos um
-  contêiner que não criamos).
+- `state.json` is observability only (active sessions, networks, timestamp).
+- On the first successful reconciliation the orchestrator cleans managed
+  containers that do not match active sessions (restart orphans).
+- Kasm API errors **do not** remove backends; the loop logs and keeps them.
+- Backend start failures enter a backoff (`RETRY_INTERVAL`, default 30 s).
+- A name conflict with an unmanaged container is refused; the orchestrator never
+  removes containers it did not create.
 
-## Mapeamento de portas
+## Port and scheme selection
 
-O Portainer não diz qual porta é a UI web. O conversor:
+The Portainer source does not say which port is the web UI. The converter:
 
-1. parseia `host:container/proto`, `container/proto` e `container`;
-2. considera apenas TCP;
-3. escolhe, por prioridade: 443, 80, 8443, 8080, 3000, 3001, 8000, 8096,
-   8123, 8181, 9000, 9001, 9090, 8081, 8888; senão a primeira TCP;
-4. aplica `converter/port_overrides.json` para exceções conhecidas
-   (`minio → 9001`, `adguard/adguardhome → 3000`, `nextcloud → 80`);
-5. define o esquema: `https` (com `--ignore-certificate-errors`) para
-   443/8443/9443; `http` para o restante.
+1. parses `host:container/proto`, `container/proto` and `container`;
+2. considers TCP only;
+3. picks by priority: 443, 80, 8443, 8080, 3000, 3001, 8000, 8096, 8123,
+   8181, 9000, 9001, 9090, 8081, 8888; otherwise the first TCP port;
+4. applies `converter/port_overrides.json` (`minio → 9001`,
+   `adguard/adguardhome → 3000`, `nextcloud → 80`);
+5. uses `https` for 443/8443/9443 (plus `--ignore-certificate-errors`) and
+   `http` otherwise.
 
-A porta é usada apenas na URL do navegador; o backend **não publica portas no
-host**.
+The port is only used in the browser URL; the backend does not publish host
+ports.
 
 ## Volumes
 
-Binds do Portainer apontam para caminhos do host (ex.:
-`/srv/lsio/nextcloud/config`). Em vez de criar diretórios no host, o
-orquestrador cria **volumes nomeados** `kasm-teste-vol-<slug>-<n>` e os remove
-junto com o contêiner. Binds de sistema (`/etc/timezone`, `/etc/localtime`,
-`/var/run/docker.sock`) são descartados na conversão. Dados não persistem entre
-sessões.
+Portainer binds point at host paths (e.g. `/srv/lsio/nextcloud/config`). Instead
+of creating host directories, the orchestrator creates named volumes
+`kasm-teste-vol-<slug>-<n>` and removes them with the container. System binds
+(`/etc/timezone`, `/etc/localtime`, `/var/run/docker.sock`) are dropped during
+conversion. Data does not persist across sessions.
 
-## Corrida de inicialização
+## Registry distribution
 
-O Chrome pode abrir antes de o backend aceitar conexões. Mitigações aplicadas:
+- `ph7ti/portainer-templates-to-kasm` contains the converter, orchestrator,
+  waiter, tests and a generated `registry/` snapshot.
+- `ph7ti/kasm-registry` is the **public third-party registry** (only the static
+  `site/` artifact). Its README tells users to add
+  `https://ph7ti.github.io/kasm-registry/` — no source conversion required.
+- The main project's GitHub Pages deployment is optional; the dedicated registry
+  repository is the canonical URL.
 
-- poll curto (5 s) e criação imediata ao detectar a sessão;
-- `notes` do workspace orienta recarregar;
-- recomendação de pré-pull das imagens dos apps de teste;
-- `PULL_IMAGES=true` evita falha por imagem ausente (mas o primeiro pull pode
-  levar minutos; faça pré-pull em produção).
+## Startup race and readiness
 
-Um gate de readiness exigiria uma página intermediária servida pelo
-orquestrador ou um proxy por app — deliberadamente fora do escopo desta fase.
+The waiting page removes the first “site cannot be reached” impression, but an
+app can still be initializing after the redirect (or a TLS app may not answer the
+no-cors probe). Mitigations: 2 s polling, 60 s fallback link, pre-pulled images,
+and notes in each workspace. A true readiness gate (proxy/landing page with
+health checks) is a future phase; rebuilding the browser image is explicitly out
+of scope.

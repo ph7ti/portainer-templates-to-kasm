@@ -35,6 +35,7 @@ import unicodedata
 import urllib.error
 import urllib.request
 import zlib
+from urllib.parse import quote
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -382,14 +383,27 @@ def build_app(
     if scheme == "https":
         # App containers commonly use self-signed certificates.
         flags += " --ignore-certificate-errors"
+
+    wait_url = ""
+    browser_url = target_url
+    if not getattr(settings, "no_wait_page", False):
+        wait_url = settings.waiter_url + quote(target_url, safe="")
+        browser_url = wait_url
+
     notes = (
         f"Teste efêmero do template Portainer '{title}'. "
         f"Backend Docker esperado: contêiner '{slug}' (imagem {image}), na rede "
         f"{settings.network}, escutando na porta interna {port}. "
-        f"URL alvo: {target_url}. O orquestrador inicia o backend quando uma "
-        f"sessão desta workspace é detectada e o remove quando a última sessão "
-        f"termina. Se a página exibir erro de conexão nos primeiros segundos, "
-        f"aguarde alguns instantes e recarregue."
+        f"URL alvo: {target_url}. "
+    )
+    if wait_url:
+        notes += (
+            f"O navegador abre a página de espera {wait_url}, que verifica o "
+            f"backend a cada 2 s e redireciona quando ele responde. "
+        )
+    notes += (
+        "O orquestrador inicia o backend quando uma sessão desta workspace é "
+        "detectada e o remove quando a última sessão termina."
     )
 
     return {
@@ -404,7 +418,8 @@ def build_app(
         "architecture": ["amd64"],
         "port": port,
         "target_url": target_url,
-        "launch_url": f"{flags} {target_url}",
+        "wait_url": wait_url,
+        "launch_url": f"{flags} {browser_url}",
         "notes": notes,
         "env": env_entries,
         "env_defaults": env_defaults,
@@ -484,6 +499,7 @@ def manifest_entry(app: dict[str, Any]) -> dict[str, Any]:
         "port": app["port"],
         "launch_url": app["launch_url"],
         "target_url": app["target_url"],
+        "wait_url": app["wait_url"],
         "env": app["env"],
         "env_defaults": app["env_defaults"],
         "required_env": app["required_env"],
@@ -601,6 +617,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--browser-version", default="", help="browser image tag (default: Kasm version)")
     parser.add_argument("--browser-size-mb", type=int, default=2500)
     parser.add_argument("--network", default="kasm_default_network")
+    parser.add_argument(
+        "--waiter-url",
+        default="http://kasm-wait:8080/wait?target=",
+        help="waiting-page prefix; the target URL is percent-encoded and appended",
+    )
+    parser.add_argument(
+        "--no-wait-page",
+        action="store_true",
+        help="open the app URL directly instead of the waiting page",
+    )
     parser.add_argument("--allow-privileged", action="store_true")
     parser.add_argument("--allow-host-network", action="store_true")
     parser.add_argument("--max-apps", type=int, default=0, help="limit for pilot runs")
@@ -613,10 +639,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--registry-url",
-        default="https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/registry/",
+        default="https://ph7ti.github.io/kasm-registry/",
         help="absolute HTTPS URL of the published registry (stored in list_url)",
     )
-    parser.add_argument("--registry-contact", default="https://github.com/ph7ti/portainer-templates-to-kasm")
+    parser.add_argument("--registry-contact", default="https://github.com/ph7ti/kasm-registry")
     parser.add_argument("--port-overrides", default=str(Path(__file__).with_name("port_overrides.json")))
     parser.add_argument("--schema", default=str(SCHEMA_PATH))
     parser.add_argument("--log-level", default="INFO")

@@ -1,214 +1,161 @@
-# Relatório de testes
+# Test report
 
-Data: 2026-11-12
-Ambiente Kasm: `https://kasm.somosagility.com.br` (Kasm 1.19.0.842dcf,
-single-server, Debian 13, Docker 29.9.3, rede `kasm_default_network`).
+Date: 2026-11-12
+Kasm: `https://kasm.somosagility.com.br` (1.19.0.842dcf, single-server, Debian 13,
+Docker 29.9.3, network `kasm_default_network`).
 
-## Resultado resumido
+## Summary
 
-| Teste | Onde | Resultado |
+| Test | Where | Result |
 |---|---|---|
-| Conversão completa (884 templates) | Windows 11 / Python 3.13 | **420 workspaces**, 464 pulados, **0 erros de schema** |
-| Ícones | idem | 406 únicos baixados; 14 fallback `default-icon.png` |
-| `pytest` local | Windows / Python 3.13 | **41 passed** |
-| `pytest` no host Kasm | Debian 13 / Python 3.13 | **41 passed** |
-| Backend real + DNS no Docker | host 10.1.0.108 | `nginx:alpine` → `http://kasm-orch-test/` → **200** |
-| Orquestrador `--once` contra API real | host 10.1.0.108 | modo `legacy`, 423 imagens, 420/420 casados |
-| Registry importado no Kasm | UI/API | **420 workspaces**, schema 1.1 |
-| GitHub Pages | Actions | deploy `success`; `versions.txt`/`1.1/list.json` 200 |
-| Imagens criadas no catálogo | API | 420 imagens `Teste: …` |
-| E2E Nextcloud | Kasm real | carregou; backend removido no poll seguinte |
-| E2E Gitea | Kasm real | carregou; backend removido ~2,8 s após a sessão |
-| E2E Uptime Kuma | Kasm real | carregou; backend removido ~8,5 s após a sessão |
+| Full conversion (884 templates) | Windows 11 / Python 3.13 | **420 workspaces**, 464 skipped, **0 schema errors** |
+| Icons | idem | 406 unique downloaded; 14 fallback `default-icon.png` |
+| `pytest` local | Windows / Python 3.13 | **49 passed** |
+| `pytest` on the Kasm host | Debian 13 / Python 3.13 | **49 passed** |
+| Real backend + DNS | host 10.1.0.108 | `nginx:alpine` → `http://kasm-orch-test/` → **200** |
+| Orchestrator `--once` | host / real API | `legacy` mode, 423 images, 420/420 matched |
+| Public registry | GitHub Pages (`ph7ti/kasm-registry`) | deploy success; `versions.txt`/`list.json` 200 |
+| Registry import | Kasm API | 420 workspaces, schema 1.1 |
+| Image installation | Kasm API | 420 `Teste: …` images |
+| E2E Nextcloud | real Kasm | loaded; backend removed on next poll |
+| E2E Gitea | real Kasm | loaded; backend removed ~2.8 s after session |
+| E2E Uptime Kuma | real Kasm | loaded; backend removed ~8.5 s after session |
+| Wait page | unit/HTTP + real click | validated: page appeared, polled, redirected to Nextcloud |
 
-## 1. Conversor
-
-Comando:
+## 1. Converter
 
 ```bash
 python converter/convert_templates.py --output registry --refresh --prune
 ```
 
-Saída:
-
 ```
-templates: 884 | convertidos: 420 | workspaces: 420
+templates: 884 | converted: 420 | workspaces: 420
 skips: host-network=9, no-tcp-port=16, privileged=17,
        type-2-not-container=16, type-3-not-container=404, windows-platform=2
-ícones com fallback: 9
-registry gerado em: registry
+icon fallbacks: 9
 ```
 
-Resultado:
+- `registry/versions.txt` = `1.1`; `workspacecount = 420`.
+- 0 jsonschema errors.
+- Icon fallbacks: dradis, dozzle, foldingathome, projectsend, sickgear,
+  thelounge, trilium, wizarr, xbackbone (404/403 or `.ico`).
 
-- `registry/1.1/list.json` com `workspacecount = 420`.
-- `registry/versions.txt` = `1.1`.
-- `registry/backend_manifest.json` com 420 apps.
-- 0 erros de validação jsonschema.
-- Ícones com fallback: `dradis`, `dozzle`, `foldingathome`, `projectsend`,
-  `sickgear`, `thelounge`, `trilium`, `wizarr`, `xbackbone` (URL 404/403 ou
-  `.ico` não suportado). Os 5 templates sem logo também usam o fallback.
+Examples:
 
-Verificações pontuais:
-
-| App | `LAUNCH_URL` | Imagem do backend |
+| App | Waiting-page launch URL | Backend image |
 |---|---|---|
-| Nextcloud | `--kiosk http://nextcloud:80` | `linuxserver/nextcloud:latest` |
-| Gitea | `--kiosk http://gitea:3000` | `gitea/gitea:latest` |
-| Uptime Kuma | `--kiosk http://uptime-kuma:3001` | `louislam/uptime-kuma:latest` |
-| AdGuard | `--kiosk http://adguard:3000` | `adguard/adguardhome:latest` |
-| MinIO | `--kiosk http://minio:9001` | `quay.io/minio/minio:latest` |
+| Nextcloud | `--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnextcloud%3A80` | `linuxserver/nextcloud:latest` |
+| Gitea | `--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgitea%3A3000` | `gitea/gitea:latest` |
+| Uptime Kuma | `--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fuptime-kuma%3A3001` | `louislam/uptime-kuma:latest` |
+| Code Server | `--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fcode-server%3A8443` | `linuxserver/code-server:latest` |
 
-## 2. Testes unitários
+## 2. Unit tests (49)
 
-Cobertura (41 casos):
-
-- **Conversor** (`tests/test_converter.py`):
-  - filtros por tipo, plataforma, privileged, host-network, sem porta TCP;
-  - escolha de porta e overrides;
-  - slug (acentos, `&`, sufixo `(container)`, colisão);
-  - truncamento de categorias;
-  - validação de schema 1.1 em todos os `workspace.json`;
-  - `LAUNCH_URL`, `shm_size`, `architecture`, `compatibility`;
-  - esquema `http`/`https` e `--ignore-certificate-errors` para 443/8443;
-  - geração de `list.json`, `versions.txt`, `icons/`;
-  - idempotência (segunda execução preserva a árvore estável);
-  - volumes: remoção de `:ro` e binds de sistema;
-  - fallback de ícone.
-- **API Kasm** (`tests/test_kasm_api.py`):
-  - detecção e normalização da API legacy (`kasms`) e v2 (`sessions`);
-  - autenticação no corpo (legacy) e Basic (v2);
-  - erro `error_message`, HTTP 403, falha de listagem de imagens não fatal;
-  - índice `friendly_name → image_id`.
-- **Orquestrador** (`tests/test_orchestrator.py`):
-  - sobe backend na primeira sessão e mantém enquanto outra existe;
-  - remove na última sessão;
-  - ignora sessões de outros workspaces;
-  - erro de API não remove backend;
-  - descoberta de rede via `docker inspect` e via `docker_network`;
-  - backoff após falha de pull;
-  - recusa contêiner homônimo não gerenciado;
-  - limpeza de órfãos na primeira execução;
-  - criação/remoção de volumes nomeados;
-  - dry-run não toca no Docker;
-  - matching por `image_id` mesmo com nome alterado.
-
-Execução local:
+- **Converter**: filters, ports/overrides, slug, categories, schema,
+  `LAUNCH_URL`/waiting page, HTTPS scheme/flag, registry files, idempotency,
+  volumes, icon fallback.
+- **Wait page**: template formatting, `/healthz`, `/wait`, invalid targets
+  (XSS/open redirect rejection), polling script markers.
+- **Kasm API**: legacy/v2 detection and normalization, auth modes, error
+  handling, image index.
+- **Orchestrator**: start/stop/refcount, unrelated sessions, API errors, network
+  discovery, retry backoff, unmanaged name conflict, orphan cleanup, volumes,
+  dry-run, image-id matching.
 
 ```
-........................................  [100%]
-41 passed in 2,14s
+.........................................  [100%]
+49 passed in 3.88s        # Windows
+49 passed in 0.92s        # Debian 13 host
 ```
 
-Execução no host Kasm (Debian 13):
+## 3. Docker/network smoke test
 
-```
-........................................  [100%]
-41 passed in 0,92s
-```
-
-## 3. Teste real de Docker/rede
-
-Script `tools/test_backend.py` no host (root):
+`tools/test_backend.py` on the host:
 
 ```
 backend status: running
 backend networks: ['kasm_default_network']
-backend id: 4cbafbfcbfca
 curl exit: 0 status: 200
 OK: http://kasm-orch-test/ resolved and answered
 cleanup done
 ```
 
-Isso valida:
-
-- `DockerBackend.ensure_started` cria contêiner na rede correta;
-- volume nomeado é criado;
-- DNS por nome de contêiner funciona para um cliente na mesma rede;
-- `stop_and_remove` remove contêiner e volume.
-
-## 4. Orquestrador contra a API real
+## 4. Real Kasm API
 
 ```
 KASM_API_MODE auto → legacy (/api/public/get_kasms)
-Kasm image index: 3 image(s)
-matched 0/420 registry workspaces to Kasm image ids
-reconcile: {'sessions': 0, 'matched': 0, 'active_apps': 0,
-            'started': 0, 'removed': 0, 'orphans': 0}
+Kasm image index: 423 image(s)
+matched 420/420 registry workspaces to Kasm image ids
+reconcile: sessions=0, active_apps=0, started=0, removed=0, orphans=0
 ```
 
-Observações:
+The instance uses an internal CA; `KASM_VERIFY_TLS=false` is required for the
+pilot. The API key has `Sessions View`/`Images View` but not
+`Users Auth Session`, so sessions were created manually in the UI.
 
-- O Kasm usa CA interna; o teste exigiu `KASM_VERIFY_TLS=false` (documentado).
-- A chave de API desta instância tem `Sessions View`/`Images View`, mas **não**
-  `Users Auth Session`/`User` — `request_kasm` retorna 403. Por isso a criação
-  de sessão para o teste E2E é manual, via clique no UI.
+## 5. Public registry
 
-## 5. E2E real
+- New repository: https://github.com/ph7ti/kasm-registry
+- Pages: https://ph7ti.github.io/kasm-registry/
+- `versions.txt` 200; `1.1/list.json` 200 (`workspacecount=420`);
+  `1.1/icons/nextcloud.png` 200.
+- `list_url` points to the Pages URL; Nextcloud launch URL includes the waiter.
+- Old raw registry entry in Kasm was deleted to avoid duplicates.
 
-### 5.1 Importação do registry e imagens
+## 6. E2E
 
-- `POST /api/public/create_registry` com
-  `https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/registry/`
-  → registry `1ec563db77eb427bb524c720c607fd22`, schema 1.1, 420 workspaces.
-- A build 1.19.0.842dcf **não** cria as imagens lançáveis automaticamente.
-  `tools/publish_images_to_kasm.py` criou **420** entradas `Teste: …` via
-  `/api/public/create_image` (417 criadas + 3 já existentes), 0 falhas.
-- `get_images`: 423 imagens (420 `Teste:` + 3 originais);
-  `available=true` após pré-pull do Chrome.
-- Orquestrador: 420/420 workspaces casados por `image_id`.
+### Nextcloud
 
-### 5.2 Nextcloud
+- First attempt: backend started on 80/443, but direct `http://nextcloud:443`
+  returned **400 “plain HTTP request sent to HTTPS port”**.
+- Fix: Nextcloud override to 80/HTTP; HTTPS ports use
+  `https` + `--ignore-certificate-errors`.
+- Retest: **Nextcloud loaded**.
+- Backend started 15:00:07; removed 15:02:43 on the first poll after the
+  session disappeared (~11 s from the last poll with a session).
+- No leftover containers or volumes.
 
-- Primeira tentativa: backend subiu em 80/443, mas o `LAUNCH_URL` era
-  `http://nextcloud:443` → **400 “plain HTTP request sent to HTTPS port”**.
-- Correção: override `nextcloud → 80` (HTTP responde 200) e, para apps
-  443/8443, `https` + `--ignore-certificate-errors`.
-- Reteste: **Nextcloud carregou** no Chrome isolado.
-- Backend: `started 2026-11-12T18:00:07Z`; `removed 15:02:43` no primeiro poll
-  após a sessão desaparecer. Intervalo entre o último poll com sessão
-  (15:02:32) e a remoção: **~11 s** (inclui o fechamento da aba e o poll).
-- `docker ps` e `docker volume ls` sem resíduos de `nextcloud`.
-
-### 5.3 Gitea
-
-Monitor `tools/measure_cleanup.py` iniciado antes do clique:
+### Gitea
 
 ```
 session seen at +29.7s
-container seen at +34.1s (started=2026-11-12T18:04:20Z)
+container seen at +34.1s
 session gone at +80.7s
 container gone at +83.5s
-volumes=0
+volumes gone at +83.5s
 ```
 
-- Backend criado **~4,4 s** após a sessão aparecer na API.
-- Remoção **~2,8 s** após a sessão desaparecer (poll de 1 s no teste).
-- Nenhum volume órfão; `docker ps -a` sem `gitea`.
+Backend created ~4.4 s after the session; removed ~2.8 s after it disappeared.
 
-### 5.4 Uptime Kuma
+### Uptime Kuma
 
 ```
 session seen at +16.7s
-container seen at +18.2s (started=2026-11-12T18:06:25Z)
+container seen at +18.2s
 session gone at +59.4s
 container gone at +67.9s
 volumes gone at +67.9s
 ```
 
-- Backend `uptime-kuma` criado **1,5 s** após a sessão.
-- Removido **8,5 s** após a sessão desaparecer (inclui `stop(timeout=5)`),
-  bem abaixo do limite de 2 min.
-- Sem volumes órfãos.
+Backend created ~1.5 s after the session; removed ~8.5 s after it disappeared
+(includes `stop(timeout=5)`).
 
-### 5.5 Observações
+## 7. Waiting page
 
-- O primeiro carregamento pode mostrar “domínio não encontrado” antes de o
-  backend responder; recarregar resolve. Não houve rebuild da imagem Chrome
-  (fora de escopo), então não há página de espera/redirect.
-- A limpeza depende do Kasm remover a sessão ao fechar a aba; neste ambiente a
-  sessão desapareceu em ~1 min. Se o grupo tiver keepalive longo, o backend
-  permanece até a sessão expirar — ajuste `keepalive_expiration` para 300 s.
-- Após 30 min de uso contínuo, verificar órfãos:
-  `docker ps -a --filter label=kasm-teste.managed=true` deve estar vazio sem
-  sessões ativas.
+- `kasm-wait` built and running on `kasm_default_network`.
+- `/healthz` → 200; `/wait?target=http://nextcloud:80` → 200 HTML (4.9 KB).
+- Invalid target (`javascript:`) → 400.
+- Real click: the waiting page appeared (“Preparando seu aplicativo…”), the
+  backend was created, and the browser redirected automatically to Nextcloud.
+- After closing the tab, the orchestrator removed `nextcloud`; only an unrelated
+  VS Code session remained. `kasm-wait` stayed up (expected).
+- HTTPS targets with self-signed certificates may not answer the no-cors probe;
+  the page offers the “Open now” fallback after 60 s.
+
+## 8. Known limitations
+
+- One shared backend per app, no per-user isolation.
+- 420/464 type-1 templates; 44 skipped (privileged, host-network, no TCP port,
+  Windows); stacks/Swarm out of scope.
+- 30-minute soak was not run; no orphans after the three E2E sessions.
+- Wait page is not a readiness gate; the app may still initialize after redirect.

@@ -7,8 +7,9 @@
     "image": "linuxserver/nextcloud:latest",
     "container_name": "nextcloud",
     "port": 80,
-    "launch_url": "--kiosk http://nextcloud:80",
+    "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnextcloud%3A80",
     "target_url": "http://nextcloud:80",
+    "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fnextcloud%3A80",
     "env": [
       {
         "name": "PUID",
@@ -63,8 +64,9 @@
     "image": "gitea/gitea:latest",
     "container_name": "gitea",
     "port": 3000,
-    "launch_url": "--kiosk http://gitea:3000",
+    "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fgitea%3A3000",
     "target_url": "http://gitea:3000",
+    "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fgitea%3A3000",
     "env": [
       {
         "name": "PUID",
@@ -107,8 +109,9 @@
     "image": "louislam/uptime-kuma:latest",
     "container_name": "uptime-kuma",
     "port": 3001,
-    "launch_url": "--kiosk http://uptime-kuma:3001",
+    "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fuptime-kuma%3A3001",
     "target_url": "http://uptime-kuma:3001",
+    "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fuptime-kuma%3A3001",
     "env": [],
     "env_defaults": {},
     "required_env": [],

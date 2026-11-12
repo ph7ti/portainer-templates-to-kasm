@@ -25,6 +25,7 @@ def run_converter(output: Path, *extra: str) -> int:
             "--cache",
             str(output / ".cache" / "templates.json"),
             "--no-icons",
+            "--no-wait-page",
             *extra,
         ]
     )
@@ -161,7 +162,7 @@ def test_normalize_slug(title, expected) -> None:
 
 
 def test_https_port_uses_tls_and_ignores_self_signed_errors() -> None:
-    settings = converter.parse_args(["--output", "unused"])
+    settings = converter.parse_args(["--output", "unused", "--no-wait-page"])
     app = converter.build_app(
         {
             "id": 99,
@@ -179,6 +180,53 @@ def test_https_port_uses_tls_and_ignores_self_signed_errors() -> None:
     assert app["target_url"] == "https://code-server:8443"
     assert app["launch_url"] == "--kiosk --ignore-certificate-errors https://code-server:8443"
     assert app["notes"].find("https://code-server:8443") >= 0
+
+
+def test_wait_page_url_is_percent_encoded_and_default() -> None:
+    settings = converter.parse_args(["--output", "unused"])
+    app = converter.build_app(
+        {
+            "id": 100,
+            "type": 1,
+            "title": "Code Server (container)",
+            "description": "Web IDE",
+            "categories": ["Development"],
+            "image": "linuxserver/code-server:latest",
+            "ports": ["8443:8443/tcp"],
+        },
+        "code-server",
+        8443,
+        settings,
+    )
+    assert app["wait_url"] == (
+        "http://kasm-wait:8080/wait?target=https%3A%2F%2Fcode-server%3A8443"
+    )
+    assert app["launch_url"] == (
+        "--kiosk --ignore-certificate-errors "
+        "http://kasm-wait:8080/wait?target=https%3A%2F%2Fcode-server%3A8443"
+    )
+    assert "página de espera" in app["notes"]
+
+
+def test_wait_page_default_in_full_conversion(tmp_path: Path) -> None:
+    assert (
+        converter.main(
+            [
+                "--source",
+                str(FIXTURE),
+                "--output",
+                str(tmp_path),
+                "--cache",
+                str(tmp_path / ".cache" / "templates.json"),
+                "--no-icons",
+            ]
+        )
+        == 0
+    )
+    payload = json.loads(workspace_path(tmp_path, "nextcloud").read_text(encoding="utf-8"))
+    assert payload["run_config"]["environment"]["LAUNCH_URL"] == (
+        "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnextcloud%3A80"
+    )
 
 
 def test_clean_volumes_strips_readonly_and_system_paths() -> None:
