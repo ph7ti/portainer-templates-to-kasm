@@ -515,12 +515,15 @@ def build_registry_listing(
         workspace["sha"] = sha1_workspace(directory, app["image_src"])
         entries.append(workspace)
 
+    list_url = (settings.registry_url or "").strip()
+    if list_url and not list_url.endswith("/"):
+        list_url += "/"
     listing = {
         "name": settings.registry_name,
         "workspacecount": len(entries),
         "icon": settings.registry_icon,
         "description": settings.registry_description,
-        "list_url": settings.registry_url,
+        "list_url": list_url,
         "contact_url": settings.registry_contact,
         "modified": int(datetime.now(timezone.utc).timestamp() * 1000),
         "workspaces": entries,
@@ -598,7 +601,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--registry-description",
         default="Aplicações do catálogo Portainer para teste efêmero e isolado no Kasm.",
     )
-    parser.add_argument("--registry-url", default="")
+    parser.add_argument(
+        "--registry-url",
+        default="https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/registry/",
+        help="absolute HTTPS URL of the published registry (stored in list_url)",
+    )
     parser.add_argument("--registry-contact", default="https://github.com/ph7ti/portainer-templates-to-kasm")
     parser.add_argument("--port-overrides", default=str(Path(__file__).with_name("port_overrides.json")))
     parser.add_argument("--schema", default=str(SCHEMA_PATH))

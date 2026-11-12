@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T16:52:39.880541+00:00",
+  "generated_at": "2026-11-12T17:30:39.934065+00:00",
   "source": "https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/templates.json",
   "kasm": {
     "version": "1.19.0",
@@ -7,7 +7,7 @@
     "schema_version": "1.1",
     "browser_image": "kasmweb/chrome:1.19.0",
     "network": "kasm_default_network",
-    "registry_url": ""
+    "registry_url": "https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/registry/"
   },
   "counts": {
     "templates": 884,
