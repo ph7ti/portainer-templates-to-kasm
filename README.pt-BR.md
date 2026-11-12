@@ -1,266 +1,209 @@
-# Portainer → Kasm Workspaces
+# Portainer → Kasm Workspaces (fork de origem)
 
-**Registry de terceiros para o Kasm Workspaces que transforma 420 templates do
-catálogo Portainer em Protected Web Apps efêmeros.** Cada workspace abre um
-Chrome isolado contra uma página de espera; um orquestrador Docker cria o
-contêiner da aplicação sob demanda e o remove quando a última sessão termina.
+Este repositório é um **fork do
+[lissy93/portainer-templates](https://github.com/lissy93/portainer-templates)**
+que mantém o catálogo original de templates do Portainer e adiciona as
+ferramentas para publicar as mesmas aplicações como **Protected Web Apps do
+Kasm Workspaces**.
 
-[English](README.md) · [Repositório do registry](https://github.com/ph7ti/kasm-registry) · [URL do registry](https://ph7ti.github.io/kasm-registry/)
-
-## O que é
-
-- Um **registry Kasm 1.1** com 420 workspaces de navegador chamados `Teste: …`
-  (Nextcloud, Gitea, Uptime Kuma, AdGuard, MinIO e muitos outros).
-- Uma **página de espera** (`kasm-wait`) que avisa que o contêiner está sendo
-  criado, verifica o backend a cada 2 segundos e redireciona quando ele responde.
-- Um **orquestrador** que consulta a API do Kasm e mantém um contêiner Docker
-  por aplicação enquanto ela tiver sessões.
-- Um **conversor** que gera o registry a partir do `templates.json` do Portainer,
-  além de testes, exemplos e automação de deploy.
-
-## O que não é
-
-- **Não** é um Kasm com múltiplos contêineres por sessão. O Kasm continua com um
-  contêiner de navegador por sessão; a aplicação fica em um segundo contêiner
-  gerenciado externamente.
-- **Não** rebuilda imagens dos apps. As imagens originais são usadas como estão.
-- **Não** oferece estado isolado por usuário em sessões simultâneas do mesmo
-  workspace. Um backend é compartilhado por essas sessões (com contagem de
-  referência e remoção quando a última termina).
-- **Não** converte templates `type 3` (stacks) nem `type 2` (Swarm) nesta fase.
-
-## Como funciona
+Ele é o **repositório de origem e operação**, não o registry que o Kasm consome.
+O registry público é publicado separadamente em
+[ph7ti/kasm-registry](https://github.com/ph7ti/kasm-registry):
 
 ```
-┌──────────┐  clique em "Teste: Nextcloud"  ┌─────────────────────────────┐
-│ Usuário  │ ─────────────────────────────▶ │ Kasm Manager / UI           │
-└──────────┘                                └──────────────┬──────────────┘
-                                                          │ sessão
-                                                          ▼
-                                            ┌──────────────────────────────┐
-                                            │ Chrome (kasmweb/chrome:1.19) │
-                                            │ kiosk → kasm-wait:8080       │
-                                            └──────────────┬───────────────┘
-                                                          │ página consulta
-                                                          │ http://nextcloud:80
-                                                          ▼
-┌──────────────────────────┐  /api/public/get_kasms    ┌──────────────────┐
-│ Orquestrador (systemd/   │ ◀──────────────────────── │ API do Kasm      │
-│ container no host Docker)│                           └──────────────────┘
-│                          │  docker create/remove
-│ ativo? cria backend      │ ────────────────────────▶ ┌──────────────────┐
-│ sumiu? remove backend    │                           │ Backend Docker   │
-└──────────────────────────┘                           │ name=nextcloud   │
-                                                       │ linuxserver/...  │
-                                                       └──────────────────┘
+URL do registry no Kasm: https://ph7ti.github.io/kasm-registry/
 ```
 
-A URL do workspace é:
+[English](README.md) · [Registry público](https://github.com/ph7ti/kasm-registry) · [URL do registry](https://ph7ti.github.io/kasm-registry/)
 
-```
---kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnextcloud%3A80
-```
+## Por que este fork existe
 
-O `kasm-wait` serve uma página HTML simples. Ela consulta o alvo com
-`fetch(mode:"no-cors")` a cada 2 segundos; quando o app responde, redireciona.
-Se o backend demorar mais de 60 segundos, exibe o link “Abrir agora”. O
-orquestrador cria o backend com o nome do slug do workspace na rede Docker
-compartilhada do Kasm.
+O projeto upstream é um catálogo/site **do Portainer**. O papel dele é fornecer
+`templates.json`, dados de origem e scripts de geração para usuários do
+Portainer. Artefatos específicos de Kasm (entradas de registry schema 1.1,
+fábrica de workspaces Chrome, página de espera, orquestrador Docker) não
+pertencem ao catálogo upstream.
 
-## Estado atual
+O fork existe para:
 
-Validado no **Kasm Workspaces 1.19.0.842dcf**, single-server, Docker 29.9.3,
-Debian 13, rede fixa `kasm_default_network`
-(`auto_generate_kasm_docker_networks: false`).
+1. **Preservar o modelo e o fluxo de atualização upstream.** Mantemos
+   `templates.json`, `Schema.json`, `sources/` e `lib/` para conseguir puxar
+   mudanças do upstream e regenerar de forma determinística.
+2. **Adicionar transformação só de Kasm sem alterar o upstream.** O conversor lê
+   o `templates.json` do fork e gera entradas registry 1.1; o upstream continua
+   focado no Portainer.
+3. **Separar o registry gerado da origem.** O repositório público
+   `ph7ti/kasm-registry` contém apenas o artefato estático; o usuário final
+   adiciona essa URL e não precisa clonar nem converter este fork.
+4. **Ser dono das peças de runtime.** O orquestrador e a página de espera são
+   operados pelo administrador do Kasm, não pelo projeto upstream.
 
-| Item | Situação |
-|---|---|
-| Registry | 420 workspaces, schema 1.1, GitHub Pages no ar |
-| Imagens no Kasm | 420 imagens `Teste: …` instaladas |
-| Página de espera | `kasm-wait` na `kasm_default_network`; mensagem/poll/redirect validados |
-| Orquestrador | em execução no host do Kasm (unit `kasm-orch-test`) |
-| Testes | **49 passando** (Windows e Debian 13) |
-| E2E | Nextcloud, Gitea e Uptime Kuma carregaram; página de espera validada (mensagem → poll → redirect); backends removidos 2,8–8,5 s após a sessão |
-| Órfãos | nenhum após os testes; sem volumes residuais |
+Não trate este repositório como o catálogo do Kasm. Use-o para regenerar ou
+operar; use `ph7ti/kasm-registry` para consumir.
 
-## Estrutura do repositório
+## Três artefatos
+
+| Artefato | Papel | Quem usa |
+|---|---|---|
+| [lissy93/portainer-templates](https://github.com/lissy93/portainer-templates) | Templates, fontes e site do Portainer | Usuários de Portainer, mantenedores upstream |
+| **este fork** (`ph7ti/portainer-templates-to-kasm`) | Dados upstream + conversor, waiter, orquestrador, testes, docs e snapshot `registry/` | Operadores e contribuidores |
+| [ph7ti/kasm-registry](https://github.com/ph7ti/kasm-registry) | Registry Kasm estático público (Pages) | Administradores/usuários do Kasm |
+
+O `templates.json` do fork é a entrada; o `site/1.1/list.json` do registry
+dedicado é a saída que o Kasm consome.
+
+## O que foi adicionado ao fork
 
 | Caminho | Finalidade |
 |---|---|
-| `converter/` | conversor Portainer → registry 1.1, schema e overrides de porta |
-| `orchestrator/` | cliente da API, ciclo de vida Docker e reconciliação |
-| `waiter/` | serviço HTTP `kasm-wait` e Dockerfile (página de espera) |
-| `registry/` | snapshot gerado do registry e `backend_manifest.json` |
+| `converter/` | `templates.json` do Portainer → registry Kasm 1.1; schema, ícones, overrides de porta, `backend_manifest.json` |
+| `waiter/` | `kasm-wait`: página “Preparando seu aplicativo…”, polling a cada 2 s e redirect |
+| `orchestrator/` | Consulta a API do Kasm e cria/remove os contêineres na rede Docker |
+| `registry/` | Snapshot gerado para testes/dev; a cópia pública fica em `ph7ti/kasm-registry` |
+| `tools/` | `publish_images_to_kasm.py`, `measure_cleanup.py`, smoke test de backend |
 | `tests/` | 49 testes unitários/integrados com mocks de Kasm e Docker |
-| `examples/` | três `workspace.json` gerados |
-| `docs/` | arquitetura, deploy e relatório de testes (EN/PT-BR) |
-| `systemd/` | unit de exemplo do orquestrador |
+| `docs/` | Arquitetura, deploy e relatório de testes em inglês e português |
+| `systemd/` | Unit de exemplo do orquestrador |
 
-O **registry público** fica em um repositório separado:
-[ph7ti/kasm-registry](https://github.com/ph7ti/kasm-registry). O usuário final
-adiciona `https://ph7ti.github.io/kasm-registry/` ao Kasm; não precisa clonar
-nem converter as fontes do Portainer.
+## Como usar os novos recursos
 
-## Início rápido
+### A. Como administrador/usuário do Kasm (sem conversão)
 
-```bash
-# 1. Gerar o registry
-python converter/convert_templates.py --output registry --refresh --prune
-
-# 2. Validar
-python -m pytest -q
-
-# 3. Subir página de espera + orquestrador
-cp .env.example .env   # edite KASM_URL / API key / secret
-docker compose up -d --build
-
-# 4. Dry-run do orquestrador
-docker compose run --rm orchestrator --once --dry-run
-```
-
-No Kasm:
-
-1. **Admin → Workspaces → Registry → Add new** com
+1. Adicione o registry público no Kasm:
+   **Admin → Workspaces → Registry → Add new** →
    `https://ph7ti.github.io/kasm-registry/` (sem `/1.1`).
-2. Instalar os workspaces como imagens lançáveis:
+2. Instale as imagens dos workspaces que deseja (a importação do registry cria
+   os metadados; esta build do Kasm não cria as imagens lançáveis sozinha):
 
    ```bash
    python tools/publish_images_to_kasm.py --update
    ```
 
-3. Política de grupo recomendada:
-   - `keepalive_expiration_action = delete`
-   - `keepalive_expiration = 300`
-   - `idle_disconnect = 5`
+   Rode a partir de um clone deste fork, ou use o botão **Add** de cada item no
+   UI do registry.
+3. O operador precisa manter em execução:
+   - `kasm-wait` na rede Docker dos workspaces;
+   - o orquestrador no host Docker.
+4. Clique em um workspace `Teste: …`. O navegador mostra a página de espera;
+   quando o backend responde, ele redireciona automaticamente.
 
-## Página de espera
+Você **não** precisa clonar este fork só para usar o registry, mas precisa do
+waiter e do orquestrador rodando.
 
-A página é servida por um contêiner Python mínimo (`waiter/`) conectado à rede
-dos workspaces do Kasm. A URL é gravada em cada `workspace.json`:
-
-```json
-{
-  "run_config": {
-    "environment": {
-      "LAUNCH_URL": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fnextcloud%3A80"
-    },
-    "shm_size": "512m"
-  }
-}
-```
-
-No host Docker:
+### B. Como operador (regenerar e implantar)
 
 ```bash
+git clone git@github.com:ph7ti/portainer-templates-to-kasm.git
+cd portainer-templates-to-kasm
+
+python -m venv .venv && . .venv/bin/activate
+pip install -r requirements.txt
+
+# 1. converter o templates.json atual -> snapshot do registry
+python converter/convert_templates.py --output registry --refresh --prune
+
+# 2. rodar os testes
+python -m pytest -q
+
+# 3. implantar a página de espera (mesma rede dos workspaces)
 docker build -t kasm-wait:local -f waiter/Dockerfile .
 docker run -d --name kasm-wait --restart unless-stopped \
   --network kasm_default_network kasm-wait:local
-# teste
-docker run --rm --network kasm_default_network curlimages/curl:latest \
-  -sS http://kasm-wait:8080/healthz
+
+# 4. implantar o orquestrador
+cp .env.example .env   # KASM_URL, API key/secret
+docker compose up -d --build
+# ou use systemd/kasm-orchestrator.service
 ```
 
-O contêiner precisa estar na mesma rede Docker dos workspaces. Com redes
-efêmeras (`auto_generate_kasm_docker_networks: true`), ele teria de ser anexado
-a cada rede de sessão pelo orquestrador; este repositório foi validado com rede
-fixa.
+Publique o registry gerado em `ph7ti/kasm-registry`:
 
-Configuração: `WAITER_PORT` (padrão `8080`). A página aceita apenas destinos
-`http://host[:porta]`/`https://host[:porta]` e rejeita redirecionamentos
-abertos.
+```bash
+python converter/convert_templates.py --output /caminho/kasm-registry/site \
+  --refresh --prune
+cd /caminho/kasm-registry
+git add -A && git commit -m "Refresh registry" && git push
+```
 
-## Mapeamento Portainer → Kasm
+Veja [docs/DEPLOY.pt-BR.md](docs/DEPLOY.pt-BR.md) para pré-requisitos, CA/TLS,
+instalação de imagens e políticas de grupo do Kasm.
 
-| Portainer | Kasm |
+### C. Como contribuidor
+
+- Mantenha mudanças de dados/modelo upstream separadas da saída Kasm.
+- Regenere `registry/` e atualize o registry dedicado quando `templates.json`
+  mudar.
+- Rode `pytest -q` (49 testes).
+- Veja [docs/ARCHITECTURE.pt-BR.md](docs/ARCHITECTURE.pt-BR.md) para as decisões.
+
+## Como o runtime funciona
+
+```
+Usuário → workspace Kasm (Chrome kiosk) → página kasm-wait
+                                        │ poll do alvo a cada 2 s
+                                        ▼
+                           contêiner da app (nome = slug do workspace)
+                                        ▲
+API do Kasm ── sessões ── orquestrador ─┘ cria/remove em kasm_default_network
+```
+
+A página de espera resolve a corrida do primeiro clique: o Kasm inicia o
+navegador antes de o contêiner da aplicação existir. A página consulta o backend
+e redireciona quando ele responde; se demorar mais de 60 s, mostra o link
+“Abrir agora”. O orquestrador cuida do ciclo de vida do backend.
+
+## Fork vs sincronização upstream
+
+- Os arquivos upstream (`templates.json`, `Schema.json`, `sources/`, `lib/`)
+  continuam sendo a fonte de verdade dos templates Portainer.
+- As adições Kasm ficam em diretórios novos e não alteram o código upstream.
+- Para atualizar: faça pull/merge do upstream, rode o conversor, commit do
+  snapshot e publique em `ph7ti/kasm-registry`.
+- O `registry/` deste fork é snapshot de desenvolvimento; a URL pública é o
+  repositório dedicado.
+
+## Estado atual
+
+Validado no **Kasm Workspaces 1.19.0.842dcf**, Docker 29.9.3, Debian 13,
+`kasm_default_network` (rede fixa).
+
+| Item | Situação |
 |---|---|
-| `title` | `friendly_name = "Teste: <título sem (container)>"` |
-| `description` | descrição + aviso de acesso efêmero/isolado |
-| `logo` | baixado para `workspaces/<slug>/<slug>.<ext>` e `1.1/icons/`; fallback `default-icon.png` |
-| `categories` | primeiras 3 |
-| `ports` | porta do contêiner, prioridade 443/80/8443/3000/…; overrides em `converter/port_overrides.json` |
-| `image` | **somente** no `backend_manifest.json` e no orquestrador |
-| (fixo) | `architecture = ["amd64"]` — a fonte não tem `architectures` |
-| (fixo) | `compatibility = [{version:"1.19.x", image:"kasmweb/chrome:1.19.0", ...}]` |
-| (fixo) | `run_config.environment.LAUNCH_URL = "--kiosk [--ignore-certificate-errors] <página-de-espera>"` |
-| (fixo) | `run_config.shm_size = "512m"` |
-
-A URL usa HTTPS nas portas 443/8443/9443 (com `--ignore-certificate-errors`,
-pois os apps costumam usar certificado autoassinado) e HTTP nas demais. O
-Nextcloud é forçado para a porta 80/HTTP: o template só lista 443, mas o
-LinuxServer também responde HTTP na 80, evitando o erro
-“plain HTTP request sent to HTTPS port”.
-
-## Orquestrador
-
-Variáveis principais:
-
-| Variável | Padrão | Descrição |
-|---|---|---|
-| `KASM_URL` | — | URL base do Kasm |
-| `KASM_API_KEY` / `KASM_API_KEY_SECRET` | — | chave da Developer API |
-| `KASM_API_MODE` | `auto` | `legacy`, `v2` ou detecção automática |
-| `KASM_VERIFY_TLS` | `true` | `false` para CA interna |
-| `POLL_INTERVAL` | `5` | segundos entre reconciliações |
-| `RETRY_INTERVAL` | `30` | backoff após falha ao subir |
-| `DOCKER_NETWORK` | `kasm_default_network` | rede fixa |
-| `DOCKER_DISCOVER_NETWORK` | `true` | inspeciona a rede do navegador |
-| `MANIFEST_PATH` | `registry/backend_manifest.json` | manifesto gerado |
-| `STATE_PATH` | `/var/lib/kasm-orchestrator/state.json` | estado observado |
-| `PULL_IMAGES` | `true` | baixa imagens ausentes |
-
-Modos:
-
-```bash
-python -m orchestrator.orchestrator --once --dry-run
-python -m orchestrator.orchestrator --once
-python -m orchestrator.orchestrator          # loop de serviço
-```
-
-O orquestrador só remove contêineres com seus labels
-(`kasm-teste.managed=true`); recusa tocar em contêiner homônimo não gerenciado.
-Falha de API mantém os backends existentes em vez de removê-los.
-
-## Testes
-
-```bash
-pip install -r requirements-dev.txt
-pytest -q
-# 49 passed
-```
-
-Cobertura: filtros/portas/slugs/schema/idempotência/ícones do conversor, rotas e
-validação da página de espera, normalização legacy/v2 da API, ciclo de vida,
-refcount, rede efêmera, backoff, limpeza de órfãos, dry-run e conflito de nome.
-
-Veja [docs/TEST_REPORT.pt-BR.md](docs/TEST_REPORT.pt-BR.md) para os tempos do E2E.
+| Conversão | 420 workspaces de 464 templates type 1; 0 erros de schema |
+| Pulados | 44: 17 privileged, 9 host-network, 16 sem porta TCP, 2 Windows |
+| Registry | 420 workspaces, schema 1.1, Pages público no ar |
+| Imagens no Kasm | 420 entradas `Teste: …` instaladas |
+| Página de espera | validada: mensagem → polling → redirect automático |
+| Testes | 49 passando no Windows e Debian 13 |
+| E2E | Nextcloud, Gitea e Uptime Kuma carregaram; backends removidos 2,8–8,5 s após fechar |
+| Órfãos | nenhum após os testes; sem volumes residuais |
 
 ## Limitações
 
-- **Backend compartilhado por app**: a `LAUNCH_URL` estática força um contêiner
-  por app; sessões simultâneas compartilham o serviço. A contagem de referência
-  remove apenas quando a última sessão termina.
-- **Corrida de inicialização**: a página de espera resolve a primeira impressão
-  de “site não encontrado”, mas o app pode continuar inicializando após o
-  redirecionamento. Em apps HTTPS com certificado autoassinado, o polling pode
-  falhar; a página oferece “Abrir agora” após 60 s.
-- **420 de 464 templates type 1**: 17 privileged, 9 host-network, 16 sem porta
-  TCP e 2 Windows são pulados. Stacks/Swarm ficam fora.
-- **Sem isolamento de dados por usuário**; é um catálogo de demonstração/teste.
-- **CA interna**: `KASM_VERIFY_TLS=false` é necessário nesta instância; prefira
-  instalar a CA em produção.
+- Um backend por app (compartilhado por sessões simultâneas; refcount), pois a
+  `LAUNCH_URL` é estática.
+- Sem rebuild das imagens dos apps. A página de espera é um contêiner separado.
+- `type 3` (stacks) e Swarm ainda não são convertidos.
+- Apps em portas HTTPS usam `--ignore-certificate-errors` para certificados
+  autoassinados; o probe da página pode não detectá-los e cai no link
+  “Abrir agora”.
+- O waiter precisa estar na mesma rede Docker dos workspaces. O deploy validado
+  usa rede fixa.
+- Sem isolamento de dados por usuário; é um catálogo de demonstração/teste.
 - A API key do orquestrador precisa de `Sessions View`/`Images View`; ela não
-  cria sessões. O E2E foi validado clicando na UI do Kasm.
+  cria sessões.
 
 ## Documentação
 
-- [Arquitetura](docs/ARCHITECTURE.pt-BR.md) · [Architecture (EN)](docs/ARCHITECTURE.md)
-- [Deploy](docs/DEPLOY.pt-BR.md) · [Deploy (EN)](docs/DEPLOY.md)
-- [Relatório de testes](docs/TEST_REPORT.pt-BR.md) · [Test report (EN)](docs/TEST_REPORT.md)
-- [Notas de discovery](docs/discovery-notes.md) (PT-BR, específicas do ambiente)
+- [Arquitetura](docs/ARCHITECTURE.pt-BR.md) · [Architecture](docs/ARCHITECTURE.md)
+- [Deploy](docs/DEPLOY.pt-BR.md) · [Deploy EN](docs/DEPLOY.md)
+- [Relatório de testes](docs/TEST_REPORT.pt-BR.md) · [Test report](docs/TEST_REPORT.md)
+- [Página de espera](waiter/README.md)
+- Registry público: [ph7ti/kasm-registry](https://github.com/ph7ti/kasm-registry)
 
-## Atribuição
+## Créditos e licença
 
-Templates e logos pertencem aos autores originais
-([lissy93/portainer-templates](https://github.com/lissy93/portainer-templates)
-e mantenedores upstream). Os metadados do registry, a página de espera e o
-orquestrador são MIT.
+Fork de
+[lissy93/portainer-templates](https://github.com/lissy93/portainer-templates);
+templates e logos pertencem aos autores originais. A conversão Kasm, o
+orquestrador e a página de espera são MIT, seguindo a licença upstream.
