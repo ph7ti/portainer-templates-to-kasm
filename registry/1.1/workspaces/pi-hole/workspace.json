@@ -19,9 +19,9 @@
   ],
   "run_config": {
     "environment": {
-      "LAUNCH_URL": "--kiosk http://pi-hole:443"
+      "LAUNCH_URL": "--kiosk --ignore-certificate-errors https://pi-hole:443"
     },
     "shm_size": "512m"
   },
-  "notes": "Teste efêmero do template Portainer 'Pi-Hole'. Backend Docker esperado: contêiner 'pi-hole' (imagem pihole/pihole:latest), na rede kasm_default_network, escutando na porta interna 443. URL alvo: http://pi-hole:443. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+  "notes": "Teste efêmero do template Portainer 'Pi-Hole'. Backend Docker esperado: contêiner 'pi-hole' (imagem pihole/pihole:latest), na rede kasm_default_network, escutando na porta interna 443. URL alvo: https://pi-hole:443. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
 }

@@ -6,9 +6,9 @@
     "friendly_name": "Teste: Nextcloud",
     "image": "linuxserver/nextcloud:latest",
     "container_name": "nextcloud",
-    "port": 443,
-    "launch_url": "--kiosk http://nextcloud:443",
-    "target_url": "http://nextcloud:443",
+    "port": 80,
+    "launch_url": "--kiosk http://nextcloud:80",
+    "target_url": "http://nextcloud:80",
     "env": [
       {
         "name": "PUID",

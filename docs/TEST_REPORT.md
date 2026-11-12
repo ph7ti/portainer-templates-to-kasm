@@ -13,8 +13,12 @@ single-server, Debian 13, Docker 29.9.3, rede `kasm_default_network`).
 | `pytest` local | Windows / Python 3.13 | **40 passed** |
 | `pytest` no host Kasm | Debian 13 / Python 3.13 | **40 passed** |
 | Backend real + DNS no Docker | host 10.1.0.108 | `nginx:alpine` → `http://kasm-orch-test/` → **200** |
-| Orquestrador `--once` contra API real | host 10.1.0.108 | modo `legacy`, 3 imagens, 0 sessões, sem erros |
-| E2E Kasm (clique → backend → fechamento) | pendente | requer registry importado e clique no UI |
+| Orquestrador `--once` contra API real | host 10.1.0.108 | modo `legacy`, 423 imagens, 420/420 casados |
+| Registry importado no Kasm | UI/API | **420 workspaces**, schema 1.1 |
+| Imagens criadas no catálogo | API | 420 imagens `Teste: …` |
+| E2E Nextcloud | Kasm real | carregou; backend removido no poll seguinte |
+| E2E Gitea | Kasm real | carregou; backend removido ~2,8 s após a sessão |
+| E2E Uptime Kuma | Kasm real | carregou; backend removido ~8,5 s após a sessão |
 
 ## 1. Conversor
 
@@ -48,7 +52,7 @@ Verificações pontuais:
 
 | App | `LAUNCH_URL` | Imagem do backend |
 |---|---|---|
-| Nextcloud | `--kiosk http://nextcloud:443` | `linuxserver/nextcloud:latest` |
+| Nextcloud | `--kiosk http://nextcloud:80` | `linuxserver/nextcloud:latest` |
 | Gitea | `--kiosk http://gitea:3000` | `gitea/gitea:latest` |
 | Uptime Kuma | `--kiosk http://uptime-kuma:3001` | `louislam/uptime-kuma:latest` |
 | AdGuard | `--kiosk http://adguard:3000` | `adguard/adguardhome:latest` |
@@ -138,16 +142,71 @@ Observações:
   `Users Auth Session`/`User` — `request_kasm` retorna 403. Por isso a criação
   de sessão para o teste E2E é manual, via clique no UI.
 
-## 5. E2E (a preencher)
+## 5. E2E real
 
-Roteiro:
+### 5.1 Importação do registry e imagens
 
-1. Adicionar o registry no Kasm (HTTPS) e importar 420 workspaces.
-2. Clicar em **Teste: Nextcloud**; medir tempo até o app carregar.
-3. Confirmar backend `nextcloud` em `docker ps`.
-4. Fechar a aba; medir tempo até o backend sumir (política + poll).
-5. Repetir para Gitea e Uptime Kuma.
-6. Monitorar 30 min e conferir ausência de órfãos
-   (`docker ps -a --filter label=kasm-teste.managed=true`).
+- `POST /api/public/create_registry` com
+  `https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/registry/`
+  → registry `1ec563db77eb427bb524c720c607fd22`, schema 1.1, 420 workspaces.
+- A build 1.19.0.842dcf **não** cria as imagens lançáveis automaticamente.
+  `tools/publish_images_to_kasm.py` criou **420** entradas `Teste: …` via
+  `/api/public/create_image` (417 criadas + 3 já existentes), 0 falhas.
+- `get_images`: 423 imagens (420 `Teste:` + 3 originais);
+  `available=true` após pré-pull do Chrome.
+- Orquestrador: 420/420 workspaces casados por `image_id`.
 
-Resultados observados serão anexados aqui.
+### 5.2 Nextcloud
+
+- Primeira tentativa: backend subiu em 80/443, mas o `LAUNCH_URL` era
+  `http://nextcloud:443` → **400 “plain HTTP request sent to HTTPS port”**.
+- Correção: override `nextcloud → 80` (HTTP responde 200) e, para apps
+  443/8443, `https` + `--ignore-certificate-errors`.
+- Reteste: **Nextcloud carregou** no Chrome isolado.
+- Backend: `started 2026-11-12T18:00:07Z`; `removed 15:02:43` no primeiro poll
+  após a sessão desaparecer. Intervalo entre o último poll com sessão
+  (15:02:32) e a remoção: **~11 s** (inclui o fechamento da aba e o poll).
+- `docker ps` e `docker volume ls` sem resíduos de `nextcloud`.
+
+### 5.3 Gitea
+
+Monitor `tools/measure_cleanup.py` iniciado antes do clique:
+
+```
+session seen at +29.7s
+container seen at +34.1s (started=2026-11-12T18:04:20Z)
+session gone at +80.7s
+container gone at +83.5s
+volumes=0
+```
+
+- Backend criado **~4,4 s** após a sessão aparecer na API.
+- Remoção **~2,8 s** após a sessão desaparecer (poll de 1 s no teste).
+- Nenhum volume órfão; `docker ps -a` sem `gitea`.
+
+### 5.4 Uptime Kuma
+
+```
+session seen at +16.7s
+container seen at +18.2s (started=2026-11-12T18:06:25Z)
+session gone at +59.4s
+container gone at +67.9s
+volumes gone at +67.9s
+```
+
+- Backend `uptime-kuma` criado **1,5 s** após a sessão.
+- Removido **8,5 s** após a sessão desaparecer (inclui `stop(timeout=5)`),
+  bem abaixo do limite de 2 min.
+- Sem volumes órfãos.
+
+### 5.5 Observações
+
+- O primeiro carregamento pode mostrar “domínio não encontrado” antes de o
+  backend responder; recarregar resolve. Não houve rebuild da imagem Chrome
+  (fora de escopo), então não há página de espera/redirect.
+- A limpeza depende do Kasm remover a sessão ao fechar a aba; neste ambiente a
+  sessão desapareceu em ~1 min. Se o grupo tiver keepalive longo, o backend
+  permanece até a sessão expirar — ajuste `keepalive_expiration` para 300 s.
+- Após 30 min de uso contínuo, verificar órfãos:
+  `docker ps -a --filter label=kasm-teste.managed=true` deve estar vazio sem
+  sessões ativas.

@@ -61,7 +61,7 @@ def test_converts_only_web_containers(tmp_path: Path) -> None:
     assert reasons.count("windows-platform") == 1
     assert reasons.count("privileged") == 1
     assert reasons.count("host-network") == 1
-    assert manifest["apps"]["nextcloud"]["port"] == 443
+    assert manifest["apps"]["nextcloud"]["port"] == 80  # override: TLS container also serves HTTP
     assert manifest["apps"]["gitea"]["required_env"] == ["GITEA_ADMIN_PASSWORD"]
     assert all(v["container"] != "/etc/timezone" for v in manifest["apps"]["gitea"]["volumes"])
     assert manifest["apps"]["adguard"]["port"] == 3000  # override beats 443/80
@@ -81,7 +81,7 @@ def test_workspace_payloads_match_kasm_schema(tmp_path: Path) -> None:
 
     nextcloud = json.loads(workspace_path(tmp_path, "nextcloud").read_text(encoding="utf-8"))
     assert nextcloud["friendly_name"] == "Teste: Nextcloud"
-    assert nextcloud["run_config"]["environment"]["LAUNCH_URL"] == "--kiosk http://nextcloud:443"
+    assert nextcloud["run_config"]["environment"]["LAUNCH_URL"] == "--kiosk http://nextcloud:80"
     assert nextcloud["run_config"]["shm_size"] == "512m"
     assert nextcloud["compatibility"][0]["image"] == "kasmweb/chrome:1.19.0"
     assert nextcloud["compatibility"][0]["version"] == "1.19.x"
@@ -158,6 +158,27 @@ def test_choose_container_port(ports, override, expected) -> None:
 )
 def test_normalize_slug(title, expected) -> None:
     assert converter.normalize_slug(title) == expected
+
+
+def test_https_port_uses_tls_and_ignores_self_signed_errors() -> None:
+    settings = converter.parse_args(["--output", "unused"])
+    app = converter.build_app(
+        {
+            "id": 99,
+            "type": 1,
+            "title": "Code Server (container)",
+            "description": "Web IDE",
+            "categories": ["Development"],
+            "image": "linuxserver/code-server:latest",
+            "ports": ["8443:8443/tcp"],
+        },
+        "code-server",
+        8443,
+        settings,
+    )
+    assert app["target_url"] == "https://code-server:8443"
+    assert app["launch_url"] == "--kiosk --ignore-certificate-errors https://code-server:8443"
+    assert app["notes"].find("https://code-server:8443") >= 0
 
 
 def test_clean_volumes_strips_readonly_and_system_paths() -> None:

@@ -5,9 +5,10 @@
 1. O usuário clica em **Teste: Nextcloud** no dashboard do Kasm.
 2. O Kasm cria a sessão do workspace registry 1.1. A imagem é
    `kasmweb/chrome:1.19.0` com `run_config.environment.LAUNCH_URL =
-   "--kiosk http://nextcloud:443"`.
+   "--kiosk http://nextcloud:80"` (override: o LinuxServer também escuta 80;
+   a 443 usaria TLS autoassinado).
 3. O navegador sobe na rede Docker do agente (`kasm_default_network`) e tenta
-   abrir `http://nextcloud:443`. Ainda pode não haver backend — ver “corrida de
+   abrir `http://nextcloud:80`. Ainda pode não haver backend — ver “corrida de
    inicialização”.
 4. O orquestrador faz poll em `/api/public/get_kasms` (API legacy desta build).
    Quando vê a sessão cujo `image.friendly_name` (ou `image_id`) corresponde a um
@@ -100,7 +101,9 @@ O Portainer não diz qual porta é a UI web. O conversor:
 3. escolhe, por prioridade: 443, 80, 8443, 8080, 3000, 3001, 8000, 8096,
    8123, 8181, 9000, 9001, 9090, 8081, 8888; senão a primeira TCP;
 4. aplica `converter/port_overrides.json` para exceções conhecidas
-   (`minio → 9001`, `adguard/adguardhome → 3000`).
+   (`minio → 9001`, `adguard/adguardhome → 3000`, `nextcloud → 80`);
+5. define o esquema: `https` (com `--ignore-certificate-errors`) para
+   443/8443/9443; `http` para o restante.
 
 A porta é usada apenas na URL do navegador; o backend **não publica portas no
 host**.

@@ -19,9 +19,9 @@
   ],
   "run_config": {
     "environment": {
-      "LAUNCH_URL": "--kiosk http://sealskin:8443"
+      "LAUNCH_URL": "--kiosk --ignore-certificate-errors https://sealskin:8443"
     },
     "shm_size": "512m"
   },
-  "notes": "Teste efêmero do template Portainer 'Sealskin'. Backend Docker esperado: contêiner 'sealskin' (imagem linuxserver/sealskin:latest), na rede kasm_default_network, escutando na porta interna 8443. URL alvo: http://sealskin:8443. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
+  "notes": "Teste efêmero do template Portainer 'Sealskin'. Backend Docker esperado: contêiner 'sealskin' (imagem linuxserver/sealskin:latest), na rede kasm_default_network, escutando na porta interna 8443. URL alvo: https://sealskin:8443. O orquestrador inicia o backend quando uma sessão desta workspace é detectada e o remove quando a última sessão termina. Se a página exibir erro de conexão nos primeiros segundos, aguarde alguns instantes e recarregue."
 }

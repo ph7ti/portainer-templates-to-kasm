@@ -59,8 +59,19 @@ https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/registr
    - Raw: a URL raw acima.
 3. Salve e aguarde o Kasm importar as 420 entradas (`Registry` deve mostrar o
    contador).
-4. Em **Workspaces**, filtre pelo registry e confirme os itens
-   `Teste: …`.
+4. Instale as imagens lançáveis. Nesta build o registry importa os metadados,
+   mas não cria as entradas de **Workspaces**. Use o botão **Add** de cada item
+   ou o script em lote:
+
+```bash
+python tools/publish_images_to_kasm.py --limit 10   # piloto
+python tools/publish_images_to_kasm.py              # todas
+```
+
+O script lê `.secrets.json` (`kasm_url`, `api_key`, `api_key_secret`) ou as
+variáveis `KASM_URL`/`KASM_API_KEY`/`KASM_API_KEY_SECRET`, ignora itens já
+existentes e usa `/api/public/create_image`.
+5. Em **Workspaces**, filtre pelo registry e confirme os itens `Teste: …`.
 
 > A API key usada pelo orquestrador **não** cria sessões nem registries. A
 > importação do registry e o clique no workspace são feitos pelo usuário admin
@@ -153,7 +164,10 @@ no poll seguinte (≤ 5 s).
    watch -n2 'sudo docker ps --format "{{.Names}}\t{{.Image}}\t{{.Status}}" | grep -E "nextcloud|kasm"'
    ```
 3. O contêiner `nextcloud` deve aparecer em até ~5 s; o navegador deve carregar
-   o Nextcloud em 10–30 s (primeiro boot).
+   o Nextcloud em 10–30 s (primeiro boot). A URL é `http://nextcloud:80`
+   (override); se editar o workspace e voltar para 443, use `https` +
+   `--ignore-certificate-errors`, pois o LinuxServer usa certificado
+   autoassinado.
 4. Feche a aba; aguarde a política do grupo + poll. O contêiner `nextcloud`
    deve desaparecer.
 5. Repita com Gitea e Uptime Kuma.
@@ -162,7 +176,7 @@ Teste de DNS do backend, sem Kasm:
 
 ```bash
 sudo docker run --rm --network kasm_default_network curlimages/curl:latest \
-  -sS -o /dev/null -w '%{http_code}\n' http://nextcloud:443
+  -sS -o /dev/null -w '%{http_code}\n' http://nextcloud:80
 ```
 
 ## 9. Pré-pull (recomendado)

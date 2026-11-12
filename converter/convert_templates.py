@@ -68,6 +68,11 @@ WEB_PORT_PRIORITY = (
     8888,
 )
 
+# Ports that conventionally serve TLS inside app containers. The browser
+# workspace needs an https URL (and, for self-signed app certificates, Chrome
+# must ignore certificate errors).
+HTTPS_PORTS = {443, 8443, 9443}
+
 SYSTEM_VOLUME_PATHS = {
     "/etc/timezone",
     "/etc/localtime",
@@ -371,7 +376,12 @@ def build_app(
     categories = clean_categories(template.get("categories"))
     volumes = clean_volumes(template.get("volumes"))
 
-    target_url = f"http://{slug}:{port}"
+    scheme = "https" if port in HTTPS_PORTS else "http"
+    target_url = f"{scheme}://{slug}:{port}"
+    flags = "--kiosk"
+    if scheme == "https":
+        # App containers commonly use self-signed certificates.
+        flags += " --ignore-certificate-errors"
     notes = (
         f"Teste efêmero do template Portainer '{title}'. "
         f"Backend Docker esperado: contêiner '{slug}' (imagem {image}), na rede "
@@ -394,7 +404,7 @@ def build_app(
         "architecture": ["amd64"],
         "port": port,
         "target_url": target_url,
-        "launch_url": f"--kiosk {target_url}",
+        "launch_url": f"{flags} {target_url}",
         "notes": notes,
         "env": env_entries,
         "env_defaults": env_defaults,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T17:30:39.934065+00:00",
+  "generated_at": "2026-11-12T17:58:31.266648+00:00",
   "source": "https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/templates.json",
   "kasm": {
     "version": "1.19.0",
@@ -515,8 +515,8 @@
       "image": "httpd:latest",
       "container_name": "apache-httpd",
       "port": 443,
-      "launch_url": "--kiosk http://apache-httpd:443",
-      "target_url": "http://apache-httpd:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://apache-httpd:443",
+      "target_url": "https://apache-httpd:443",
       "env": [
         {
           "name": "PUID",
@@ -2750,8 +2750,8 @@
       "image": "linuxserver/code-server:latest",
       "container_name": "code-server",
       "port": 8443,
-      "launch_url": "--kiosk http://code-server:8443",
-      "target_url": "http://code-server:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://code-server:8443",
+      "target_url": "https://code-server:8443",
       "env": [
         {
           "name": "PUID",
@@ -2850,8 +2850,8 @@
       "image": "linuxserver/code-server:latest",
       "container_name": "code-server-shmolf",
       "port": 8443,
-      "launch_url": "--kiosk http://code-server-shmolf:8443",
-      "target_url": "http://code-server-shmolf:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://code-server-shmolf:8443",
+      "target_url": "https://code-server-shmolf:8443",
       "env": [
         {
           "name": "PUID",
@@ -3017,8 +3017,8 @@
       "image": "ortussolutions/commandbox:latest",
       "container_name": "commandbox",
       "port": 8443,
-      "launch_url": "--kiosk http://commandbox:8443",
-      "target_url": "http://commandbox:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://commandbox:8443",
+      "target_url": "https://commandbox:8443",
       "env": [
         {
           "name": "CFENGINE",
@@ -3047,8 +3047,8 @@
       "image": "ortussolutions/contentbox:latest",
       "container_name": "contentbox",
       "port": 8443,
-      "launch_url": "--kiosk http://contentbox:8443",
-      "target_url": "http://contentbox:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://contentbox:8443",
+      "target_url": "https://contentbox:8443",
       "env": [
         {
           "name": "express",
@@ -3134,8 +3134,8 @@
       "image": "linuxserver/cops:latest",
       "container_name": "cops",
       "port": 443,
-      "launch_url": "--kiosk http://cops:443",
-      "target_url": "http://cops:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://cops:443",
+      "target_url": "https://cops:443",
       "env": [
         {
           "name": "PUID",
@@ -4097,8 +4097,8 @@
       "image": "dokku/dokku:latest",
       "container_name": "dokku",
       "port": 443,
-      "launch_url": "--kiosk http://dokku:443",
-      "target_url": "http://dokku:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://dokku:443",
+      "target_url": "https://dokku:443",
       "env": [
         {
           "name": "DOKKU_HOSTNAME",
@@ -4141,8 +4141,8 @@
       "image": "linuxserver/dokuwiki:latest",
       "container_name": "dokuwiki",
       "port": 443,
-      "launch_url": "--kiosk http://dokuwiki:443",
-      "target_url": "http://dokuwiki:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://dokuwiki:443",
+      "target_url": "https://dokuwiki:443",
       "env": [
         {
           "name": "PUID",
@@ -6478,8 +6478,8 @@
       "image": "gitlab/gitlab-ce:latest",
       "container_name": "gitlab-ce",
       "port": 443,
-      "launch_url": "--kiosk http://gitlab-ce:443",
-      "target_url": "http://gitlab-ce:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://gitlab-ce:443",
+      "target_url": "https://gitlab-ce:443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -7376,8 +7376,8 @@
       "image": "linuxserver/heimdall:latest",
       "container_name": "heimdall",
       "port": 443,
-      "launch_url": "--kiosk http://heimdall:443",
-      "target_url": "http://heimdall:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://heimdall:443",
+      "target_url": "https://heimdall:443",
       "env": [
         {
           "name": "PUID",
@@ -8870,8 +8870,8 @@
       "image": "linuxserver/kimai:latest",
       "container_name": "kimai",
       "port": 443,
-      "launch_url": "--kiosk http://kimai:443",
-      "target_url": "http://kimai:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://kimai:443",
+      "target_url": "https://kimai:443",
       "env": [
         {
           "name": "PUID",
@@ -9303,8 +9303,8 @@
       "image": "linuxserver/letsencrypt:latest",
       "container_name": "let-s-encrypt",
       "port": 443,
-      "launch_url": "--kiosk http://let-s-encrypt:443",
-      "target_url": "http://let-s-encrypt:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://let-s-encrypt:443",
+      "target_url": "https://let-s-encrypt:443",
       "env": [
         {
           "name": "EMAIL",
@@ -9396,8 +9396,8 @@
       "image": "linuxserver/swag:latest",
       "container_name": "let-s-encrypt-swag",
       "port": 443,
-      "launch_url": "--kiosk http://let-s-encrypt-swag:443",
-      "target_url": "http://let-s-encrypt-swag:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://let-s-encrypt-swag:443",
+      "target_url": "https://let-s-encrypt-swag:443",
       "env": [
         {
           "name": "EMAIL",
@@ -10557,8 +10557,8 @@
       "image": "linuxserver/mastodon:latest",
       "container_name": "mastodon",
       "port": 443,
-      "launch_url": "--kiosk http://mastodon:443",
-      "target_url": "http://mastodon:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://mastodon:443",
+      "target_url": "https://mastodon:443",
       "env": [
         {
           "name": "PUID",
@@ -12562,9 +12562,9 @@
       "friendly_name": "Teste: Nextcloud",
       "image": "linuxserver/nextcloud:latest",
       "container_name": "nextcloud",
-      "port": 443,
-      "launch_url": "--kiosk http://nextcloud:443",
-      "target_url": "http://nextcloud:443",
+      "port": 80,
+      "launch_url": "--kiosk http://nextcloud:80",
+      "target_url": "http://nextcloud:80",
       "env": [
         {
           "name": "PUID",
@@ -12619,8 +12619,8 @@
       "image": "nginx:latest",
       "container_name": "nginx",
       "port": 443,
-      "launch_url": "--kiosk http://nginx:443",
-      "target_url": "http://nginx:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://nginx:443",
+      "target_url": "https://nginx:443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -12641,8 +12641,8 @@
       "image": "jc21/nginx-proxy-manager:latest",
       "container_name": "nginx-proxy-manager",
       "port": 443,
-      "launch_url": "--kiosk http://nginx-proxy-manager:443",
-      "target_url": "http://nginx-proxy-manager:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://nginx-proxy-manager:443",
+      "target_url": "https://nginx-proxy-manager:443",
       "env": [
         {
           "name": "DB_SQLITE_FILE",
@@ -12683,8 +12683,8 @@
       "image": "jc21/nginx-proxy-manager:latest",
       "container_name": "nginx-proxy-manager-v2-with-sqllite",
       "port": 443,
-      "launch_url": "--kiosk http://nginx-proxy-manager-v2-with-sqllite:443",
-      "target_url": "http://nginx-proxy-manager-v2-with-sqllite:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://nginx-proxy-manager-v2-with-sqllite:443",
+      "target_url": "https://nginx-proxy-manager-v2-with-sqllite:443",
       "env": [
         {
           "name": "PUID",
@@ -12739,8 +12739,8 @@
       "image": "jc21/nginx-proxy-manager:v3",
       "container_name": "nginx-proxy-manager-v3-devel-not-ready-for-use",
       "port": 443,
-      "launch_url": "--kiosk http://nginx-proxy-manager-v3-devel-not-ready-for-use:443",
-      "target_url": "http://nginx-proxy-manager-v3-devel-not-ready-for-use:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://nginx-proxy-manager-v3-devel-not-ready-for-use:443",
+      "target_url": "https://nginx-proxy-manager-v3-devel-not-ready-for-use:443",
       "env": [
         {
           "name": "PUID",
@@ -14487,8 +14487,8 @@
       "image": "pihole/pihole:latest",
       "container_name": "pi-hole",
       "port": 443,
-      "launch_url": "--kiosk http://pi-hole:443",
-      "target_url": "http://pi-hole:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://pi-hole:443",
+      "target_url": "https://pi-hole:443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -14520,8 +14520,8 @@
       "image": "oijkn/pihole-doh-dot:latest",
       "container_name": "pi-hole-doh-dot",
       "port": 443,
-      "launch_url": "--kiosk http://pi-hole-doh-dot:443",
-      "target_url": "http://pi-hole-doh-dot:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://pi-hole-doh-dot:443",
+      "target_url": "https://pi-hole-doh-dot:443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -14553,8 +14553,8 @@
       "image": "cbcrowe/pihole-unbound:latest",
       "container_name": "pi-hole-unbound",
       "port": 443,
-      "launch_url": "--kiosk http://pi-hole-unbound:443",
-      "target_url": "http://pi-hole-unbound:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://pi-hole-unbound:443",
+      "target_url": "https://pi-hole-unbound:443",
       "env": [
         {
           "name": "ServerIP",
@@ -14966,8 +14966,8 @@
       "image": "plesk/plesk:latest",
       "container_name": "plesk",
       "port": 443,
-      "launch_url": "--kiosk http://plesk:443",
-      "target_url": "http://plesk:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://plesk:443",
+      "target_url": "https://plesk:443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -15469,8 +15469,8 @@
       "image": "linuxserver/pydio:latest",
       "container_name": "pydio",
       "port": 443,
-      "launch_url": "--kiosk http://pydio:443",
-      "target_url": "http://pydio:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://pydio:443",
+      "target_url": "https://pydio:443",
       "env": [
         {
           "name": "PUID",
@@ -17086,8 +17086,8 @@
       "image": "linuxserver/sealskin:latest",
       "container_name": "sealskin",
       "port": 8443,
-      "launch_url": "--kiosk http://sealskin:8443",
-      "target_url": "http://sealskin:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://sealskin:8443",
+      "target_url": "https://sealskin:8443",
       "env": [
         {
           "name": "PUID",
@@ -18211,8 +18211,8 @@
       "image": "stalwartlabs/stalwart:latest",
       "container_name": "stalwart-mail-server",
       "port": 443,
-      "launch_url": "--kiosk http://stalwart-mail-server:443",
-      "target_url": "http://stalwart-mail-server:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://stalwart-mail-server:443",
+      "target_url": "https://stalwart-mail-server:443",
       "env": [
         {
           "name": "STALWART_RECOVERY_ADMIN",
@@ -18488,8 +18488,8 @@
       "image": "linuxserver/swag:latest",
       "container_name": "swag",
       "port": 443,
-      "launch_url": "--kiosk http://swag:443",
-      "target_url": "http://swag:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://swag:443",
+      "target_url": "https://swag:443",
       "env": [
         {
           "name": "PUID",
@@ -19185,8 +19185,8 @@
       "image": "traefik:latest",
       "container_name": "traefik",
       "port": 443,
-      "launch_url": "--kiosk http://traefik:443",
-      "target_url": "http://traefik:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://traefik:443",
+      "target_url": "https://traefik:443",
       "env": [],
       "env_defaults": {},
       "required_env": [],
@@ -19717,8 +19717,8 @@
       "image": "linuxserver/unifi-controller:latest",
       "container_name": "unifi-controller",
       "port": 8443,
-      "launch_url": "--kiosk http://unifi-controller:8443",
-      "target_url": "http://unifi-controller:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://unifi-controller:8443",
+      "target_url": "https://unifi-controller:8443",
       "env": [
         {
           "name": "PUID",
@@ -19824,8 +19824,8 @@
       "image": "linuxserver/unifi-network-application:latest",
       "container_name": "unifi-network-application",
       "port": 8443,
-      "launch_url": "--kiosk http://unifi-network-application:8443",
-      "target_url": "http://unifi-network-application:8443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://unifi-network-application:8443",
+      "target_url": "https://unifi-network-application:8443",
       "env": [
         {
           "name": "PUID",
@@ -21123,8 +21123,8 @@
       "image": "linuxserver/xbackbone:latest",
       "container_name": "xbackbone",
       "port": 443,
-      "launch_url": "--kiosk http://xbackbone:443",
-      "target_url": "http://xbackbone:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://xbackbone:443",
+      "target_url": "https://xbackbone:443",
       "env": [
         {
           "name": "PUID",
@@ -21304,8 +21304,8 @@
       "image": "linuxserver/your_spotify:latest",
       "container_name": "your-spotify",
       "port": 443,
-      "launch_url": "--kiosk http://your-spotify:443",
-      "target_url": "http://your-spotify:443",
+      "launch_url": "--kiosk --ignore-certificate-errors https://your-spotify:443",
+      "target_url": "https://your-spotify:443",
       "env": [
         {
           "name": "PUID",

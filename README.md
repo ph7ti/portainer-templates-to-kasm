@@ -26,7 +26,7 @@ Debian 13) com a rede fixa `kasm_default_network` e
                                               │ kasm_default_network         │
                                               └──────────────┬───────────────┘
                                                              │ 3. --kiosk
-                                                             │    http://nextcloud:443
+                                                             │    http://nextcloud:80
                                                              ▼
 ┌──────────────────────────┐   4. poll /api/public/get_kasms   ┌──────────────────────────┐
 │ Orquestrador (systemd/   │ ◀──────────────────────────────── │ Kasm API                 │
@@ -64,9 +64,16 @@ orquestrador cuida do ciclo de vida do backend.
 - Registry validado contra schema 1.1 derivado: **0 erros**.
 - 406 ícones únicos baixados; 14 templates sem logo/ícone válido usam `default-icon.png`.
 - 40 testes passando (Windows e Linux/Debian 13).
+- Registry importado no Kasm de teste: **420 workspaces** (schema 1.1).
+- Imagens `Teste: Nextcloud`, `Teste: Gitea` e `Teste: Uptime Kuma` criadas no
+  catálogo via API; as demais são criadas em lote por
+  `tools/publish_images_to_kasm.py`.
 - Backend real validado no host: `nginx:alpine` na `kasm_default_network` respondeu **200** por DNS (`http://kasm-orch-test/`).
-- Orquestrador executado contra a API real do Kasm: modo `legacy`, 3 imagens indexadas, 0 sessões.
-- E2E completo (clique no workspace → backend → fechamento) em validação com o Kasm de teste.
+- Orquestrador executado contra a API real do Kasm: modo `legacy`, 423 imagens
+  indexadas, 420/420 workspaces casados por `image_id`.
+- E2E validado com **Nextcloud**, **Gitea** e **Uptime Kuma**: backend criado
+  em 1,5–4,4 s após a sessão aparecer; removido em 2,8–8,5 s após a sessão
+  desaparecer; sem volumes órfãos.
 
 ## Mapeamento Portainer → Kasm 1.1
 
@@ -80,11 +87,18 @@ orquestrador cuida do ciclo de vida do backend.
 | `image` | usada **somente** no `backend_manifest.json` e no orquestrador |
 | (fixo) | `architecture = ["amd64"]` (o `templates.json` não traz arquiteturas) |
 | (fixo) | `compatibility = [{version: "1.19.x", image: "kasmweb/chrome:1.19.0", uncompressed_size_mb: 2500}]` |
-| (fixo) | `run_config.environment.LAUNCH_URL = "--kiosk http://<slug>:<porta>"` |
+| (fixo) | `run_config.environment.LAUNCH_URL = "--kiosk [--ignore-certificate-errors] <scheme>://<slug>:<porta>"` |
 | (fixo) | `run_config.shm_size = "512m"` |
 
 O `notes` de cada workspace documenta o nome do contêiner de backend, a imagem e
 a URL alvo para troubleshooting.
+
+O esquema é escolhido pela porta do contêiner: `https` para 443/8443/9443
+(com `--ignore-certificate-errors`, pois os apps usam certificados
+autoassinados) e `http` para as demais. Exceções conhecidas ficam em
+`converter/port_overrides.json` — por exemplo, o Nextcloud expõe 80 e 443, mas
+o template só lista 443; usamos **80/HTTP** para evitar o erro
+“plain HTTP request sent to HTTPS port”.
 
 > **Nota sobre `architectures`**: o briefing pedia o mapeamento
 > `architectures → architecture`, mas o `templates.json` atual e o
@@ -143,6 +157,22 @@ GitHub Pages pelo workflow `.github/workflows/deploy-registry.yml`.
 
 Adicione a URL **sem barra de versão** em
 **Admin → Workspaces → Registry → Add new**.
+
+> Nesta build (1.19.0.842dcf) o Kasm importa os 420 workspaces no registry, mas
+> **não** cria automaticamente as 420 entradas em `Admin → Workspaces` (as
+> imagens lançáveis). Isso pode ser feito pelo botão **Add** de cada item no
+> registry ou em lote com a API:
+
+```bash
+# usa .secrets.json (kasm_url/api_key/api_key_secret) ou as env vars KASM_*
+python tools/publish_images_to_kasm.py            # idempotente
+python tools/publish_images_to_kasm.py --limit 10 # piloto
+python tools/publish_images_to_kasm.py --dry-run
+```
+
+A chave precisa de permissão de criação de imagens; a chave usada no piloto
+conseguiu criar `Teste: Nextcloud`, `Teste: Gitea` e `Teste: Uptime Kuma`.
+Depois disso, os itens `Teste: …` aparecem no catálogo de Workspaces.
 
 ### 3. Subir o orquestrador
 
@@ -235,8 +265,17 @@ backend. Não há necessidade de `docker stop` manual.
   registry 1.1 não oferece. Recomenda-se limitar a 1 sessão simultânea por app
   no grupo do Kasm durante os testes.
 - **Corrida de inicialização**: o Chrome pode abrir antes do backend responder.
-  Mitigação: poll curto (5 s), pré-pull das imagens e mensagem no `notes` para
-  recarregar. Não há gate de readiness no workspace.
+  No primeiro teste o navegador mostrou “domínio não encontrado” e depois 400;
+  o backend já estava subindo. Mitigações: poll de 5 s, pré-pull das imagens e
+  mensagem no `notes` para recarregar. **Não** foi feito rebuild da imagem do
+  Chrome nem página de espera/redirect — isso violaria a restrição de não
+  rebuildar imagens. Para produção, considere uma landing page/proxy de
+  readiness como fase separada.
+- **Certificados autoassinados**: apps em 443/8443 recebem
+  `--ignore-certificate-errors`; isso reduz a validação TLS dentro do navegador
+  isolado. Alternativa: instalar a CA dos apps no workspace.
+- O Nextcloud usa a porta **80/HTTP** por override; a 443 do LinuxServer
+  responde TLS com certificado autoassinado e o template só lista 443.
 - **420 de 464** templates `type 1`: os demais são privileged/host-network,
   sem porta ou Windows. Stacks (type 3) ficam para uma fase seguinte.
 - Aplicativos não-web (ex.: banco de dados, Minecraft) também entram no
