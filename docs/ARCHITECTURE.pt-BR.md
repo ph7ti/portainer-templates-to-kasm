@@ -1,3 +1,5 @@
+[English](ARCHITECTURE.md)
+
 # Arquitetura e decisões
 
 ## Fluxo de uma sessão

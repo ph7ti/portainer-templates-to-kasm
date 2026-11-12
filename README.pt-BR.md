@@ -111,6 +111,7 @@ python converter/convert_templates.py --output registry --refresh --prune
 python -m pytest -q
 
 # 3. Subir página de espera + orquestrador
+cp .env.example .env   # edite KASM_URL / API key / secret
 docker compose up -d --build
 
 # 4. Dry-run do orquestrador

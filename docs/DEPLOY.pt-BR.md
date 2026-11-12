@@ -1,3 +1,5 @@
+[English](DEPLOY.md)
+
 # Guia de deploy
 
 Assume um Kasm Workspaces single-server com Docker (validado em Debian 13,

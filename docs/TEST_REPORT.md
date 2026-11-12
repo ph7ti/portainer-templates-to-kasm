@@ -1,3 +1,5 @@
+[Português](TEST_REPORT.pt-BR.md)
+
 # Test report
 
 Date: 2026-11-12
@@ -65,7 +67,7 @@ Examples:
 ```
 .........................................  [100%]
 49 passed in 3.88s        # Windows
-49 passed in 0.92s        # Debian 13 host
+49 passed in 4.45s        # Debian 13 host
 ```
 
 ## 3. Docker/network smoke test

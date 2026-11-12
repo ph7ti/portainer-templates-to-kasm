@@ -1,3 +1,5 @@
+[English](TEST_REPORT.md)
+
 # Relatório de testes
 
 Data: 2026-11-12

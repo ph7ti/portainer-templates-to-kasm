@@ -1,3 +1,5 @@
+[Português](DEPLOY.pt-BR.md)
+
 # Deployment guide
 
 Assumes a Kasm Workspaces single-server with Docker (validated on Debian 13,
@@ -132,7 +134,7 @@ Install and configure:
 ```bash
 sudo python3 -m venv /opt/kasm-orchestrator/venv
 sudo /opt/kasm-orchestrator/venv/bin/pip install -r /opt/kasm-orchestrator/requirements.txt
-sudo cp /opt/kasm-orchestrator/../.env.example /opt/kasm-orchestrator/.env  # adjust paths
+sudo cp .env.example /opt/kasm-orchestrator/.env   # edit it below
 ```
 
 `/opt/kasm-orchestrator/.env`:

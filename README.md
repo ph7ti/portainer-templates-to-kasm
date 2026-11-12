@@ -113,6 +113,7 @@ python converter/convert_templates.py --output registry --refresh --prune
 python -m pytest -q
 
 # 3. Serve the waiting page + orchestrator
+cp .env.example .env   # edit KASM_URL / API key / secret
 docker compose up -d --build
 
 # 4. One-off dry run of the orchestrator

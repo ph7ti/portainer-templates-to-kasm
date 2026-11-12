@@ -1,3 +1,5 @@
+[Português](ARCHITECTURE.pt-BR.md)
+
 # Architecture and decisions
 
 ## Session flow
