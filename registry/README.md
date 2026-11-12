@@ -31,6 +31,11 @@ acrescido de `sha`.
 
 Adicione a URL **sem `/1.1`** em Admin → Workspaces → Registry → Add new.
 
+Nesta build do Kasm o registry importa os metadados, mas não cria as 420
+imagens lançáveis. Use o botão **Add** de cada item ou
+`python tools/publish_images_to_kasm.py` (idempotente, usa
+`.secrets.json`/env vars) para criar as entradas `Teste: …` no catálogo.
+
 ## Regenerar
 
 ```bash

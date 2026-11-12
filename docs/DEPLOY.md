@@ -37,9 +37,10 @@ O workflow `.github/workflows/deploy-registry.yml` publica o diretório
 `registry/` como site estático:
 
 1. Faça commit/push do `registry/` e do workflow.
-2. Em **Settings → Pages**, selecione **Build and deployment → GitHub Actions**
-   (o workflow tem `enablement: true`, mas a primeira execução pode precisar
-   dessa seleção manual).
+2. O Pages deste fork já está habilitado (`build_type: workflow`) e o job
+   **Deploy Kasm registry** já concluiu com sucesso. Em um fork novo, habilite
+   **Settings → Pages → Build and deployment → GitHub Actions** ou use a API
+   `POST /repos/{owner}/{repo}/pages` com `{"build_type":"workflow"}`.
 3. Aguarde o job **Deploy Kasm registry**.
 4. Valide:
    - `https://ph7ti.github.io/portainer-templates-to-kasm/versions.txt`

@@ -151,9 +151,12 @@ Opções úteis: `--max-apps 20` (piloto), `--no-icons`, `--offline`,
 O registry é estático. Neste fork ele vive em `registry/` e é publicado em
 GitHub Pages pelo workflow `.github/workflows/deploy-registry.yml`.
 
-- Pages: `https://ph7ti.github.io/portainer-templates-to-kasm/`
+- Pages (habilitado e publicado): `https://ph7ti.github.io/portainer-templates-to-kasm/`
 - Alternativa sem Pages (funciona porque o Kasm só faz GET em arquivos):
   `https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/registry/`
+
+O workflow `.github/workflows/deploy-registry.yml` já rodou com sucesso; o Pages
+está configurado com `build_type: workflow`.
 
 Adicione a URL **sem barra de versão** em
 **Admin → Workspaces → Registry → Add new**.

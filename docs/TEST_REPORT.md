@@ -15,6 +15,7 @@ single-server, Debian 13, Docker 29.9.3, rede `kasm_default_network`).
 | Backend real + DNS no Docker | host 10.1.0.108 | `nginx:alpine` → `http://kasm-orch-test/` → **200** |
 | Orquestrador `--once` contra API real | host 10.1.0.108 | modo `legacy`, 423 imagens, 420/420 casados |
 | Registry importado no Kasm | UI/API | **420 workspaces**, schema 1.1 |
+| GitHub Pages | Actions | deploy `success`; `versions.txt`/`1.1/list.json` 200 |
 | Imagens criadas no catálogo | API | 420 imagens `Teste: …` |
 | E2E Nextcloud | Kasm real | carregou; backend removido no poll seguinte |
 | E2E Gitea | Kasm real | carregou; backend removido ~2,8 s após a sessão |
