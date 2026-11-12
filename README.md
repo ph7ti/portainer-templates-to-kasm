@@ -49,7 +49,7 @@ orquestrador cuida do ciclo de vida do backend.
 |---|---|
 | `converter/` | `convert_templates.py`, schema 1.1 derivado, overrides de porta |
 | `orchestrator/` | cliente das APIs do Kasm, lifecycle Docker, reconciliação, entrypoint |
-| `tests/` | 40 testes unitários/integrados com mocks de Kasm e Docker |
+| `tests/` | 41 testes unitários/integrados com mocks de Kasm e Docker |
 | `registry/` | registry Kasm pronto (`versions.txt`, `1.1/list.json`, ícones, workspaces) e `backend_manifest.json` |
 | `examples/` | 3 `workspace.json` gerados (Nextcloud, Gitea, Uptime Kuma) |
 | `docs/` | arquitetura, deploy, relatório de testes e notas de discovery |
@@ -63,7 +63,7 @@ orquestrador cuida do ciclo de vida do backend.
   - 404 stacks (`type 3`) e 16 Swarm (`type 2`) ficam fora desta fase.
 - Registry validado contra schema 1.1 derivado: **0 erros**.
 - 406 ícones únicos baixados; 14 templates sem logo/ícone válido usam `default-icon.png`.
-- 40 testes passando (Windows e Linux/Debian 13).
+- 41 testes passando (Windows e Linux/Debian 13).
 - Registry importado no Kasm de teste: **420 workspaces** (schema 1.1).
 - Imagens `Teste: Nextcloud`, `Teste: Gitea` e `Teste: Uptime Kuma` criadas no
   catálogo via API; as demais são criadas em lote por

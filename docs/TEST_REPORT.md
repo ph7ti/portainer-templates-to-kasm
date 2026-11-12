@@ -10,8 +10,8 @@ single-server, Debian 13, Docker 29.9.3, rede `kasm_default_network`).
 |---|---|---|
 | Conversão completa (884 templates) | Windows 11 / Python 3.13 | **420 workspaces**, 464 pulados, **0 erros de schema** |
 | Ícones | idem | 406 únicos baixados; 14 fallback `default-icon.png` |
-| `pytest` local | Windows / Python 3.13 | **40 passed** |
-| `pytest` no host Kasm | Debian 13 / Python 3.13 | **40 passed** |
+| `pytest` local | Windows / Python 3.13 | **41 passed** |
+| `pytest` no host Kasm | Debian 13 / Python 3.13 | **41 passed** |
 | Backend real + DNS no Docker | host 10.1.0.108 | `nginx:alpine` → `http://kasm-orch-test/` → **200** |
 | Orquestrador `--once` contra API real | host 10.1.0.108 | modo `legacy`, 423 imagens, 420/420 casados |
 | Registry importado no Kasm | UI/API | **420 workspaces**, schema 1.1 |
@@ -61,7 +61,7 @@ Verificações pontuais:
 
 ## 2. Testes unitários
 
-Cobertura (40 casos):
+Cobertura (41 casos):
 
 - **Conversor** (`tests/test_converter.py`):
   - filtros por tipo, plataforma, privileged, host-network, sem porta TCP;
@@ -70,6 +70,7 @@ Cobertura (40 casos):
   - truncamento de categorias;
   - validação de schema 1.1 em todos os `workspace.json`;
   - `LAUNCH_URL`, `shm_size`, `architecture`, `compatibility`;
+  - esquema `http`/`https` e `--ignore-certificate-errors` para 443/8443;
   - geração de `list.json`, `versions.txt`, `icons/`;
   - idempotência (segunda execução preserva a árvore estável);
   - volumes: remoção de `:ro` e binds de sistema;
@@ -96,14 +97,14 @@ Execução local:
 
 ```
 ........................................  [100%]
-40 passed in 1,88s
+41 passed in 2,14s
 ```
 
 Execução no host Kasm (Debian 13):
 
 ```
 ........................................  [100%]
-40 passed in 0,73s
+41 passed in 0,92s
 ```
 
 ## 3. Teste real de Docker/rede
