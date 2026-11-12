@@ -12,8 +12,8 @@ Docker 29.9.3, network `kasm_default_network`).
 |---|---|---|
 | Full conversion (884 templates) | Windows 11 / Python 3.13 | **420 workspaces**, 464 skipped, **0 schema errors** |
 | Icons | idem | 406 unique downloaded; 14 fallback `default-icon.png` |
-| `pytest` local | Windows / Python 3.13 | **49 passed** |
-| `pytest` on the Kasm host | Debian 13 / Python 3.13 | **49 passed** |
+| `pytest` local | Windows / Python 3.13 | **50 passed** |
+| `pytest` on the Kasm host | Debian 13 / Python 3.13 | **50 passed** |
 | Real backend + DNS | host 10.1.0.108 | `nginx:alpine` → `http://kasm-orch-test/` → **200** |
 | Orchestrator `--once` | host / real API | `legacy` mode, 423 images, 420/420 matched |
 | Public registry | GitHub Pages (`ph7ti/kasm-registry`) | deploy success; `versions.txt`/`list.json` 200 |
@@ -23,6 +23,7 @@ Docker 29.9.3, network `kasm_default_network`).
 | E2E Gitea | real Kasm | loaded; backend removed ~2.8 s after session |
 | E2E Uptime Kuma | real Kasm | loaded; backend removed ~8.5 s after session |
 | Wait page | unit/HTTP + real click | validated: page appeared, polled, redirected to Nextcloud |
+| HTTPS app | Duckstation | 3000 is HTTP; 3001 is HTTPS; redirect to `https://duckstation:3001` loaded |
 
 ## 1. Converter
 
@@ -51,7 +52,7 @@ Examples:
 | Uptime Kuma | `--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fuptime-kuma%3A3001` | `louislam/uptime-kuma:latest` |
 | Code Server | `--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fcode-server%3A8443` | `linuxserver/code-server:latest` |
 
-## 2. Unit tests (49)
+## 2. Unit tests (50)
 
 - **Converter**: filters, ports/overrides, slug, categories, schema,
   `LAUNCH_URL`/waiting page, HTTPS scheme/flag, registry files, idempotency,
@@ -66,8 +67,8 @@ Examples:
 
 ```
 .........................................  [100%]
-49 passed in 3.88s        # Windows
-49 passed in 4.45s        # Debian 13 host
+50 passed in 4.89s        # Windows
+50 passed in 4.45s        # Debian 13 host
 ```
 
 ## 3. Docker/network smoke test
@@ -141,6 +142,17 @@ volumes gone at +67.9s
 
 Backend created ~1.5 s after the session; removed ~8.5 s after it disappeared
 (includes `stop(timeout=5)`).
+
+### Duckstation (HTTPS exception)
+
+- Template exposes 3000 and 3001. Verification:
+  - `http://duckstation:3000` → 200 (nginx, HTTP)
+  - `https://duckstation:3001` → 200 (nginx, self-signed TLS)
+  - `https://duckstation:3000` → `ERR_SSL_PROTOCOL_ERROR`
+- Fix: `port_overrides.json` maps `duckstation → 3001` and
+  `scheme_overrides.json` maps `duckstation → https`; the Kasm image was updated
+  to `--kiosk --ignore-certificate-errors ... target=https%3A%2F%2Fduckstation%3A3001`.
+- Retest: waited on the page, redirected and **Duckstation loaded over HTTPS**.
 
 ## 7. Waiting page
 

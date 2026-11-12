@@ -12,8 +12,8 @@ Kasm: `https://kasm.somosagility.com.br` (1.19.0.842dcf, single-server, Debian
 |---|---|---|
 | Conversão completa (884 templates) | Windows 11 / Python 3.13 | **420 workspaces**, 464 pulados, **0 erros de schema** |
 | Ícones | idem | 406 únicos baixados; 14 fallback `default-icon.png` |
-| `pytest` local | Windows / Python 3.13 | **49 passed** |
-| `pytest` no host Kasm | Debian 13 / Python 3.13 | **49 passed** |
+| `pytest` local | Windows / Python 3.13 | **50 passed** |
+| `pytest` no host Kasm | Debian 13 / Python 3.13 | **50 passed** |
 | Backend real + DNS | host 10.1.0.108 | `nginx:alpine` → `http://kasm-orch-test/` → **200** |
 | Orquestrador `--once` | host / API real | modo `legacy`, 423 imagens, 420/420 casados |
 | Registry público | GitHub Pages (`ph7ti/kasm-registry`) | deploy success; `versions.txt`/`list.json` 200 |
@@ -23,6 +23,7 @@ Kasm: `https://kasm.somosagility.com.br` (1.19.0.842dcf, single-server, Debian
 | E2E Gitea | Kasm real | carregou; backend removido ~2,8 s após a sessão |
 | E2E Uptime Kuma | Kasm real | carregou; backend removido ~8,5 s após a sessão |
 | Página de espera | unit/HTTP + clique real | validada: página apareceu, fez polling e redirecionou ao Nextcloud |
+| App HTTPS | Duckstation | 3000 é HTTP; 3001 é HTTPS; redirect para `https://duckstation:3001` carregou |
 
 ## 1. Conversor
 
@@ -51,7 +52,7 @@ Exemplos:
 | Uptime Kuma | `--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fuptime-kuma%3A3001` | `louislam/uptime-kuma:latest` |
 | Code Server | `--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fcode-server%3A8443` | `linuxserver/code-server:latest` |
 
-## 2. Testes unitários (49)
+## 2. Testes unitários (50)
 
 - **Conversor**: filtros, portas/overrides, slug, categorias, schema,
   `LAUNCH_URL`/página de espera, HTTPS/flag, arquivos do registry, idempotência,
@@ -66,8 +67,8 @@ Exemplos:
 
 ```
 .........................................  [100%]
-49 passed in 3,88s        # Windows
-49 passed in 0,92s        # host Debian 13
+50 passed in 4,89s        # Windows
+50 passed in 4,45s        # host Debian 13
 ```
 
 ## 3. Smoke test Docker/rede
@@ -141,6 +142,17 @@ volumes gone at +67.9s
 
 Backend criado ~1,5 s após a sessão; removido ~8,5 s após ela desaparecer
 (inclui `stop(timeout=5)`).
+
+### Duckstation (exceção HTTPS)
+
+- O template expõe 3000 e 3001. Verificação:
+  - `http://duckstation:3000` → 200 (nginx, HTTP)
+  - `https://duckstation:3001` → 200 (nginx, TLS autoassinado)
+  - `https://duckstation:3000` → `ERR_SSL_PROTOCOL_ERROR`
+- Correção: `port_overrides.json` mapeia `duckstation → 3001` e
+  `scheme_overrides.json` mapeia `duckstation → https`; a imagem no Kasm foi
+  atualizada para `--kiosk --ignore-certificate-errors ... target=https%3A%2F%2Fduckstation%3A3001`.
+- Reteste: esperou na página, redirecionou e o **Duckstation carregou via HTTPS**.
 
 ## 7. Página de espera
 

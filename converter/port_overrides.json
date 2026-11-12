@@ -2,5 +2,6 @@
   "minio": 9001,
   "adguard": 3000,
   "adguardhome": 3000,
-  "nextcloud": 80
+  "nextcloud": 80,
+  "duckstation": 3001
 }

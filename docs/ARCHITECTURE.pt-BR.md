@@ -107,9 +107,13 @@ O Portainer não indica qual porta é a UI web. O conversor:
 3. prioriza 443, 80, 8443, 8080, 3000, 3001, 8000, 8096, 8123, 8181, 9000,
    9001, 9090, 8081, 8888; senão a primeira TCP;
 4. aplica `converter/port_overrides.json` (`minio → 9001`,
-   `adguard/adguardhome → 3000`, `nextcloud → 80`);
+   `adguard/adguardhome → 3000`, `nextcloud → 80`, `duckstation → 3001`);
 5. usa `https` em 443/8443/9443 (com `--ignore-certificate-errors`) e `http`
-   nas demais.
+   nas demais;
+6. aplica `converter/scheme_overrides.json` para portas TLS não padrão. Exemplo:
+   o Duckstation expõe **HTTP 3000** e **HTTPS 3001**; ele é mapeado para
+   `3001` + `https`. Usar `https://duckstation:3000` gera
+   `ERR_SSL_PROTOCOL_ERROR` porque a 3000 é HTTP puro.
 
 A porta só aparece na URL do navegador; o backend não publica portas no host.
 

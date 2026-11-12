@@ -208,6 +208,33 @@ def test_wait_page_url_is_percent_encoded_and_default() -> None:
     assert "página de espera" in app["notes"]
 
 
+def test_scheme_override_for_https_only_apps() -> None:
+    settings = converter.parse_args(["--output", "unused"])
+    settings.scheme_overrides = {"duckstation": "https"}
+    app = converter.build_app(
+        {
+            "id": 188,
+            "type": 1,
+            "title": "Duckstation",
+            "description": "PS1 emulator",
+            "categories": ["Games"],
+            "image": "linuxserver/duckstation:latest",
+            "ports": ["3000:3000/tcp", "3001:3001/tcp"],
+        },
+        "duckstation",
+        3001,
+        settings,
+    )
+    assert app["target_url"] == "https://duckstation:3001"
+    assert app["launch_url"] == (
+        "--kiosk --ignore-certificate-errors "
+        "http://kasm-wait:8080/wait?target=https%3A%2F%2Fduckstation%3A3001"
+    )
+    assert converter.load_scheme_overrides(
+        str(ROOT / "converter" / "scheme_overrides.json")
+    )["duckstation"] == "https"
+
+
 def test_wait_page_default_in_full_conversion(tmp_path: Path) -> None:
     assert (
         converter.main(

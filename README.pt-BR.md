@@ -61,7 +61,7 @@ dedicado é a saída que o Kasm consome.
 | `orchestrator/` | Consulta a API do Kasm e cria/remove os contêineres na rede Docker |
 | `registry/` | Snapshot gerado para testes/dev; a cópia pública fica em `ph7ti/kasm-registry` |
 | `tools/` | `publish_images_to_kasm.py`, `measure_cleanup.py`, smoke test de backend |
-| `tests/` | 49 testes unitários/integrados com mocks de Kasm e Docker |
+| `tests/` | 50 testes unitários/integrados com mocks de Kasm e Docker |
 | `docs/` | Arquitetura, deploy e relatório de testes em inglês e português |
 | `systemd/` | Unit de exemplo do orquestrador |
 
@@ -133,7 +133,7 @@ instalação de imagens e políticas de grupo do Kasm.
 - Mantenha mudanças de dados/modelo upstream separadas da saída Kasm.
 - Regenere `registry/` e atualize o registry dedicado quando `templates.json`
   mudar.
-- Rode `pytest -q` (49 testes).
+- Rode `pytest -q` (50 testes).
 - Veja [docs/ARCHITECTURE.pt-BR.md](docs/ARCHITECTURE.pt-BR.md) para as decisões.
 
 ## Como o runtime funciona
@@ -151,6 +151,24 @@ A página de espera resolve a corrida do primeiro clique: o Kasm inicia o
 navegador antes de o contêiner da aplicação existir. A página consulta o backend
 e redireciona quando ele responde; se demorar mais de 60 s, mostra o link
 “Abrir agora”. O orquestrador cuida do ciclo de vida do backend.
+
+### Portas e overrides de HTTPS
+
+O conversor usa HTTPS nas portas 443/8443/9443 (com
+`--ignore-certificate-errors` para certificados autoassinados) e HTTP nas
+demais. Alguns apps expõem uma **segunda porta TLS não padrão**. O Duckstation é
+o caso concreto:
+
+- `http://duckstation:3000` → HTTP 200
+- `https://duckstation:3001` → HTTPS 200 (autoassinado)
+- `https://duckstation:3000` → **ERR_SSL_PROTOCOL_ERROR** (porta HTTP)
+
+As exceções ficam em
+[`converter/port_overrides.json`](converter/port_overrides.json) (porta) e
+[`converter/scheme_overrides.json`](converter/scheme_overrides.json) (esquema).
+O Duckstation está mapeado para `3001` + `https`; a página redireciona para
+`https://duckstation:3001` com a flag de certificado. Para outro app, mapeie o
+slug para a porta TLS e para `"https"`.
 
 ## Fork vs sincronização upstream
 
@@ -174,7 +192,7 @@ Validado no **Kasm Workspaces 1.19.0.842dcf**, Docker 29.9.3, Debian 13,
 | Registry | 420 workspaces, schema 1.1, Pages público no ar |
 | Imagens no Kasm | 420 entradas `Teste: …` instaladas |
 | Página de espera | validada: mensagem → polling → redirect automático |
-| Testes | 49 passando no Windows e Debian 13 |
+| Testes | 50 passando no Windows e Debian 13 |
 | E2E | Nextcloud, Gitea e Uptime Kuma carregaram; backends removidos 2,8–8,5 s após fechar |
 | Órfãos | nenhum após os testes; sem volumes residuais |
 

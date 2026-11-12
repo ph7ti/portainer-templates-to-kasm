@@ -115,9 +115,13 @@ The Portainer source does not say which port is the web UI. The converter:
 3. picks by priority: 443, 80, 8443, 8080, 3000, 3001, 8000, 8096, 8123,
    8181, 9000, 9001, 9090, 8081, 8888; otherwise the first TCP port;
 4. applies `converter/port_overrides.json` (`minio → 9001`,
-   `adguard/adguardhome → 3000`, `nextcloud → 80`);
+   `adguard/adguardhome → 3000`, `nextcloud → 80`, `duckstation → 3001`);
 5. uses `https` for 443/8443/9443 (plus `--ignore-certificate-errors`) and
-   `http` otherwise.
+   `http` otherwise;
+6. applies `converter/scheme_overrides.json` for non-standard TLS ports. Example:
+   Duckstation exposes **HTTP 3000** and **HTTPS 3001**; it is mapped to
+   `3001` + `https`. Using `https://duckstation:3000` produces
+   `ERR_SSL_PROTOCOL_ERROR` because 3000 is plain HTTP.
 
 The port is only used in the browser URL; the backend does not publish host
 ports.

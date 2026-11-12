@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T18:36:34.993298+00:00",
+  "generated_at": "2026-11-12T19:14:38.163447+00:00",
   "source": "https://raw.githubusercontent.com/ph7ti/portainer-templates-to-kasm/main/templates.json",
   "kasm": {
     "version": "1.19.0",
@@ -4782,10 +4782,10 @@
       "friendly_name": "Teste: Duckstation",
       "image": "linuxserver/duckstation:latest",
       "container_name": "duckstation",
-      "port": 3000,
-      "launch_url": "--kiosk http://kasm-wait:8080/wait?target=http%3A%2F%2Fduckstation%3A3000",
-      "target_url": "http://duckstation:3000",
-      "wait_url": "http://kasm-wait:8080/wait?target=http%3A%2F%2Fduckstation%3A3000",
+      "port": 3001,
+      "launch_url": "--kiosk --ignore-certificate-errors http://kasm-wait:8080/wait?target=https%3A%2F%2Fduckstation%3A3001",
+      "target_url": "https://duckstation:3001",
+      "wait_url": "http://kasm-wait:8080/wait?target=https%3A%2F%2Fduckstation%3A3001",
       "env": [
         {
           "name": "PUID",

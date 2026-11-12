@@ -60,7 +60,7 @@ The fork's `templates.json` is the input; the dedicated registry's
 | `orchestrator/` | Polls the Kasm API, starts/stops the app containers on the Kasm Docker network |
 | `registry/` | Generated snapshot for tests/dev; the public copy lives in `ph7ti/kasm-registry` |
 | `tools/` | `publish_images_to_kasm.py`, `measure_cleanup.py`, backend smoke test |
-| `tests/` | 49 unit/integration tests with mocked Kasm and Docker |
+| `tests/` | 50 unit/integration tests with mocked Kasm and Docker |
 | `docs/` | Architecture, deployment and test report in English and Portuguese |
 | `systemd/` | Example orchestrator unit |
 
@@ -132,7 +132,7 @@ installation and Kasm group policies.
 - Keep upstream data/model changes separate from Kasm output.
 - Regenerate `registry/` and update the dedicated registry when
   `templates.json` changes.
-- Run `pytest -q` (49 tests).
+- Run `pytest -q` (50 tests).
 - See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the design decisions.
 
 ## How the runtime works
@@ -150,6 +150,24 @@ The waiting page solves the first-click race: Kasm starts the browser before the
 application container exists. The page polls the backend and redirects when it
 answers; if the backend takes longer than 60 seconds, it shows an “Open now”
 link. The orchestrator handles the backend lifecycle.
+
+### Ports and HTTPS overrides
+
+The converter picks HTTPS for ports 443/8443/9443 (with
+`--ignore-certificate-errors` for self-signed certificates) and HTTP otherwise.
+Some apps expose a **second, non-standard TLS port**. Duckstation is the concrete
+example:
+
+- `http://duckstation:3000` → HTTP 200
+- `https://duckstation:3001` → HTTPS 200 (self-signed)
+- `https://duckstation:3000` → **ERR_SSL_PROTOCOL_ERROR** (plain HTTP port)
+
+Those exceptions are configured in
+[`converter/port_overrides.json`](converter/port_overrides.json) (port) and
+[`converter/scheme_overrides.json`](converter/scheme_overrides.json) (scheme).
+Duckstation is mapped to `3001` + `https`, so its waiting page redirects to
+`https://duckstation:3001` with the certificate flag. To add another app, map
+its slug to the TLS port and to `"https"`.
 
 ## Fork vs upstream sync
 
@@ -174,7 +192,7 @@ Validated on **Kasm Workspaces 1.19.0.842dcf**, Docker 29.9.3, Debian 13,
 | Registry | 420 workspaces, schema 1.1, public Pages live |
 | Kasm images | 420 `Teste: …` entries installed |
 | Waiting page | validated: message → polling → automatic redirect |
-| Tests | 49 passed on Windows and Debian 13 |
+| Tests | 50 passed on Windows and Debian 13 |
 | E2E | Nextcloud, Gitea and Uptime Kuma loaded; backends removed 2.8–8.5 s after closing |
 | Orphans | none after tests; no leftover volumes |
 

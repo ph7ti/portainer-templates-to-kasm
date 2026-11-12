@@ -377,7 +377,9 @@ def build_app(
     categories = clean_categories(template.get("categories"))
     volumes = clean_volumes(template.get("volumes"))
 
-    scheme = "https" if port in HTTPS_PORTS else "http"
+    scheme = getattr(settings, "scheme_overrides", {}).get(slug) or (
+        "https" if port in HTTPS_PORTS else "http"
+    )
     target_url = f"{scheme}://{slug}:{port}"
     flags = "--kiosk"
     if scheme == "https":
@@ -644,6 +646,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--registry-contact", default="https://github.com/ph7ti/kasm-registry")
     parser.add_argument("--port-overrides", default=str(Path(__file__).with_name("port_overrides.json")))
+    parser.add_argument(
+        "--scheme-overrides",
+        dest="scheme_overrides_path",
+        default=str(Path(__file__).with_name("scheme_overrides.json")),
+        help="JSON mapping slug to 'http' or 'https'",
+    )
     parser.add_argument("--schema", default=str(SCHEMA_PATH))
     parser.add_argument("--log-level", default="INFO")
     args = parser.parse_args(argv)
@@ -653,6 +661,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         args.kasm_version_label = f"{parts[0]}.{parts[1]}.x" if len(parts) >= 2 else "1.19.x"
     if not args.browser_version:
         args.browser_version = args.kasm_version
+    args.scheme_overrides = {}
     return args
 
 
@@ -661,6 +670,19 @@ def load_port_overrides(path: str) -> dict[str, int]:
         return {}
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     return {str(key): int(value) for key, value in data.items()}
+
+
+def load_scheme_overrides(path: str) -> dict[str, str]:
+    if not path or not Path(path).is_file():
+        return {}
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    result: dict[str, str] = {}
+    for key, value in data.items():
+        scheme = str(value).lower()
+        if scheme not in ("http", "https"):
+            raise ConversionError(f"invalid scheme override for {key}: {value!r}")
+        result[str(key)] = scheme
+    return result
 
 
 def load_validator(schema_path: str):
@@ -690,6 +712,7 @@ def main(argv: list[str] | None = None) -> int:
     icons_root.mkdir(parents=True, exist_ok=True)
 
     overrides = load_port_overrides(args.port_overrides)
+    args.scheme_overrides = load_scheme_overrides(args.scheme_overrides_path)
     templates, source_label = fetch_templates(
         args.source, Path(args.cache), args.refresh, timeout=args.icon_timeout
     )
